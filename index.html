@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ilektra Vouza — Multi-Media Archive</title>
+    <title>Ilektra Vouza — Portfolio</title>
     <style>
         :root {
             --bg: #dddddd;
@@ -16,45 +16,54 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-primary); overflow: hidden; height: 100vh; -webkit-font-smoothing: antialiased; }
 
+        /* ΤΟ ΥΨΗΛΟΤΕΡΟ LAYER ΓΙΑ ΤΙΣ ΕΙΚΟΝΕΣ */
         canvas { display: block; position: fixed; inset: 0; z-index: 9999; pointer-events: none; }
-        #hover-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.3); z-index: 50; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
+        
+        #hover-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.3); z-index: 50; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
 
-        header, footer { position: fixed; width: 100%; height: 81px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 1000; }
+        header, footer { position: fixed; width: 100%; height: 81px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 10000; }
         header { top: 0; } footer { bottom: 0; font-size: var(--fs-ui); }
 
         .header-left, .header-right { font-size: var(--fs-ui); width: 33.33%; }
         .header-right { text-align: right; }
-        .editable-container { outline: none; cursor: text; caret-color: #000; }
+        .editable-container { outline: none; cursor: text; caret-color: #000; display: inline-block; }
         .header-center { display: flex; gap: 20px; width: 33.33%; justify-content: center; }
         .header-center a { text-decoration: none; color: var(--text-main); font-size: var(--fs-ui); text-transform: uppercase; }
 
         .project-grid { position: fixed; top: 55%; left: 40px; width: 60%; transform: translateY(-50%); z-index: 110; pointer-events: auto; }
         .grid-header { display: grid; grid-template-columns: 40px 2.5fr 1.5fr 1fr 1.5fr; font-size: var(--fs-grid); margin-bottom: 15px; }
 
-        .project-row { display: grid; grid-template-columns: 40px 2.5fr 1.5fr 1fr 1.5fr; margin-bottom: 6px; cursor: pointer; font-size: var(--fs-grid); transition: opacity 0.4s ease; }
-        .project-grid:hover .project-row { opacity: 0.2; }
+        .project-row { display: grid; grid-template-columns: 40px 2.5fr 1.5fr 1fr 1.5fr; margin-bottom: 6px; cursor: pointer; font-size: var(--fs-grid); transition: opacity 0.3s ease; }
+        .project-grid:hover .project-row { opacity: 0.15; }
         .project-grid .project-row.active { opacity: 1; font-weight: bold; }
 
         .right-info { position: fixed; top: 20%; right: 40px; width: 380px; z-index: 110; font-size: var(--fs-ui); line-height: 1.4; transition: opacity 0.5s ease; }
         body.is-hovering .right-info { opacity: 0.2; }
 
+        /* EASTER EGG ELEMENTS */
         #p5-container { position: fixed; inset: 0; z-index: 20000; pointer-events: none; }
         #p5-container.active { pointer-events: auto; }
         #marquee-overlay { position: fixed; top: 50%; left: 0; width: 100%; height: 200px; background: #000; color: #fff; display: none; align-items: center; transform: translateY(-50%); z-index: 21000; overflow: hidden; }
-        .marquee-text { font-size: 120px; font-weight: 900; white-space: nowrap; display: flex; gap: 50px; animation: scrollText 15s linear infinite; }
+        .marquee-text { font-size: 100px; font-weight: 900; white-space: nowrap; display: flex; gap: 50px; animation: scrollText 10s linear infinite; }
         @keyframes scrollText { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        #return-btn { position: fixed; bottom: 10%; left: 50%; transform: translateX(-50%); padding: 15px 30px; background: #fff; color: #000; border: none; font-size: 16px; cursor: pointer; z-index: 22000; display: none; text-transform: uppercase; }
+        #return-btn { position: fixed; bottom: 10%; left: 50%; transform: translateX(-50%); padding: 15px 30px; background: #fff; color: #000; border: none; cursor: pointer; z-index: 22000; display: none; text-transform: uppercase; font-family: inherit; }
     </style>
 </head>
 <body id="body">
 
     <div id="hover-overlay"></div>
     <div id="p5-container"></div>
-    <div id="marquee-overlay"><div class="marquee-text"><span>ILEKTRA VOUZA — ILEKTRA VOUZA — ILEKTRA VOUZA — ILEKTRA VOUZA — </span><span>ILEKTRA VOUZA — ILEKTRA VOUZA — ILEKTRA VOUZA — ILEKTRA VOUZA — </span></div></div>
+    
+    <div id="marquee-overlay">
+        <div class="marquee-text">
+            <span>ILEKTRA VOUZA — ILEKTRA VOUZA — ILEKTRA VOUZA — ILEKTRA VOUZA — </span>
+            <span>ILEKTRA VOUZA — ILEKTRA VOUZA — ILEKTRA VOUZA — ILEKTRA VOUZA — </span>
+        </div>
+    </div>
     <button id="return-btn" onclick="location.reload()">Return to Homepage</button>
 
     <header>
-        <div class="header-left"><span class="editable-container" contenteditable="true">Hi, nice to e-meet you :)</span></div>
+        <div class="header-left"><span class="editable-container" contenteditable="true" spellcheck="false">Hi, nice to e-meet you :)</span></div>
         <div class="header-center"><a href="#">Archive</a><a href="#">About</a><a href="#">Thesis</a></div>
         <div class="header-right" id="clock">00:00 Athens, Greece</div>
     </header>
@@ -67,12 +76,17 @@
     </div>
 
     <div class="right-info">
-        <p>These are selected projects developed either personally, collaboratively within the companies I’ve worked with, or alongside independent teams...</p>
+        <p>These are selected projects developed either personally, collaboratively within the companies I’ve worked with, or alongside independent teams. Some are research-driven, others were created for commercial purposes, while a few function as personal expressions of my ideas, interests, and creative direction.</p>
     </div>
 
     <footer>
         <div id="easter-egg-btn" style="cursor:pointer; text-decoration:underline;" onclick="startEasterEgg()">This is an easter egg!</div>
-        <div class="footer-links"><a href="#">Linkedin</a><a href="#">Behance</a><a href="#">Instagram</a><a href="#">Email</a></div>
+        <div class="footer-links">
+            <a href="https://linkedin.com" target="_blank">Linkedin</a>
+            <a href="https://behance.net" target="_blank">Behance</a>
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+            <a href="mailto:your@email.com">Email</a>
+        </div>
         <div>Copywrites 2026</div>
     </footer>
 
@@ -87,10 +101,20 @@
             { id: "03", title: "Social Outkast", role: "UI/UX", date: "2024", partner: "Vestart", img: "assets/social.mp4" },
             { id: "04", title: "Femina", role: "Art Direction", date: "2024", partner: "", img: "assets/femina.avif" },
             { id: "05", title: "Game", role: "UI/UX", date: "2024", partner: "", img: "assets/game.avif" },
-            { id: "16", title: "Are you part of yourself?", role: "Thesis", date: "2026", partner: "Self", img: "assets/areyou.mp4" },
-            // Συμπλήρωσε τα υπόλοιπα projects εδώ με placeholders αν χρειάζεται
+            { id: "06", title: "Softlikebutter", role: "Management", date: "2025", partner: "Vestart", img: "assets/femina.avif" },
+            { id: "07", title: "Temporal Ethics", role: "Ideation", date: "2024", partner: "Eleana Pafiti", img: "assets/entropia.jpg" },
+            { id: "08", title: "Back2K", role: "Creative Dir", date: "2024", partner: "Vestart", img: "assets/social.mp4" },
+            { id: "09", title: "Brotherakia", role: "UI/UX", date: "2024", partner: "Vestart", img: "assets/where.avif" },
+            { id: "10", title: "Treha Gireve", role: "UI/UX", date: "2024", partner: "Vestart", img: "assets/game.avif" },
+            { id: "11", title: "Skadin", role: "360", date: "2024", partner: "", img: "assets/where.avif" },
+            { id: "12", title: "Lovale", role: "Creative Dir", date: "2024", partner: "Vestart", img: "assets/entropia.jpg" },
+            { id: "13", title: "Brandsden", role: "Management", date: "2025", partner: "Vestart", img: "assets/social.mp4" },
+            { id: "14", title: "Stain", role: "Strategy", date: "2024", partner: "Vestart", img: "assets/femina.avif" },
+            { id: "15", title: "Aura Fluidics", role: "Design", date: "2026", partner: "Studio", img: "assets/where.avif" },
+            { id: "16", title: "Are you part of yourself?", role: "Thesis", date: "2026", partner: "Self", img: "assets/areyou.mp4" }
         ];
 
+        // --- THREE JS ENGINE ---
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
         camera.position.z = 10;
@@ -104,7 +128,7 @@
             const fov = camera.fov * (Math.PI / 180);
             const visibleHeight = 2 * Math.tan(fov / 2) * camera.position.z;
             pixelToUnit = visibleHeight / window.innerHeight;
-            itemSpacing = baseHeight + (20 * pixelToUnit); 
+            itemSpacing = baseHeight + (25 * pixelToUnit); 
             renderer.setSize(window.innerWidth, window.innerHeight);
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
@@ -119,7 +143,7 @@
                 vec4 viewPos = modelViewMatrix * vec4(pos, 1.0); 
                 float dist = length(viewPos.xy); 
                 float hyperDist = cosh(dist * 0.45) * 0.45; 
-                pos.z += hyperDist * (abs(uVelocity) / (1.0 + abs(uVelocity) * 0.02) * 0.05); 
+                pos.z += hyperDist * (abs(uVelocity) / (1.0 + abs(uVelocity) * 0.02) * 0.1); 
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0); 
             }`;
 
@@ -129,7 +153,7 @@
             varying vec2 vUv; 
             void main() { 
                 vec4 tex = texture2D(tMap, vUv); 
-                gl_FragColor = vec4(tex.rgb, tex.a * uOpacity * 0.95); 
+                gl_FragColor = vec4(tex.rgb, tex.a * uOpacity * 0.98); 
             }`;
 
         const items = [];
@@ -138,27 +162,17 @@
 
         projects.forEach((p, i) => {
             let texture;
-            
-            // Έλεγχος αν είναι Video
             if (p.img.endsWith('.mp4')) {
                 const video = document.createElement('video');
-                video.src = p.img;
-                video.loop = true;
-                video.muted = true;
-                video.play();
+                video.src = p.img; video.loop = true; video.muted = true; video.playsInline = true; video.play();
                 texture = new THREE.VideoTexture(video);
             } else {
                 texture = textureLoader.load(p.img);
             }
 
             const mat = new THREE.ShaderMaterial({ 
-                vertexShader, 
-                fragmentShader, 
-                uniforms: { 
-                    tMap: { value: texture }, 
-                    uVelocity: { value: 0.0 }, 
-                    uOpacity: { value: 0.0 } 
-                }, 
+                vertexShader, fragmentShader, 
+                uniforms: { tMap: { value: texture }, uVelocity: { value: 0.0 }, uOpacity: { value: 0.0 } }, 
                 transparent: true 
             });
 
@@ -169,10 +183,9 @@
             const row = document.createElement('div');
             row.className = 'project-row';
             row.innerHTML = `<div>${p.id}</div><div>${p.title}</div><div>${p.role}</div><div>${p.date}</div><div>${p.partner}</div>`;
-            
             row.onmouseenter = () => { 
                 targetY = i * itemSpacing; 
-                gsap.to(globalOpacity, { value: 1, duration: 0.6 }); 
+                gsap.to(globalOpacity, { value: 1, duration: 0.4 }); 
                 document.getElementById('hover-overlay').style.opacity = "1"; 
                 document.getElementById('body').classList.add('is-hovering'); 
                 document.querySelectorAll('.project-row').forEach((r, idx) => r.classList.toggle('active', idx === i)); 
@@ -181,7 +194,7 @@
         });
 
         document.getElementById('grid-trigger').onmouseleave = () => { 
-            gsap.to(globalOpacity, { value: 0, duration: 0.6 }); 
+            gsap.to(globalOpacity, { value: 0, duration: 0.4 }); 
             document.getElementById('hover-overlay').style.opacity = "0"; 
             document.getElementById('body').classList.remove('is-hovering'); 
             document.querySelectorAll('.project-row').forEach(r => r.classList.remove('active')); 
@@ -190,18 +203,19 @@
         let targetY = 0, currentY = 0, smoothedVelocity = 0, globalOpacity = { value: 0 }; 
         function animate() {
             requestAnimationFrame(animate);
-            const lastY = currentY; currentY += (targetY - currentY) * 0.1;
+            const lastY = currentY; 
+            currentY += (targetY - currentY) * 0.12;
             const rawVelocity = (currentY - lastY) / pixelToUnit;
-            smoothedVelocity += (rawVelocity - smoothedVelocity) * 0.15;
+            smoothedVelocity += (rawVelocity - smoothedVelocity) * 0.2;
             items.forEach((mesh, i) => { 
                 mesh.position.y = (-i * itemSpacing) + currentY; 
-                mesh.material.uniforms.uVelocity.value = smoothedVelocity * 5.0; 
+                mesh.material.uniforms.uVelocity.value = smoothedVelocity * 7.0; 
                 mesh.material.uniforms.uOpacity.value = globalOpacity.value; 
             });
             renderer.render(scene, camera);
         }
 
-        // EASTER EGG
+        // --- EASTER EGG ---
         function startEasterEgg() { 
             document.getElementById('p5-container').classList.add('active'); 
             new p5(sketch, 'p5-container'); 
@@ -211,8 +225,11 @@
             p.setup = () => { p.createCanvas(p.windowWidth, p.windowHeight); p.noStroke(); };
             p.draw = () => {
                 if (p.frameCount % 5 === 0) bbls.push({ x: p.random(p.width), y: p.random(p.height), r: 0, tR: p.random(200, 600) });
-                bbls.forEach(b => { if (b.r < b.tR) b.r += 10; p.fill(211, 47, 47); p.ellipse(b.x, b.y, b.r); });
-                if (bbls.length > 50) { gsap.to("#marquee-overlay", { display: 'flex', opacity: 1, duration: 1 }); gsap.to("#return-btn", { display: 'block', opacity: 1, duration: 1 }); }
+                bbls.forEach(b => { if (b.r < b.tR) b.r += 12; p.fill(211, 47, 47); p.ellipse(b.x, b.y, b.r); });
+                if (bbls.length > 45) { 
+                    gsap.to("#marquee-overlay", { display: 'flex', opacity: 1, duration: 0.5 }); 
+                    gsap.to("#return-btn", { display: 'block', opacity: 1, duration: 0.5 }); 
+                }
             };
         };
 
