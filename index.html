@@ -17,38 +17,27 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-primary); overflow: hidden; height: 100vh; -webkit-font-smoothing: antialiased; }
 
-        /* THE 3D LAYER */
-        canvas { display: block; position: fixed; inset: 0; z-index: 99; pointer-events: none; }
+        /* LAYER 100: ΤΟ 3D CANVAS (ΜΕΣΑΙΑ ΣΤΙΒΑΔΑ) */
+        canvas { display: block; position: fixed; inset: 0; z-index: 100; pointer-events: none; }
         
-        #hover-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.2); z-index: 50; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+        #hover-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.2); z-index: 80; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
 
-        header, footer { position: fixed; width: 100%; height: 81px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 10000; }
+        /* LAYER 50: HEADER, FOOTER, INFO (ΚΑΤΩ ΑΠΟ ΤΗΝ ΕΙΚΟΝΑ) */
+        header, footer { position: fixed; width: 100%; height: 81px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 50; }
         header { top: 0; } footer { bottom: 0; font-size: var(--fs-ui); }
 
         .header-left, .header-right { font-size: var(--fs-ui); width: 33.33%; }
         .header-right { text-align: right; }
-
-        .editable-container { 
-            outline: none; 
-            cursor: text; 
-            caret-color: transparent; 
-            display: inline-block; 
-            position: relative;
-        }
-        .editable-container::after {
-            content: "|";
-            margin-left: 1px;
-            animation: blink 1s steps(2, start) infinite;
-            font-weight: 100;
-            color: var(--text-main);
-        }
+        .editable-container { outline: none; cursor: text; caret-color: transparent; display: inline-block; position: relative; }
+        .editable-container::after { content: "|"; margin-left: 1px; animation: blink 1s steps(2, start) infinite; color: var(--text-main); }
         @keyframes blink { to { visibility: hidden; } }
         
         .header-center { display: flex; gap: 20px; width: 33.33%; justify-content: center; }
         .header-center a { text-decoration: none; color: var(--text-main); font-size: var(--fs-ui); text-transform: uppercase; }
 
-        .project-grid { position: fixed; top: 55%; left: 40px; width: 60%; transform: translateY(-50%); z-index: 110; pointer-events: auto; }
-        .grid-header { display: grid; grid-template-columns: 40px 2.5fr 1.5fr 1fr 1.5fr; font-size: var(--fs-grid); margin-bottom: 15px; }
+        /* PROJECT LIST */
+        .project-grid { position: fixed; top: 55%; left: 40px; width: 60%; transform: translateY(-50%); z-index: 90; pointer-events: auto; }
+        .grid-header { display: grid; grid-template-columns: 40px 2.5fr 1.5fr 1fr 1.5fr; font-size: var(--fs-grid); margin-bottom: 15px; opacity: 0.5; }
 
         .project-row { 
             display: grid; 
@@ -58,22 +47,22 @@
             font-size: var(--fs-grid); 
             transition: opacity 0.3s ease, color 0.3s ease; 
             position: relative; 
-            z-index: 110;
+            z-index: 90; /* Default: Πίσω από το canvas */
         }
         
         .project-grid:hover .project-row { opacity: 0.15; }
 
+        /* LAYER 200: ΜΟΝΟ Η ΕΝΕΡΓΗ ΓΡΑΜΜΗ ΠΑΝΩ ΑΠΟ ΤΗΝ ΕΙΚΟΝΑ */
         .project-grid .project-row.active { 
             opacity: 1; 
             font-weight: bold; 
             color: var(--accent-pink); 
-            z-index: 10001; 
+            z-index: 200; /* Πάνω από το canvas */
         }
-        
         .project-grid .project-row.active div { color: var(--accent-pink); }
 
-        .right-info { position: fixed; top: 20%; right: 40px; width: 380px; z-index: 110; font-size: var(--fs-ui); line-height: 1.4; transition: opacity 0.5s ease; }
-        body.is-hovering .right-info { opacity: 0.2; }
+        .right-info { position: fixed; top: 20%; right: 40px; width: 380px; z-index: 50; font-size: var(--fs-ui); line-height: 1.4; transition: opacity 0.5s ease; }
+        body.is-hovering .right-info { opacity: 0.1; }
 
         .footer-links { display: flex; gap: 20px; }
         .footer-links a { text-decoration: none; color: var(--text-main); text-transform: capitalize; }
@@ -82,7 +71,6 @@
 <body id="body">
 
     <div id="hover-overlay"></div>
-    <div id="p5-container" style="position:fixed; inset:0; z-index:20000; pointer-events:none;"></div>
     
     <header>
         <div class="header-left">
@@ -100,11 +88,11 @@
     </div>
 
     <div class="right-info">
-        <p>These are selected projects developed either personally, collaboratively within the companies I’ve worked with, or alongside independent teams.</p>
+        <p>These are selected projects developed either personally, collaboratively or alongside independent teams. Research-driven, commercial purposes or personal expressions.</p>
     </div>
 
     <footer>
-        <div id="easter-egg-btn" style="cursor:pointer; text-decoration:underline;" onclick="startEasterEgg()">This is an easter egg!</div>
+        <div style="cursor:pointer; text-decoration:underline;" onclick="startEasterEgg()">Easter egg</div>
         <div class="footer-links">
             <a href="https://linkedin.com" target="_blank">Linkedin</a>
             <a href="https://instagram.com" target="_blank">Instagram</a>
@@ -115,11 +103,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 
     <script>
         const projects = [
-          { id: "01", title: "Entropia", role: "360", date: "2025", partner: "", img: "./assets/entropia.jpg" },
+            { id: "01", title: "Entropia", role: "360", date: "2025", partner: "", img: "./assets/entropia.jpg" },
             { id: "02", title: "Where", role: "360", date: "2024", partner: "", img: "./assets/where.avif" },
             { id: "03", title: "Social Outkast", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/social.mp4" },
             { id: "04", title: "Femina", role: "Art Direction", date: "2024", partner: "", img: "./assets/femina.avif" },
@@ -132,42 +119,63 @@
             { id: "11", title: "Skadin", role: "360", date: "2024", partner: "", img: "./assets/where.avif" },
             { id: "12", title: "Lovale", role: "Creative Dir", date: "2024", partner: "Vestart", img: "./assets/entropia.jpg" },
             { id: "13", title: "Brandsden", role: "Management", date: "2025", partner: "Vestart", img: "./assets/social.mp4" },
+            { id: "14", title: "Stain", role: "Strategy", date: "2024", partner: "Vestart", img: "./assets/femina.avif" },
+            { id: "15", title: "Cube is cubing", role: "Creative Coding", date: "2026", partner: "", img: "./assets/where.avif" },
+            { id: "16", title: "Are you part of yourself?", role: "Thesis", date: "2026", partner: "Self", img: "./assets/areyou.mp4" }
         ];
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
         camera.position.z = 10;
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true, alpha: true });
-        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(window.innerWidth, window.innerHeight);
 
         let pixelToUnit, itemSpacing;
-        const baseHeight = 3.75; 
+        const baseHeight = 4.7; // Μεγαλύτερο ύψος media
 
         function updateSizes() {
             const fov = camera.fov * (Math.PI / 180);
             const visibleHeight = 2 * Math.tan(fov / 2) * camera.position.z;
             pixelToUnit = visibleHeight / window.innerHeight;
-            itemSpacing = baseHeight + (50 * pixelToUnit); 
+            itemSpacing = baseHeight + (60 * pixelToUnit); 
             renderer.setSize(window.innerWidth, window.innerHeight);
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
         }
 
-        const vertexShader = `uniform float uVelocity; varying vec2 vUv; void main() { vUv = uv; vec3 pos = position; vec4 viewPos = modelViewMatrix * vec4(pos, 1.0); float dist = length(viewPos.xy); float hyperDist = cosh(dist * 0.45) * 0.45; pos.z += hyperDist * (abs(uVelocity) / (1.0 + abs(uVelocity) * 0.02) * 0.1); gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0); }`;
-        const fragmentShader = `uniform sampler2D tMap; uniform float uOpacity; varying vec2 vUv; void main() { vec4 tex = texture2D(tMap, vUv); gl_FragColor = vec4(tex.rgb, tex.a * uOpacity); }`;
+        const vertexShader = `
+            uniform float uVelocity; 
+            varying vec2 vUv; 
+            void main() { 
+                vUv = uv; 
+                vec3 pos = position; 
+                vec4 viewPos = modelViewMatrix * vec4(pos, 1.0); 
+                float dist = length(viewPos.xy); 
+                float hyperDist = cosh(dist * 0.45) * 0.45; 
+                pos.z += hyperDist * (abs(uVelocity) / (1.0 + abs(uVelocity) * 0.02) * 0.1); 
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0); 
+            }`;
+
+        const fragmentShader = `
+            uniform sampler2D tMap; 
+            uniform float uOpacity; 
+            varying vec2 vUv; 
+            void main() { 
+                vec4 tex = texture2D(tMap, vUv); 
+                gl_FragColor = vec4(tex.rgb, tex.a * uOpacity * 0.98); 
+            }`;
 
         const items = [];
         const textureLoader = new THREE.TextureLoader();
-        textureLoader.crossOrigin = 'anonymous';
+        const menuContainer = document.getElementById('menu-container');
 
         projects.forEach((p, i) => {
             let texture;
             if (p.img.endsWith('.mp4')) {
                 const video = document.createElement('video');
                 video.src = p.img; video.loop = true; video.muted = true; video.playsInline = true;
-                video.load();
-                video.play().catch(() => {});
+                video.load(); video.play().catch(() => {});
                 texture = new THREE.VideoTexture(video);
             } else {
                 texture = textureLoader.load(p.img);
@@ -179,7 +187,8 @@
                 transparent: true 
             });
 
-            const mesh = new THREE.Mesh(new THREE.PlaneGeometry(6, 3.75, 32, 32), mat);
+            // Μεγαλύτερο Plane (7.5 πλάτος, 4.7 ύψος)
+            const mesh = new THREE.Mesh(new THREE.PlaneGeometry(7.5, 4.7, 64, 64), mat);
             scene.add(mesh);
             items.push(mesh);
 
@@ -190,32 +199,35 @@
                 targetY = i * itemSpacing; 
                 gsap.to(globalOpacity, { value: 1, duration: 0.4 }); 
                 document.getElementById('hover-overlay').style.opacity = "1"; 
+                document.getElementById('body').classList.add('is-hovering'); 
                 document.querySelectorAll('.project-row').forEach((r, idx) => r.classList.toggle('active', idx === i)); 
             };
-            document.getElementById('menu-container').appendChild(row);
+            menuContainer.appendChild(row);
         });
 
         document.getElementById('grid-trigger').onmouseleave = () => { 
             gsap.to(globalOpacity, { value: 0, duration: 0.4 }); 
             document.getElementById('hover-overlay').style.opacity = "0"; 
+            document.getElementById('body').classList.remove('is-hovering'); 
             document.querySelectorAll('.project-row').forEach(r => r.classList.remove('active')); 
         };
 
         let targetY = 0, currentY = 0, smoothedVelocity = 0, globalOpacity = { value: 0 }; 
         function animate() {
             requestAnimationFrame(animate);
-            const lastY = currentY; currentY += (targetY - currentY) * 0.1;
+            const lastY = currentY; 
+            currentY += (targetY - currentY) * 0.15;
             const rawVelocity = (currentY - lastY) / pixelToUnit;
-            smoothedVelocity += (rawVelocity - smoothedVelocity) * 0.1;
+            smoothedVelocity += (rawVelocity - smoothedVelocity) * 0.2;
             items.forEach((mesh, i) => { 
                 mesh.position.y = (-i * itemSpacing) + currentY; 
-                mesh.material.uniforms.uVelocity.value = smoothedVelocity; 
+                mesh.material.uniforms.uVelocity.value = smoothedVelocity * 8.0; 
                 mesh.material.uniforms.uOpacity.value = globalOpacity.value; 
             });
             renderer.render(scene, camera);
         }
 
-        function clock() { document.getElementById('clock').innerText = `${new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Athens', hour:'2-digit', minute:'2-digit'}).format(new Date())} Athens, Greece`; }
+        function clock() { document.getElementById('clock').innerText = `${new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Athens', hour:'2-digit', minute:'2-digit', hour12:false}).format(new Date())} Athens, Greece`; }
         setInterval(clock, 1000); clock();
         window.addEventListener('resize', updateSizes);
         updateSizes(); animate();
