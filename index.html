@@ -18,7 +18,7 @@
         body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-primary); overflow: hidden; height: 100vh; -webkit-font-smoothing: antialiased; }
 
         /* LAYER 100: ΤΟ 3D CANVAS (ΜΕΣΑΙΑ ΣΤΙΒΑΔΑ) */
-        canvas { display: block; position: fixed; inset: 0; z-index: 100; pointer-events: none; }
+        canvas#canvas { display: block; position: fixed; inset: 0; z-index: 100; pointer-events: none; }
         
         #hover-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.1); z-index: 80; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
 
@@ -47,17 +47,16 @@
             font-size: var(--fs-grid); 
             transition: opacity 0.3s ease, color 0.3s ease; 
             position: relative; 
-            z-index: 90; /* Default: Πίσω από το canvas */
+            z-index: 90;
         }
         
         .project-grid:hover .project-row { opacity: 0.15; }
 
-        /* THE ULTIMATE LAYER: TO ROZ HOVER ΠΑΝΩ ΑΠΟ ΟΛΑ */
         .project-grid .project-row.active { 
             opacity: 1; 
             font-weight: bold; 
             color: var(--accent-pink) !important; 
-            z-index: 999999; /* HIGHEST LAYER IN THE SITE */
+            z-index: 999999;
         }
         .project-grid .project-row.active div { color: var(--accent-pink) !important; }
 
@@ -67,8 +66,104 @@
         .footer-links { display: flex; gap: 20px; }
         .footer-links a { text-decoration: none; color: var(--text-main); text-transform: capitalize; }
     </style>
+
+    <!-- ============================================================ -->
+    <!-- GATE STYLES — added on top of your CSS, nothing above changed -->
+    <!-- ============================================================ -->
+    <style>
+        #prepage{
+            position:fixed; inset:0; z-index:10000000;
+            background:var(--bg);
+            display:flex; flex-direction:column;
+            transition:opacity .8s ease, transform .8s ease;
+        }
+        #prepage.unlocked{ opacity:0; transform:translateY(-12px); pointer-events:none; }
+
+        .gate-top{
+            flex:0 0 auto;
+            display:flex; align-items:center; justify-content:space-between;
+            padding:24px 28px; font-size:var(--fs-ui); gap:16px;
+        }
+        .gate-clock{ text-align:right; white-space:nowrap; }
+
+        .gate-stage{
+            flex:1 1 auto;
+            display:flex; flex-direction:column;
+            align-items:center; justify-content:center;
+            padding:16px; gap:18px;
+        }
+        .gate-prompt{ font-size:var(--fs-ui); letter-spacing:.02em; transition:opacity .4s ease; text-align:center; }
+        .gate-prompt .sub{ opacity:.45; font-size:var(--fs-grid); display:block; margin-top:6px; }
+
+        .pad-wrap{ position:relative; }
+        #pad{
+            display:block;
+            width:min(86vw,640px);
+            height:min(46vh,380px);
+            border:1px solid var(--text-main);
+            background:rgba(255,255,255,.18);
+            touch-action:none;
+            cursor:crosshair;
+        }
+        .pad-wrap::before,.pad-wrap::after{
+            content:""; position:absolute; width:10px; height:10px;
+            border:1px solid var(--accent-pink); opacity:.6;
+        }
+        .pad-wrap::before{ top:-5px; left:-5px; border-right:0; border-bottom:0; }
+        .pad-wrap::after{ bottom:-5px; right:-5px; border-left:0; border-top:0; }
+
+        .gate-actions{
+            width:min(86vw,640px);
+            display:flex; align-items:center; justify-content:space-between;
+            min-height:22px;
+        }
+        .gate-clear{
+            background:none; border:0; cursor:pointer;
+            font-family:inherit; font-size:var(--fs-grid);
+            color:var(--text-main); opacity:.4; text-decoration:underline; padding:4px 0;
+        }
+        .gate-clear:hover{ opacity:.7; }
+        .gate-clear[hidden]{ display:none; }
+
+        #enter{
+            background:none; border:0; cursor:pointer;
+            font-family:inherit; font-size:var(--fs-ui);
+            text-transform:uppercase; letter-spacing:.18em;
+            color:var(--text-main); padding:6px 2px;
+            opacity:0; transform:translateY(4px); pointer-events:none;
+            transition:opacity .45s ease, transform .45s ease, color .2s ease;
+        }
+        #enter.show{ opacity:1; transform:none; pointer-events:auto; }
+        #enter:hover,#enter:focus-visible{ color:var(--accent-pink); outline:none; }
+        #enter:focus-visible{ text-decoration:underline; }
+
+        @media (prefers-reduced-motion:reduce){
+            #prepage,#enter{ transition:none; }
+        }
+    </style>
 </head>
 <body id="body">
+
+    <!-- ============ GATE (remove this whole block to disable the prepage) ============ -->
+    <div id="prepage">
+        <div class="gate-top">
+            <span class="editable-container" contenteditable="true" spellcheck="false">hi, nice to e-meet you :)</span>
+            <span class="gate-clock" id="gate-clock">00:00 Athens, Greece</span>
+        </div>
+        <div class="gate-stage">
+            <div class="gate-prompt" id="prompt">
+                draw something to come in
+                <span class="sub">anything. as much as you like.</span>
+            </div>
+            <div class="pad-wrap">
+                <canvas id="pad" aria-label="Drawing area — draw to unlock the site"></canvas>
+            </div>
+            <div class="gate-actions">
+                <button class="gate-clear" id="clear" hidden>clear</button>
+                <button id="enter" aria-hidden="true">enter ↵</button>
+            </div>
+        </div>
+    </div>
 
     <div id="hover-overlay"></div>
     
@@ -106,7 +201,7 @@
 
     <script>
         const projects = [
-      { id: "01", title: "Entropia", role: "360", date: "2025", partner: "", img: "./assets/entropia.jpg" },
+            { id: "01", title: "Entropia", role: "360", date: "2025", partner: "", img: "./assets/entropia.jpg" },
             { id: "02", title: "Where", role: "360", date: "2024", partner: "", img: "./assets/where.avif" },
             { id: "03", title: "Social Outkast", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/social.mp4" },
             { id: "04", title: "Femina", role: "Art Direction", date: "2024", partner: "", img: "./assets/femina.avif" },
@@ -123,7 +218,6 @@
             { id: "15", title: "Cube is cubing", role: "Creative Coding", date: "2026", partner: "", img: "./assets/Untitled.mp4" },
             { id: "16", title: "Are you part of yourself?", role: "Thesis", date: "2026", partner: "Self", img: "./assets/areyou.mp4" },
             { id: "17", title: "La Voltaira", role: "Brand Strategy", date: "2026", partner: "Vestart", img: "./assets/la.mp4" }
-
         ];
 
         const scene = new THREE.Scene();
@@ -134,7 +228,7 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
 
         let pixelToUnit, itemSpacing;
-        const baseHeight = 3.9; // Επαναφορά σε κομψό μέγεθος
+        const baseHeight = 3.9;
 
         function updateSizes() {
             const fov = camera.fov * (Math.PI / 180);
@@ -232,6 +326,101 @@
         setInterval(clock, 1000); clock();
         window.addEventListener('resize', updateSizes);
         updateSizes(); animate();
+
+        function startEasterEgg(){ /* your easter egg */ }
+    </script>
+
+    <!-- ============ GATE SCRIPT ============ -->
+    <script>
+    (function(){
+        "use strict";
+        var pad     = document.getElementById('pad');
+        var ctx     = pad.getContext('2d');
+        var enterBtn= document.getElementById('enter');
+        var clearBtn= document.getElementById('clear');
+        var prompt  = document.getElementById('prompt');
+        var gate    = document.getElementById('prepage');
+
+        var DPR = Math.min(window.devicePixelRatio || 1, 2);
+        var SHOW_AFTER = 60;          // px of drawing before ENTER appears (drawing never stops)
+        var drawn = 0, shown = false, entered = false;
+        var drawing = false, lastX = 0, lastY = 0;
+
+        function sizePad(){
+            var prev = safeSnapshot();
+            var r = pad.getBoundingClientRect();
+            pad.width  = Math.round(r.width  * DPR);
+            pad.height = Math.round(r.height * DPR);
+            ctx.setTransform(DPR,0,0,DPR,0,0);
+            ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 2.5;
+            ctx.strokeStyle = getComputedStyle(document.documentElement)
+                                .getPropertyValue('--accent-pink').trim() || '#FF23F4';
+            if (prev){ try{ ctx.putImageData(prev,0,0); }catch(e){} }
+        }
+        function safeSnapshot(){ try{ return ctx.getImageData(0,0,pad.width,pad.height); }catch(e){ return null; } }
+        function pos(e){ var r = pad.getBoundingClientRect(); return { x:e.clientX-r.left, y:e.clientY-r.top }; }
+
+        function start(e){
+            drawing = true;
+            var p = pos(e); lastX = p.x; lastY = p.y;
+            ctx.beginPath(); ctx.arc(p.x,p.y,1.2,0,Math.PI*2);
+            ctx.fillStyle = ctx.strokeStyle; ctx.fill();
+            clearBtn.hidden = false;
+            e.preventDefault();
+        }
+        function move(e){
+            if (!drawing) return;
+            // pointermove can batch events — draw each one for smoother lines
+            var evs = (e.getCoalescedEvents && e.getCoalescedEvents().length) ? e.getCoalescedEvents() : [e];
+            for (var k=0;k<evs.length;k++){
+                var p = pos(evs[k]);
+                ctx.beginPath(); ctx.moveTo(lastX,lastY); ctx.lineTo(p.x,p.y); ctx.stroke();
+                drawn += Math.hypot(p.x-lastX, p.y-lastY);
+                lastX = p.x; lastY = p.y;
+            }
+            if (drawn > 20) prompt.style.opacity = '0.25';
+            if (!shown && drawn >= SHOW_AFTER) showEnter();
+            e.preventDefault();
+        }
+        function end(){ drawing = false; }
+
+        function showEnter(){
+            shown = true;
+            enterBtn.classList.add('show');
+            enterBtn.setAttribute('aria-hidden','false');
+        }
+        function clearPad(){
+            ctx.clearRect(0,0,pad.width,pad.height);
+            drawn = 0; shown = false;
+            enterBtn.classList.remove('show');
+            enterBtn.setAttribute('aria-hidden','true');
+            clearBtn.hidden = true;
+            prompt.style.opacity = '1';
+        }
+        function enter(){
+            if (entered) return; entered = true;
+            gate.classList.add('unlocked');
+            // try { sessionStorage.setItem('iv_entered','1'); } catch(e){}   // enable to gate once per session
+        }
+
+        pad.addEventListener('pointerdown', start);
+        pad.addEventListener('pointermove', move);
+        window.addEventListener('pointerup', end);
+        pad.addEventListener('pointercancel', end);
+        enterBtn.addEventListener('click', enter);
+        clearBtn.addEventListener('click', clearPad);
+        window.addEventListener('keydown', function(e){ if (e.key === 'Enter' && shown) enter(); });
+        window.addEventListener('resize', sizePad);
+        sizePad();
+
+        function gclock(){
+            document.getElementById('gate-clock').textContent =
+                new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Athens',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date()) + ' Athens, Greece';
+        }
+        setInterval(gclock,1000); gclock();
+
+        // try { if (sessionStorage.getItem('iv_entered')) enter(); } catch(e){}   // skip gate if already entered this session
+    })();
     </script>
 </body>
 </html>
