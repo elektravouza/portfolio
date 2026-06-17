@@ -10,12 +10,9 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-primary); overflow: hidden; height: 100vh; -webkit-font-smoothing: antialiased; }
 
-/* LAYER 100: ΤΟ 3D CANVAS (ΜΕΣΑΙΑ ΣΤΙΒΑΔΑ) */
 canvas { display: block; position: fixed; inset: 0; z-index: 100; pointer-events: none; }
- 
 #hover-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.1); z-index: 80; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
 
-/* LAYER 50: UI ELEMENTS */
 header, footer { position: fixed; width: 100%; height: 81px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 50; }
 header { top: 0; } footer { bottom: 0; font-size: var(--fs-ui); }
 
@@ -28,7 +25,6 @@ header { top: 0; } footer { bottom: 0; font-size: var(--fs-ui); }
 .header-center { display: flex; gap: 20px; width: 33.33%; justify-content: center; }
 .header-center a { text-decoration: none; color: var(--text-main); font-size: var(--fs-ui); text-transform: uppercase; }
 
-/* PROJECT LIST */
 .project-grid { position: fixed; top: 55%; left: 40px; width: 60%; transform: translateY(-50%); z-index: 90; pointer-events: auto; }
 .grid-header { display: grid; grid-template-columns: 40px 2.5fr 1.5fr 1fr 1.5fr; font-size: var(--fs-grid); margin-bottom: 15px; opacity: 0.5; }
 
@@ -45,7 +41,6 @@ header { top: 0; } footer { bottom: 0; font-size: var(--fs-ui); }
  
 .project-grid:hover .project-row { opacity: 0.15; }
 
-/* THE ULTIMATE LAYER: TO ROZ HOVER ΠΑΝΩ ΑΠΟ ΟΛΑ */
 .project-grid .project-row.active { 
     opacity: 1; 
     font-weight: bold; 
@@ -60,9 +55,7 @@ body.is-hovering .right-info { opacity: 0.05; }
 .footer-links { display: flex; gap: 20px; }
 .footer-links a { text-decoration: none; color: var(--text-main); text-transform: capitalize; }
 
-/* ==========================================================================
-   PROJECT DETAIL VIEW STYLES (NEW)
-   ========================================================================== */
+/* ΣΤΥΛ ΓΙΑ ΤΗ ΣΕΛΙΔΑ ΤΟΥ PROJECT */
 #project-view {
     position: fixed;
     inset: 0;
@@ -80,7 +73,6 @@ body.is-hovering .right-info { opacity: 0.05; }
     gap: 60px;
 }
 
-/* Αριστερή πλευρά (Sticky) */
 .project-sidebar {
     position: -webkit-sticky;
     position: sticky;
@@ -142,7 +134,6 @@ body.is-hovering .right-info { opacity: 0.05; }
     z-index: 2100;
 }
 
-/* Δεξιά πλευρά (Scrollable Media) */
 .project-media-content {
     width: 65%;
     display: flex;
