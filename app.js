@@ -35,8 +35,8 @@ const projects = [
         date: "2024", 
         partner: "Vestart", 
         img: "./assets/social.mp4", 
-        description: `UI/UX design for the Social Outkast e-shop—a platform built for a community that thrives on free expression and individuality.\n\nSocial Outkast represents slow fashion, designed and crafted with passion in Greece, made specifically for the streets. The concept embraces the philosophy that being authentic is the only way to go. The digital experience reflects this raw identity: sharp cuts, small-batch productions, and an uncompromised respect for people and art.\n\nCelebrating diversity and inclusion, the e-shop design mirrors a space for those who dress loud, think wild, and refuse to fit in. Welcome to a new era where style has a conscience and difference is the rule.`, 
-        media: ["./assets/socialout.mp4"] 
+        description: `UI/UX design for the Social Outkast e-shop, a platform built for a community that thrives on free expression and individuality.\n\nSocial Outkast represents slow fashion, designed and crafted with passion in Greece, made specifically for the streets. The concept embraces the philosophy that being authentic is the only way to go. The digital experience reflects this raw identity: sharp cuts, small-batch productions, and an uncompromised respect for people and art.\n\nCelebrating diversity and inclusion, the e-shop design mirrors a space for those who dress loud, think wild, and refuse to fit in. Welcome to a new era where style has a conscience and difference is the rule.`, 
+        media: ["./assets/socialout.mov"] 
     },
     { 
         id: "04", 
@@ -59,7 +59,7 @@ const projects = [
     { 
         id: "05", 
         title: "Game", 
-        role: "UI/UX", 
+        role: "360, 
         date: "2024", 
         partner: "", 
         img: "./assets/game.avif", 
@@ -98,13 +98,13 @@ const projects = [
             "./assets/skadin5.png"
         ]
     },
-    { id: "11", title: "Lovale", role: "Creative Dir", date: "2024", partner: "Vestart", img: "./assets/entropia.jpg", description: "Περιγραφή για το Lovale.", media: ["./assets/entropia.jpg"] },
-    { id: "12", title: "Brandsden", role: "Management", date: "2025", partner: "Vestart", img: "./assets/social.mp4", description: "Περιγραφή για το Brandsden.", media: ["./assets/social.mp4"] },
-    { id: "13", title: "Stain", role: "Strategy", date: "2024", partner: "Vestart", img: "./assets/femina.avif", description: "Περιγραφή για το Stain.", media: ["./assets/femina.avif"] },
+    { id: "11", title: "Lovale", role: "Creative Direction", date: "2024", partner: "Vestart", img: "./assets/entropia.jpg", description: "Περιγραφή για το Lovale.", media: ["./assets/entropia.jpg"] },
+    { id: "12", title: "Brandsden", role: "PM, UI/UX", date: "2025", partner: "Vestart", img: "./assets/social.mp4", description: "Περιγραφή για το Brandsden.", media: ["./assets/social.mp4"] },
+    { id: "13", title: "Stain", role: "PM, Creative Strategy, UI/UX", date: "2024", partner: "Vestart", img: "./assets/femina.avif", description: "Περιγραφή για το Stain.", media: ["./assets/femina.avif"] },
     { 
         id: "14", 
         title: "Cube is cubing", 
-        role: "Creative Coding", 
+        role: "360", 
         date: "2026", 
         partner: "", 
         img: "./assets/Untitled.mp4", 
@@ -114,14 +114,13 @@ const projects = [
     { 
         id: "15", 
         title: "Are you part of yourself?", 
-        role: "Thesis", 
-        date: "2026", 
+        role: "360", 
+        date: "2025", 
         partner: "Self", 
         img: "./assets/areyou.mp4", 
         description: `Identity in the Digital Age: Reflection or Projection?\n\nIdentity is multi-dimensional and continuously evolving through experiences and interactions. However, in our current era of social media and algorithmic dominance, individual identity faces an unprecedented crisis. Digital platforms have built a world where uniqueness blurs, and our authentic core is often replaced by mass-produced standards and automated trends.\n\n"ARE YOU PART OF YOURSELF?" is a provocative thesis project that invites viewers to reflect on their relationship with technology. It questions whether our essence has been commodified, collected, and replicated by modern networks, reducing individuality into sheer conformity. The project serves as a bold commentary on mass choice, urging a conscious return to our true selves amid the digital noise.\n\nVisual & Conceptual Execution:\nThe video triggers immediate emotional responses through a distorted, "broken" glitch aesthetic and monochromatic filters, symbolizing alienation. Abstract units transition into mass elements to mirror the loss of self. Key terminology from Wikipedia is intentionally integrated as a satirical nod to questionable mainstream data, highlighting how misinformation shapes personal truth. By exposing commercialized validation metrics, the project actively forces the viewer to shift from a passive observer to an active participant.\n\nTarget Audience:\nThis work addresses active social media users and individuals swept into modern echo chambers, bridging the gap for those experiencing an internal division between true existence ("being") and algorithmic performance ("appearing").`,
         media: [
-            `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1203030112?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;controls=0&amp;muted=0&amp;playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="are_you_new"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`
-        ] 
+div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1203030012?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="are_you_new"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script      ] 
     },
     { id: "16", title: "La Voltaira", role: "Brand Strategy", date: "2026", partner: "Vestart", img: "./assets/la.mp4", description: "Περιγραφή για το La Voltaira.", media: ["./assets/la.mp4"] }
 ];
