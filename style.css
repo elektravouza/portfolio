@@ -13,7 +13,7 @@ body { background-color: var(--bg); color: var(--text-main); font-family: var(--
 canvas { display: block; position: fixed; inset: 0; z-index: 100; pointer-events: none; }
 #hover-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.1); z-index: 80; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
 
-/* FIX: HEADER & FOOTER MULTIPLY/INVERT EFFECT */
+/* HEADER & FOOTER MULTIPLY/INVERT EFFECT */
 header, footer { 
     position: fixed; 
     width: 100%; 
@@ -24,8 +24,8 @@ header, footer {
     padding: 0 40px; 
     z-index: 3000; 
     pointer-events: none;
-    mix-blend-mode: difference; /* Αντιστρέφει το χρώμα πάνω από εικόνες */
-    color: #ffffff !important;   /* Πρέπει να είναι λευκό για να δουλέψει το εφέ */
+    mix-blend-mode: difference; 
+    color: #ffffff !important;   
 }
 header { top: 0; } footer { bottom: 0; font-size: var(--fs-ui); }
 
@@ -145,11 +145,10 @@ body.is-hovering .right-info { opacity: 0.05; }
     width: 65%;
     display: flex;
     flex-direction: column;
-    gap: 0px !important; /* Καμία απόσταση */
+    gap: 0px !important; 
     padding: 0;
 }
 
-/* Κατάργηση extra κενών από τυχόν wrappers */
 .project-media-content > div {
     margin: 0 !important;
     padding: 0 !important;
@@ -170,7 +169,6 @@ body.is-hovering .right-info { opacity: 0.05; }
     padding: 0 !important;
 }
 
-/* Default aspect ratio για βίντεο */
 .project-media-content video,
 .project-media-content iframe {
     aspect-ratio: 16/9;
@@ -184,6 +182,8 @@ body.is-hovering .right-info { opacity: 0.05; }
 .project-media-content iframe[src*="1072836306"] { aspect-ratio: 99/46 !important; }
 .project-media-content iframe[src*="1072836961"] { aspect-ratio: 99/46 !important; }
 .project-media-content iframe[src*="1072837294"] { aspect-ratio: 98/43 !important; }
+.project-media-content iframe[src*="1078110846"] { aspect-ratio: 100/80 !important; }
+.project-media-content iframe[src*="1078441730"] { aspect-ratio: 100/65 !important; }
 
 /* MOBILE */
 @media (max-width: 768px) {
