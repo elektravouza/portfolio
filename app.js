@@ -1,93 +1,51 @@
-// ΛΙΣΤΑ ΠΡΟΤΖΕΚΤ ΜΕ ΠΕΔΙΑ ΓΙΑ ΠΕΡΙΓΡΑΦΗ ΚΑΙ MEDIA
 const projects = [
     { 
         id: "01", title: "Entropia", role: "360", date: "2025", partner: "", img: "./assets/entropia.jpg",
-        description: "Εδώ γράφεις την περιγραφή για το Entropia.",
+        description: "Περιγραφή για το Entropia.",
         media: ["./assets/entropia.jpg"] 
     },
     { 
-        id: "02", title: "Where", role: "360", date: "2024", partner: "", img: "./assets/where.avif",
-        description: "Εδώ γράφεις την περιγραφή για το Where.",
-        media: ["./assets/where.avif"] 
+        id: "02", 
+        title: "Where", 
+        role: "360", 
+        date: "2024", 
+        partner: "", 
+        img: "./assets/where.avif",
+        description: `The inspiration for the "WHERE" experiment stems from a remarkable event in China, where one robot managed to influence and persuade others to follow its lead. This unusual reversal, where the mass became the follower instead of the guide, challenges our understanding of influence and conformity.\n\nDrawing from this phenomenon, the "WHERE" experiment reimagines the classic Asch conformity study in the context of 2024/2025. It investigates whether individuals are still significantly affected by the majority or if we have entered an era where people can act independently, free from the sway of the mass. By creating a digital platform that simulates social pressure through moving bots, the experiment explores whether modern users make decisions influenced by the collective or assert their autonomy in an increasingly interconnected world.\n\nThe name of the experiment, WHERE, has both a literal and a metaphorical meaning. The literal meaning lies in its connection to the main and only question posed to the user: “Where should the box/robot go?” Metaphorically, however, it brings to the surface a more allegorical dimension, seeking answers to deeper questions such as:\n“Where are you going?”, “Do you want to be the mass?”, “Do you want to follow the others?”, “Where is your opinion?”, “Where is your voice?”, “Where are you?”`,
+        media: [
+            "./assets/where1.webp",
+            `<iframe src="https://player.vimeo.com/video/1052616300?h=eb12c5ffc4&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;background=1" frameborder="0" allow="autoplay; picture-in-picture" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
+            `<iframe src="https://player.vimeo.com/video/1050344174?h=0191884278&amp;autoplay=1&amp;loop=1&amp;background=1&amp;muted=1" frameborder="0" allow="autoplay; picture-in-picture" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
+            `<iframe src="https://player.vimeo.com/video/1049584612?h=fbcba533a3&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;background=1" frameborder="0" allow="autoplay; picture-in-picture" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
+            "./assets/where2.png",
+            "./assets/where3.png",
+            `<iframe src="https://player.vimeo.com/video/1041558154?autoplay=1&amp;loop=1&amp;muted=1&amp;background=1&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" allow="autoplay; picture-in-picture" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
+            "./assets/where4.png",
+            `<iframe src="https://player.vimeo.com/video/1052624710?h=295b635d24&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;background=1&amp;badge=0" frameborder="0" allow="autoplay; picture-in-picture" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
+            `<iframe src="https://player.vimeo.com/video/1052626682?h=be2e6c9fd5&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;background=1&amp;badge=0" frameborder="0" allow="autoplay; picture-in-picture" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
+            "./assets/where-5.png",
+            "./assets/where.png",
+            "./assets/where6.png"
+        ]
     },
-    { 
-        id: "03", title: "Social Outkast", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/social.mp4",
-        description: "Εδώ γράφεις την περιγραφή για το Social Outkast.",
-        media: ["./assets/social.mp4"] 
-    },
-    { 
-        id: "04", title: "Femina", role: "Art Direction", date: "2024", partner: "", img: "./assets/femina.avif",
-        description: "Εδώ γράφεις την περιγραφή για το Femina.",
-        media: ["./assets/femina.avif"] 
-    },
-    { 
-        id: "05", title: "Game", role: "UI/UX", date: "2024", partner: "", img: "./assets/game.avif",
-        description: "Εδώ γράφεις την περιγραφή για το Game.",
-        media: ["./assets/game.avif"] 
-    },
-    { 
-        id: "06", title: "Softlikebutter", role: "Management", date: "2025", partner: "Vestart", img: "./assets/femina.avif",
-        description: "Εδώ γράφεις την περιγραφή για το Softlikebutter.",
-        media: ["./assets/femina.avif"] 
-    },
-    { 
-        id: "07", title: "Temporal Ethics", role: "Ideation", date: "2024", partner: "Eleana Pafiti", img: "./assets/entropia.jpg",
-        description: "Εδώ γράφεις την περιγραφή για το Temporal Ethics.",
-        media: ["./assets/entropia.jpg"] 
-    },
-    { 
-        id: "08", title: "Back2K", role: "Creative Dir", date: "2024", partner: "Vestart", img: "./assets/social.mp4",
-        description: "Εδώ γράφεις την περιγραφή για το Back2K.",
-        media: ["./assets/social.mp4"] 
-    },
-    { 
-        id: "09", title: "Brotherakia", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/where.avif",
-        description: "Εδώ γράφεις την περιγραφή για το Brotherakia.",
-        media: ["./assets/where.avif"] 
-    },
-    { 
-        id: "10", title: "Treha Gireve", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/game.avif",
-        description: "Εδώ γράφεις την περιγραφή για το Treha Gireve.",
-        media: ["./assets/game.avif"] 
-    },
-    { 
-        id: "11", title: "Skadin", role: "360", date: "2024", partner: "", img: "./assets/where.avif",
-        description: "Εδώ γράφεις την περιγραφή για το Skadin.",
-        media: ["./assets/where.avif"] 
-    },
-    { 
-        id: "12", title: "Lovale", role: "Creative Dir", date: "2024", partner: "Vestart", img: "./assets/entropia.jpg",
-        description: "Εδώ γράφεις την περιγραφή για το Lovale.",
-        media: ["./assets/entropia.jpg"] 
-    },
-    { 
-        id: "13", title: "Brandsden", role: "Management", date: "2025", partner: "Vestart", img: "./assets/social.mp4",
-        description: "Εδώ γράφεις την περιγραφή για το Brandsden.",
-        media: ["./assets/social.mp4"] 
-    },
-    { 
-        id: "14", title: "Stain", role: "Strategy", date: "2024", partner: "Vestart", img: "./assets/femina.avif",
-        description: "Εδώ γράφεις την περιγραφή για το Stain.",
-        media: ["./assets/femina.avif"] 
-    },
-    { 
-        id: "15", title: "Cube is cubing", role: "Creative Coding", date: "2026", partner: "", img: "./assets/Untitled.mp4",
-        description: "Εδώ γράφεις την περιγραφή για το Cube is cubing.",
-        media: ["./assets/Untitled.mp4"] 
-    },
-    { 
-        id: "16", title: "Are you part of yourself?", role: "Thesis", date: "2026", partner: "Self", img: "./assets/areyou.mp4",
-        description: "Εδώ γράφεις την περιγραφή για το Are you part of yourself?.",
-        media: ["./assets/areyou.mp4"] 
-    },
-    { 
-        id: "17", title: "La Voltaira", role: "Brand Strategy", date: "2026", partner: "Vestart", img: "./assets/la.mp4",
-        description: "Εδώ γράφεις την περιγραφή για το La Voltaira.",
-        media: ["./assets/la.mp4"] 
-    }
+    { id: "03", title: "Social Outkast", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/social.mp4", description: "Περιγραφή για το Social Outkast.", media: ["./assets/social.mp4"] },
+    { id: "04", title: "Femina", role: "Art Direction", date: "2024", partner: "", img: "./assets/femina.avif", description: "Περιγραφή για το Femina.", media: ["./assets/femina.avif"] },
+    { id: "05", title: "Game", role: "UI/UX", date: "2024", partner: "", img: "./assets/game.avif", description: "Περιγραφή για το Game.", media: ["./assets/game.avif"] },
+    { id: "06", title: "Softlikebutter", role: "Management", date: "2025", partner: "Vestart", img: "./assets/femina.avif", description: "Περιγραφή για το Softlikebutter.", media: ["./assets/femina.avif"] },
+    { id: "07", title: "Temporal Ethics", role: "Ideation", date: "2024", partner: "Eleana Pafiti", img: "./assets/entropia.jpg", description: "Περιγραφή για το Temporal Ethics.", media: ["./assets/entropia.jpg"] },
+    { id: "08", title: "Back2K", role: "Creative Dir", date: "2024", partner: "Vestart", img: "./assets/social.mp4", description: "Περιγραφή για το Back2K.", media: ["./assets/social.mp4"] },
+    { id: "09", title: "Brotherakia", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/where.avif", description: "Περιγραφή για το Brotherakia.", media: ["./assets/where.avif"] },
+    { id: "10", title: "Treha Gireve", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/game.avif", description: "Περιγραφή για το Treha Gireve.", media: ["./assets/game.avif"] },
+    { id: "11", title: "Skadin", role: "360", date: "2024", partner: "", img: "./assets/where.avif", description: "Περιγραφή για το Skadin.", media: ["./assets/where.avif"] },
+    { id: "12", title: "Lovale", role: "Creative Dir", date: "2024", partner: "Vestart", img: "./assets/entropia.jpg", description: "Περιγραφή για το Lovale.", media: ["./assets/entropia.jpg"] },
+    { id: "13", title: "Brandsden", role: "Management", date: "2025", partner: "Vestart", img: "./assets/social.mp4", description: "Περιγραφή για το Brandsden.", media: ["./assets/social.mp4"] },
+    { id: "14", title: "Stain", role: "Strategy", date: "2024", partner: "Vestart", img: "./assets/femina.avif", description: "Περιγραφή για το Stain.", media: ["./assets/femina.avif"] },
+    { id: "15", title: "Cube is cubing", role: "Creative Coding", date: "2026", partner: "", img: "./assets/Untitled.mp4", description: "Περιγραφή για το Cube is cubing.", media: ["./assets/Untitled.mp4"] },
+    { id: "16", title: "Are you part of yourself?", role: "Thesis", date: "2026", partner: "Self", img: "./assets/areyou.mp4", description: "Περιγραφή για το Are you part of yourself?.", media: ["./assets/areyou.mp4"] },
+    { id: "17", title: "La Voltaira", role: "Brand Strategy", date: "2026", partner: "Vestart", img: "./assets/la.mp4", description: "Περιγραφή για το La Voltaira.", media: ["./assets/la.mp4"] }
 ];
 
-// THREE.JS ΚΑΙ CANVAS SETUP
+// THREE.JS SETUP
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
 camera.position.z = 10;
@@ -134,7 +92,6 @@ const items = [];
 const textureLoader = new THREE.TextureLoader();
 const menuContainer = document.getElementById('menu-container');
 
-// ΔΗΜΙΟΥΡΓΙΑ ΣΕΙΡΩΝ ΣΤΟ GRID
 projects.forEach((p, i) => {
     let texture;
     if (p.img.endsWith('.mp4')) {
@@ -168,10 +125,7 @@ projects.forEach((p, i) => {
         document.querySelectorAll('.project-row').forEach((r, idx) => r.classList.toggle('active', idx === i)); 
     };
 
-    row.onclick = () => {
-        openProject(i);
-    };
-
+    row.onclick = () => { openProject(i); };
     menuContainer.appendChild(row);
 });
 
@@ -197,7 +151,7 @@ function animate() {
     renderer.render(scene, camera);
 }
 
-// ΣΥΝΑΡΤΗΣΕΙΣ ΓΙΑ ΑΝΟΙΓΜΑ / ΚΛΕΙΣΙΜΟ & SLIDER
+// ΛΕΙΤΟΥΡΓΙΑ ΠΡΟΒΟΛΗΣ PROJECT
 let currentProjectIndex = 0;
 
 function openProject(index) {
@@ -215,14 +169,23 @@ function openProject(index) {
     
     const mediaList = project.media && project.media.length > 0 ? project.media : [project.img]; 
     
-    mediaList.forEach(src => {
-        if (src.endsWith('.mp4')) {
+    mediaList.forEach(item => {
+        // Αν είναι iframe (Vimeo)
+        if (item.startsWith('<iframe')) {
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = item;
+            mediaContainer.appendChild(wrapper.firstChild);
+        } 
+        // Αν είναι βίντεο mp4
+        else if (item.endsWith('.mp4')) {
             const video = document.createElement('video');
-            video.src = src; video.loop = true; video.muted = true; video.autoplay = true; video.playsInline = true;
+            video.src = item; video.loop = true; video.muted = true; video.autoplay = true; video.playsInline = true;
             mediaContainer.appendChild(video);
-        } else {
+        } 
+        // Αν είναι εικόνα
+        else {
             const img = document.createElement('img');
-            img.src = src;
+            img.src = item;
             mediaContainer.appendChild(img);
         }
     });
