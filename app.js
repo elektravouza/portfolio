@@ -37,7 +37,11 @@ const projects = [
         date: "2024", 
         partner: "", 
         img: "./assets/game.avif", 
-        description: "Εδώ μπορείς να προσθέσεις το κείμενο περιγραφής για το project Game/Toy.", 
+        description: "This project focuses on the development of a fidget toy application. Fidget toys are small, handheld objects designed to provide sensory stimulation through touch, movement, and visual engagement. They are commonly used to promote relaxation, reduce stress, and improve focus, helping individuals stay concentrated while completing tasks.
+
+The essence of these toys lies in their colors, textures, and shapes, which not only define their appearance but also determine how they are interacted with. The way a person plays with a fidget toy is inherently connected to these sensory characteristics, making the design of each element crucial to the overall experience.
+
+The core idea of this project is to digitize the fidget toy experience by bringing various types of fidget toys into a single, accessible application. This digital solution aims to capture the calming and focusing benefits of physical fidget toys while leveraging the possibilities of technology to offer a versatile and convenient tool for relaxation and concentration.", 
         media: [
             "./assets/toy1.png",
             "./assets/toy2.png",
