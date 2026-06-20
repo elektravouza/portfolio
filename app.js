@@ -30,7 +30,27 @@ const projects = [
     },
     { id: "03", title: "Social Outkast", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/social.mp4", description: "Περιγραφή για το Social Outkast.", media: ["./assets/social.mp4"] },
     { id: "04", title: "Femina", role: "Art Direction", date: "2024", partner: "", img: "./assets/femina.avif", description: "Περιγραφή για το Femina.", media: ["./assets/femina.avif"] },
-    { id: "05", title: "Game", role: "UI/UX", date: "2024", partner: "", img: "./assets/game.avif", description: "Περιγραφή για το Game.", media: ["./assets/game.avif"] },
+    { 
+        id: "05", 
+        title: "Game", 
+        role: "UI/UX", 
+        date: "2024", 
+        partner: "", 
+        img: "./assets/game.avif", 
+        description: "Εδώ μπορείς να προσθέσεις το κείμενο περιγραφής για το project Game/Toy.", 
+        media: [
+            "./assets/toy1.png",
+            "./assets/toy2.png",
+            "./assets/toy3.png",
+            "./assets/toy4.png",
+            `<iframe src="https://player.vimeo.com/video/1072835024?h=b160ee7a15&amp;autoplay=1&amp;loop=1&amp;background=1" frameborder="0" allow="autoplay; picture-in-picture" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
+            `<iframe src="https://player.vimeo.com/video/1072836306?h=5485f3a0c9&amp;autoplay=1&amp;loop=1&amp;background=1" frameborder="0" allow="autoplay; picture-in-picture" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
+            `<iframe src="https://player.vimeo.com/video/1072836961?h=a78a8d84fb&amp;autoplay=1&amp;loop=1&amp;background=1" frameborder="0" allow="autoplay; picture-in-picture" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
+            `<iframe src="https://player.vimeo.com/video/1072837294?h=65088ce83c&amp;autoplay=1&amp;loop=1&amp;background=1" frameborder="0" allow="autoplay; picture-in-picture" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
+            "./assets/toyfinal.png",
+            "./assets/toyfinal2.png"
+        ]
+    },
     { id: "06", title: "Softlikebutter", role: "Management", date: "2025", partner: "Vestart", img: "./assets/femina.avif", description: "Περιγραφή για το Softlikebutter.", media: ["./assets/femina.avif"] },
     { id: "07", title: "Temporal Ethics", role: "Ideation", date: "2024", partner: "Eleana Pafiti", img: "./assets/entropia.jpg", description: "Περιγραφή για το Temporal Ethics.", media: ["./assets/entropia.jpg"] },
     { id: "08", title: "Back2K", role: "Creative Dir", date: "2024", partner: "Vestart", img: "./assets/social.mp4", description: "Περιγραφή για το Back2K.", media: ["./assets/social.mp4"] },
@@ -160,7 +180,7 @@ function openProject(index) {
     document.getElementById('p-role').innerText = project.role;
     document.getElementById('p-date').innerText = project.date;
     
-    // ΚΡΥΨΙΜΟ ΤΟΥ PARTNER ΑΝ ΔΕΝ ΥΠΑΡΧΕΙ
+    // ΑΠΟΛΥΤΗ ΕΞΑΦΑΝΙΣΗ PARTNER ΑΝ ΔΕΝ ΥΠΑΡΧΕΙ
     const partnerWrapper = document.getElementById('p-partner-wrapper');
     if (project.partner && project.partner.trim() !== "") {
         partnerWrapper.style.display = "block";
@@ -177,21 +197,22 @@ function openProject(index) {
     const mediaList = project.media && project.media.length > 0 ? project.media : [project.img]; 
     
     mediaList.forEach(item => {
+        const itemWrapper = document.createElement('div');
+        
         if (item.startsWith('<iframe')) {
-            const wrapper = document.createElement('div');
-            wrapper.innerHTML = item;
-            mediaContainer.appendChild(wrapper.firstChild);
+            itemWrapper.innerHTML = item;
         } 
         else if (item.endsWith('.mp4')) {
             const video = document.createElement('video');
             video.src = item; video.loop = true; video.muted = true; video.autoplay = true; video.playsInline = true;
-            mediaContainer.appendChild(video);
+            itemWrapper.appendChild(video);
         } 
         else {
             const img = document.createElement('img');
             img.src = item;
-            mediaContainer.appendChild(img);
+            itemWrapper.appendChild(img);
         }
+        mediaContainer.appendChild(itemWrapper);
     });
     
     const pView = document.getElementById('project-view');
