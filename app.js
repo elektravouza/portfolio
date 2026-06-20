@@ -45,7 +45,6 @@ const projects = [
     { id: "17", title: "La Voltaira", role: "Brand Strategy", date: "2026", partner: "Vestart", img: "./assets/la.mp4", description: "Περιγραφή για το La Voltaira.", media: ["./assets/la.mp4"] }
 ];
 
-// THREE.JS SETUP
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
 camera.position.z = 10;
@@ -151,7 +150,6 @@ function animate() {
     renderer.render(scene, camera);
 }
 
-// ΛΕΙΤΟΥΡΓΙΑ ΠΡΟΒΟΛΗΣ PROJECT
 let currentProjectIndex = 0;
 
 function openProject(index) {
@@ -161,7 +159,16 @@ function openProject(index) {
     document.getElementById('p-title').innerText = project.title;
     document.getElementById('p-role').innerText = project.role;
     document.getElementById('p-date').innerText = project.date;
-    document.getElementById('p-partner').innerText = project.partner || "None";
+    
+    // ΚΡΥΨΙΜΟ ΤΟΥ PARTNER ΑΝ ΔΕΝ ΥΠΑΡΧΕΙ
+    const partnerWrapper = document.getElementById('p-partner-wrapper');
+    if (project.partner && project.partner.trim() !== "") {
+        partnerWrapper.style.display = "block";
+        document.getElementById('p-partner').innerText = project.partner;
+    } else {
+        partnerWrapper.style.display = "none";
+    }
+    
     document.getElementById('p-desc').innerText = project.description || "";
     
     const mediaContainer = document.getElementById('p-media');
@@ -170,19 +177,16 @@ function openProject(index) {
     const mediaList = project.media && project.media.length > 0 ? project.media : [project.img]; 
     
     mediaList.forEach(item => {
-        // Αν είναι iframe (Vimeo)
         if (item.startsWith('<iframe')) {
             const wrapper = document.createElement('div');
             wrapper.innerHTML = item;
             mediaContainer.appendChild(wrapper.firstChild);
         } 
-        // Αν είναι βίντεο mp4
         else if (item.endsWith('.mp4')) {
             const video = document.createElement('video');
             video.src = item; video.loop = true; video.muted = true; video.autoplay = true; video.playsInline = true;
             mediaContainer.appendChild(video);
         } 
-        // Αν είναι εικόνα
         else {
             const img = document.createElement('img');
             img.src = item;
