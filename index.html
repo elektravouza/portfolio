@@ -10,7 +10,7 @@
 
     <div id="hover-overlay"></div>
     
-    <header>
+    <header class="blend-ui">
         <div class="header-left">
             <span class="editable-container" contenteditable="true" spellcheck="false">Hi, nice to e-meet you :)</span>
         </div>
@@ -29,34 +29,29 @@
         <p>Selected projects developed independently or collaboratively. Research, commercial works and digital explorations.</p>
     </div>
 
-    <!-- LAYER ΠΡΟΒΟΛΗΣ PROJECT -->
     <div id="project-view">
-        <!-- Κουμπιά πλοήγησης στις άκρες της οθόνης -->
-        <button id="prev-project-btn" class="nav-side-btn">← Prev</button>
-        <button id="next-project-btn" class="nav-side-btn">Next →</button>
+        <button id="prev-project-btn" class="nav-side-btn">←</button>
+        <button id="next-project-btn" class="nav-side-btn">→</button>
 
         <div class="project-container">
-            <!-- Αριστερή πλευρά: Sticky Πληροφορίες -->
             <div class="project-sidebar">
                 <h1 id="p-title">Project Title</h1>
                 <div class="project-meta">
                     <p><strong>Role:</strong> <span id="p-role"></span></p>
                     <p><strong>Date:</strong> <span id="p-date"></span></p>
-                    <p><strong>Partner:</strong> <span id="p-partner"></span></p>
+                    <p id="p-partner-wrapper"><strong>Partner:</strong> <span id="p-partner"></span></p>
                 </div>
                 <div class="project-description" id="p-desc">
                     Description goes here...
                 </div>
             </div>
             
-            <!-- Δεξιά πλευρά: Λίστα με Εικόνες / Βίντεο -->
             <div class="project-media-content" id="p-media">
-                <!-- Γεμίζει αυτόματα από το app.js -->
-            </div>
+                </div>
         </div>
     </div>
 
-    <footer>
+    <footer class="blend-ui">
         <div></div>
         <div class="footer-links">
             <a href="#">Linkedin</a>
@@ -66,7 +61,6 @@
         <div>Copywrites 2026</div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="app.js"></script>
