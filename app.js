@@ -29,7 +29,24 @@ const projects = [
         ]
     },
     { id: "03", title: "Social Outkast", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/social.mp4", description: "Περιγραφή για το Social Outkast.", media: ["./assets/social.mp4"] },
-    { id: "04", title: "Femina", role: "Art Direction", date: "2024", partner: "", img: "./assets/femina.avif", description: "Περιγραφή για το Femina.", media: ["./assets/femina.avif"] },
+    { 
+        id: "04", 
+        title: "Femina", 
+        role: "Art Direction", 
+        date: "2024", 
+        partner: "", 
+        img: "./assets/femina.avif", 
+        description: `FEMINA is an idea which stems from the recognition that women and femininities have historically faced numerous challenges, including sexism, fear, and marginalization. Many feel disempowered and disconnected due to these pervasive issues. FEMINA was created to address these problems by providing a safe, empowering e-community where women can feel supported and celebrated. Our e-magazine offers a fresh perspective on feminism, youth, and women's issues, aiming to uplift and inspire our readers by highlighting their strength and resilience. Through FEMINA, we aspire to create a space where women can thrive as powerful survivors, fostering a sense of belonging and empowerment.`,
+        media: [
+            "./assets/femina1.png",
+            "./assets/femina2.png",
+            "./assets/femina3.png",
+            "./assets/femina4.png",
+            "./assets/femina5.png",
+            "./assets/femina6.png",
+            `<iframe src="https://player.vimeo.com/video/1078110846?h=aef829c5d7&amp;badge=0&amp;autoplay=1&amp;loop=1&amp;controls=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; picture-in-picture" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`
+        ]
+    },
     { 
         id: "05", 
         title: "Game", 
@@ -37,11 +54,7 @@ const projects = [
         date: "2024", 
         partner: "", 
         img: "./assets/game.avif", 
-        description: "This project focuses on the development of a fidget toy application. Fidget toys are small, handheld objects designed to provide sensory stimulation through touch, movement, and visual engagement. They are commonly used to promote relaxation, reduce stress, and improve focus, helping individuals stay concentrated while completing tasks.
-
-The essence of these toys lies in their colors, textures, and shapes, which not only define their appearance but also determine how they are interacted with. The way a person plays with a fidget toy is inherently connected to these sensory characteristics, making the design of each element crucial to the overall experience.
-
-The core idea of this project is to digitize the fidget toy experience by bringing various types of fidget toys into a single, accessible application. This digital solution aims to capture the calming and focusing benefits of physical fidget toys while leveraging the possibilities of technology to offer a versatile and convenient tool for relaxation and concentration.", 
+        description: `This project focuses on the development of a fidget toy application. Fidget toys are small, handheld objects designed to provide sensory stimulation through touch, movement, and visual engagement. They are commonly used to promote relaxation, reduce stress, and improve focus, helping individuals stay concentrated while completing tasks.\n\nThe essence of these toys lies in their colors, textures, and shapes, which not only define their appearance but also determine how they are interacted with. The way a person plays with a fidget toy is inherently connected to these sensory characteristics, making the design of each element crucial to the overall experience.\n\nThe core idea of this project is to digitize the fidget toy experience by bringing various types of fidget toys into a single, accessible application. This digital solution aims to capture the calming and focusing benefits of physical fidget toys while leveraging the possibilities of technology to offer a versatile and convenient tool for relaxation and concentration.`, 
         media: [
             "./assets/toy1.png",
             "./assets/toy2.png",
@@ -60,7 +73,23 @@ The core idea of this project is to digitize the fidget toy experience by bringi
     { id: "08", title: "Back2K", role: "Creative Dir", date: "2024", partner: "Vestart", img: "./assets/social.mp4", description: "Περιγραφή για το Back2K.", media: ["./assets/social.mp4"] },
     { id: "09", title: "Brotherakia", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/where.avif", description: "Περιγραφή για το Brotherakia.", media: ["./assets/where.avif"] },
     { id: "10", title: "Treha Gireve", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/game.avif", description: "Περιγραφή για το Treha Gireve.", media: ["./assets/game.avif"] },
-    { id: "11", title: "Skadin", role: "360", date: "2024", partner: "", img: "./assets/where.avif", description: "Περιγραφή για το Skadin.", media: ["./assets/where.avif"] },
+    { 
+        id: "11", 
+        title: "Skadin", 
+        role: "360", 
+        date: "2024", 
+        partner: "", 
+        img: "./assets/where.avif", 
+        description: "Περιγραφή για το Skadin.", 
+        media: [
+            `<iframe src="https://player.vimeo.com/video/1078441730?autoplay=1&amp;loop=1&amp;background=1&amp;muted=1&amp;h=ba11aac485" frameborder="0" allow="autoplay; picture-in-picture" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
+            "./assets/skadin1.png",
+            "./assets/skadin2.png",
+            "./assets/skadin3.png",
+            "./assets/skadin4.png",
+            "./assets/skadin5.png"
+        ]
+    },
     { id: "12", title: "Lovale", role: "Creative Dir", date: "2024", partner: "Vestart", img: "./assets/entropia.jpg", description: "Περιγραφή για το Lovale.", media: ["./assets/entropia.jpg"] },
     { id: "13", title: "Brandsden", role: "Management", date: "2025", partner: "Vestart", img: "./assets/social.mp4", description: "Περιγραφή για το Brandsden.", media: ["./assets/social.mp4"] },
     { id: "14", title: "Stain", role: "Strategy", date: "2024", partner: "Vestart", img: "./assets/femina.avif", description: "Περιγραφή για το Stain.", media: ["./assets/femina.avif"] },
@@ -184,7 +213,6 @@ function openProject(index) {
     document.getElementById('p-role').innerText = project.role;
     document.getElementById('p-date').innerText = project.date;
     
-    // ΑΠΟΛΥΤΗ ΕΞΑΦΑΝΙΣΗ PARTNER ΑΝ ΔΕΝ ΥΠΑΡΧΕΙ
     const partnerWrapper = document.getElementById('p-partner-wrapper');
     if (project.partner && project.partner.trim() !== "") {
         partnerWrapper.style.display = "block";
