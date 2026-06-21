@@ -21,51 +21,72 @@
     </header>
 
     <main class="about-container">
-        <!-- 1. INTRO / STATEMENT -->
-        <section class="about-statement">
-            Hey there, welcome to my space. I am Ilektra Vouza, and I am just a girl. 
-            <span>You can just call me Ilektra. I studied Mathematics and Computational Theory</span> 
-            at the University of Patras, and later specialized in Digital Design through postgraduate studies at Vakalo Art & Design College. This combination of logic and design continues to shape how I think, build, and explore.
-        </section>
-        
-        <!-- 2. CORE BIOGRAPHY (2 COLUMNS) -->
-        <section class="about-content-grid">
-            <div class="about-column">
-                <h2>Approach & Philosophy</h2>
-                <p>I define myself as a creator and researcher across art, science, and technology. With a background in mathematics and cultural theory, I approach creation as a form of research and a method for engaging with complex systems and contemporary realities. My practice is driven by curiosity and a continuous commitment to interdisciplinary thinking, where critical inquiry and experimentation resist fixed boundaries.</p>
-                <p>I move between UI/UX design, generative systems, interactive installations, and experimental digital experiences. I am especially interested in how complex systems can be translated into sensory and participatory forms, where interaction becomes a way of thinking rather than a functional layer of use.</p>
-            </div>
-            
-            <div class="about-column">
-                <h2>Practice & Context</h2>
-                <p>I bridge industry practice with research-based and experimental work, developing projects that operate both as functional design solutions and conceptual explorations. For me, design is a reflective medium for generating new forms of understanding and engaging with complex societal, technological, and cultural conditions.</p>
-                <p>Across my practice, I am drawn to systems that are not fixed but evolving, where design becomes a form of inquiry. I am interested in how digital environments can hold uncertainty, provoke reflection, and invite users into processes of decision-making and meaning construction.</p>
-            </div>
+
+        <!-- TEXT — single flowing column. Hover the underlined phrases for the popups. -->
+        <section class="about-text">
+
+            <p class="about-lead">
+                Hey there, welcome to my space. I am
+                <span class="reveal" data-img="images/about/ME (1) 1.png">Ilektra Vouza</span>,
+                and I am just a girl — you can just
+                <span class="reveal" data-img="images/about/itsme_popup.png">call me Ilektra</span>.
+                I am a
+                <span class="reveal" data-img="images/about/multi_popup.png">multidisciplinary designer</span>,
+                creator, and researcher working across art, science, and technology.
+            </p>
+
+            <p>
+                I
+                <span class="reveal" data-img="images/about/education_popup.png">studied Mathematics and Computational Theory</span>
+                at the University of Patras, and later specialized in Digital Design through postgraduate
+                studies at Vakalo Art &amp; Design College. This combination of logic and design continues
+                to shape how I think, build, and explore.
+            </p>
+
+            <p>
+                I move between
+                <span class="reveal" data-img="images/about/skills_popup.png">UI/UX design, generative systems, and interactive installations</span>,
+                alongside experimental digital experiences. I am especially interested in how complex
+                systems can be translated into sensory and participatory forms, where interaction becomes
+                a way of thinking rather than a functional layer of use.
+            </p>
+
+            <p>
+                With a background in mathematics and cultural theory, I approach creation as a form of
+                research and a method for engaging with complex systems and contemporary realities. My
+                practice is driven by curiosity and a continuous commitment to interdisciplinary thinking,
+                where critical inquiry and experimentation resist fixed boundaries.
+            </p>
+
+            <p>
+                I bridge industry practice with research-based and experimental work, developing projects
+                that operate both as functional design solutions and conceptual explorations. For me, design
+                is a reflective medium for generating new forms of understanding — drawn to systems that are
+                not fixed but evolving, where design becomes a form of inquiry.
+            </p>
+
+            <p>
+                My work has been exhibited in different contexts, including <em>Hackney Gallery</em> in London,
+                <em>The Holy Art Gallery</em> in Athens, and <em>ADAF Festival</em> in Athens — each experience
+                contributing to how I understand space, audience, and interaction.
+            </p>
+
         </section>
 
-        <!-- 3. EXPERIENCE & EXHIBITIONS (2 COLUMNS) -->
-        <section class="about-content-grid">
-            <div class="about-column">
-                <h2>Professional & Academic</h2>
-                <p>Alongside my creative practice, I work in a digital creative agency as a design team lead, where I develop websites, digital products, and interactive platforms, while also contributing to creative direction and team development.</p>
-                <p>I also teach and assist in academic contexts, focusing on design theory and research methodologies, which allows me to remain in constant dialogue with emerging ideas and practitioners.</p>
-            </div>
-            
-            <div class="about-column">
-                <h2>Exhibitions & Research</h2>
-                <p>I have developed independent research-driven projects that explore technology, behavior, and ethics through interactive systems. These works have been presented in academic and cultural contexts, including conferences, lectures, and collaborative artistic spaces.</p>
-                <p>My work has been exhibited in different contexts, including <strong>Hackney Gallery</strong> in London, <strong>The Holy Art Gallery</strong> in Athens, and <strong>ADAF Festival</strong> in Athens — each experience contributing to how I understand space, audience, and interaction.</p>
-            </div>
-        </section>
-
-        <!-- 4. CORE QUESTION / OUTRO -->
+        <!-- CORE QUESTION / OUTRO -->
         <section class="about-outro">
             <h2>The Core Inquiry</h2>
             <div class="question-text">
                 "How do we think through systems and how do systems think through us?"
             </div>
         </section>
+
     </main>
+
+    <!-- FLOATING IMAGE THAT POPS OUT ON HOVER -->
+    <div class="hover-img-wrap" aria-hidden="true">
+        <img class="hover-img" src="" alt="">
+    </div>
 
     <footer>
         <div></div>
@@ -79,10 +100,43 @@
 
     <script>
         // Ρολόι για τη σελίδα About
-        function clock() { 
-            document.getElementById('clock').innerText = `${new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Athens', hour:'2-digit', minute:'2-digit', hour12:false}).format(new Date())} Athens, Greece`; 
+        function clock() {
+            document.getElementById('clock').innerText = `${new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Athens', hour:'2-digit', minute:'2-digit', hour12:false}).format(new Date())} Athens, Greece`;
         }
         setInterval(clock, 1000); clock();
+
+        // Hover-reveal: η εικόνα "πετάγεται" πάνω στη φράση που κάνεις hover
+        (function () {
+            const wrap = document.querySelector('.hover-img-wrap');
+            const img = wrap.querySelector('.hover-img');
+            const triggers = document.querySelectorAll('.reveal');
+
+            // Preload για να μην υπάρχει flash στο πρώτο hover
+            triggers.forEach(t => {
+                const src = t.dataset.img;
+                if (src) { const pre = new Image(); pre.src = src; }
+            });
+
+            triggers.forEach(t => {
+                t.addEventListener('mouseenter', () => {
+                    if (!t.dataset.img) return;
+                    img.src = t.dataset.img;
+
+                    const r = t.getBoundingClientRect();
+                    const vh = window.innerHeight;
+                    let x = r.left + r.width / 2;
+                    let y = r.top + r.height / 2;
+                    y = Math.max(160, Math.min(y, vh - 160)); // κρατάει την εικόνα μέσα στην οθόνη
+
+                    wrap.style.left = x + 'px';
+                    wrap.style.top = y + 'px';
+                    wrap.classList.add('visible');
+                });
+                t.addEventListener('mouseleave', () => {
+                    wrap.classList.remove('visible');
+                });
+            });
+        })();
     </script>
 </body>
 </html>
