@@ -8,8 +8,14 @@
 </head>
 <body>
 
+    <!-- ΜΑΥΡΟΣ PRELOADER ΜΕ ΜΠΑΡΑ ΚΑΙ ΠΟΣΟΣΤΟ -->
     <div id="preloader">
-        <div class="preloader-curtain"></div>
+        <div class="loader-wrap">
+            <div class="loader-percentage">( 0% )</div>
+            <div class="loader-bar-bg">
+                <div class="loader-bar-fill"></div>
+            </div>
+        </div>
     </div>
 
     <header>
@@ -89,7 +95,6 @@
     </main>
 
     <div class="hover-img-wrap" aria-hidden="true">
-        <img class="hover-img" src="" alt="">
         <span class="hover-img-fallback"></span>
     </div>
 
@@ -103,6 +108,7 @@
         <div>Copywrites 2026</div>
     </footer>
 
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
         function clock() {
@@ -110,56 +116,84 @@
         }
         setInterval(clock, 1000); clock();
 
-        // Preloader Curtain
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            const curtain = document.querySelector('.preloader-curtain');
-            if (preloader && curtain) {
-                const tl = gsap.timeline({ onComplete: () => { preloader.style.display = 'none'; } });
-                tl.to(curtain, { yPercent: -100, duration: 1.2, ease: "power4.inOut", delay: 0.2 });
-            }
-        });
-
-        // Hover & Tap Reveal Engine
+        // REVEAL ENGINE & REAL PROGRESS PRELOADER
         (function () {
             const wrap = document.querySelector('.hover-img-wrap');
-            const img = wrap.querySelector('.hover-img');
-            const fallback = wrap.querySelector('.hover-img-fallback');
             const triggers = document.querySelectorAll('.reveal');
+            const preloader = document.getElementById('preloader');
+            const barFill = document.querySelector('.loader-bar-fill');
+            const percentText = document.querySelector('.loader-percentage');
+            
             let mobileTimeout = null;
+            let loadedCount = 0;
+            const totalImages = triggers.length;
 
-            triggers.forEach(t => {
+            function updateProgress() {
+                loadedCount++;
+                const progress = Math.round((loadedCount / totalImages) * 100);
+                
+                gsap.to(barFill, { width: progress + '%', duration: 0.2, ease: "power1.out" });
+                percentText.innerText = `( ${progress}% )`;
+
+                if (loadedCount >= totalImages) {
+                    setTimeout(() => {
+                        const tl = gsap.timeline({ onComplete: () => { preloader.style.display = 'none'; } });
+                        tl.to(preloader, { yPercent: -100, duration: 1.2, ease: "power4.inOut" });
+                    }, 400); 
+                }
+            }
+
+            if (totalImages === 0) {
+                gsap.to(preloader, { yPercent: -100, duration: 1.2, ease: "power4.inOut", onComplete: () => { preloader.style.display = 'none'; } });
+            }
+
+            triggers.forEach((t, index) => {
                 const src = t.dataset.img;
-                if (src) { const pre = new Image(); pre.src = src; }
-            });
+                if (!src) {
+                    updateProgress();
+                    return;
+                }
 
-            img.addEventListener('load', () => wrap.classList.remove('img-error'));
-            img.addEventListener('error', () => {
-                fallback.textContent = 'Missing image: ' + img.getAttribute('src');
-                wrap.classList.add('img-error');
+                const imgContainer = document.createElement('div');
+                imgContainer.className = 'popup-media-holder';
+                imgContainer.style.display = 'none';
+                imgContainer.style.width = '100%';
+                imgContainer.setAttribute('data-trigger-index', index);
+
+                const newImg = document.createElement('img');
+                
+                newImg.addEventListener('load', updateProgress);
+                newImg.addEventListener('error', updateProgress);
+                
+                newImg.src = src;
+                newImg.style.width = '100%';
+                newImg.style.height = 'auto';
+                newImg.style.display = 'block';
+                newImg.className = 'hover-img';
+                
+                imgContainer.appendChild(newImg);
+                wrap.appendChild(imgContainer);
+                
+                t.imgHolder = imgContainer;
             });
 
             function showPopup(t) {
-                if (!t.dataset.img) return;
-                img.src = t.dataset.img;
-                
+                if (!t.imgHolder) return;
+                wrap.querySelectorAll('.popup-media-holder').forEach(h => h.style.display = 'none');
+                t.imgHolder.style.display = 'block';
+
                 const vw = window.innerWidth, vh = window.innerHeight;
 
                 if (window.innerWidth <= 768) {
-                    // MOBILE: Απόλυτο κεντράρισμα για να μην κόβεται
                     wrap.style.width = '75vw'; 
                     wrap.style.left = (vw / 2) + 'px';
                     wrap.style.top = (vh / 2) + 'px';
                 } else {
-                    // DESKTOP: Custom μεγέθη και οργανική τυχαιότητα
                     wrap.style.width = t.dataset.w || '320px';
-                    
                     let cx = (parseFloat(t.dataset.x || 50) / 100) * vw + (Math.random() - 0.5) * 150;
                     let cy = (parseFloat(t.dataset.y || 45) / 100) * vh + (Math.random() - 0.5) * 150;
-                    
                     cx = Math.max(vw * 0.15, Math.min(cx, vw * 0.85));
                     cy = Math.max(Math.max(vh * 0.20, 120), Math.min(cy, vh * 0.80));
-
                     wrap.style.left = cx + 'px';
                     wrap.style.top = cy + 'px';
                 }
