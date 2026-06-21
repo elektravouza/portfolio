@@ -11,14 +11,13 @@ const projects = [
             "./assets/ENTROPIA3.png",
             "./assets/ENTROPIA4.png",
             "./assets/ENTROPIALOGO.png",
-            "./assets/ENTROPIALOGO2.png",
+           "./assets/ilektrovichhh (1) (1).mp4",
             "./assets/ENTROPIA5.png",
             "./assets/ENTROPIA6.png",
             "./assets/ENTROPIA7.png",
             "./assets/ENTROPIA8.png",
             "./assets/ENTROPIA9.png",
             "./assets/ENTROPIA10.png",
-            "./assets/ilektrovichhh (1) (1).mp4",
             "./assets/finalentropia.mp4"
         ] 
     },
@@ -179,9 +178,9 @@ const projects = [
         role: "360", 
         date: "2025", 
         partner: "Self", 
-        img: "./assets/areyoufinal(1).mp4", 
+        img: "./assets/areyoufinal (1).mp4", 
         description: `Identity in the Digital Age: Reflection or Projection?\n\nIdentity is multi-dimensional and continuously evolving through experiences and interactions. However, in our current era of social media and algorithmic dominance, individual identity faces an unprecedented crisis. Digital platforms have built a world where uniqueness blurs, and our authentic core is often replaced by mass-produced standards and automated trends.\n\n"ARE YOU PART OF YOURSELF?" is a provocative thesis project that invites viewers to reflect on their relationship with technology. It questions whether our essence has been commodified, collected, and replicated by modern networks, reducing individuality into sheer conformity. The project serves as a bold commentary on mass choice, urging a conscious return to our true selves amid the digital noise.\n\nVisual & Conceptual Execution:\nThe video triggers immediate emotional responses through a distorted, "broken" glitch aesthetic and monochromatic filters, symbolizing alienation. Abstract units transition into mass elements to mirror the loss of self. Key terminology from Wikipedia is intentionally integrated as a satirical nod to questionable mainstream data, highlighting how misinformation shapes personal truth. By exposing commercialized validation metrics, the project actively forces the viewer to shift from a passive observer to an active participant.\n\nTarget Audience:\nThis work addresses active social media users and individuals swept into modern echo chambers, bridging the gap for those experiencing an internal division between true existence ("being") and algorithmic performance ("appearing").`,
-        media: ["./assets/areyoufinal(1).mp4"] 
+        media: ["./assets/areyoufinal (1).mp4"] 
     },
     { id: "15", title: "La Voltaira", role: "Brand Strategy", date: "2026", partner: "Vestart", img: "./assets/la.mp4", description: "Περιγραφή για το La Voltaira.", media: ["./assets/la.mp4"] }
 ];
