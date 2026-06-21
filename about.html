@@ -127,26 +127,32 @@
             // Κοινή συνάρτηση εμφάνισης για Desktop (hover) και Mobile (tap)
             function showPopup(t) {
                 if (!t.dataset.img) return;
-                img.src = t.dataset.img;
-                
-                // Στο κινητό δίνουμε ένα πιο ασφαλές max πλάτος για να μην βγαίνει εκτός οθόνης
-                if (window.innerWidth <= 768) {
-                    wrap.style.width = '70vw';
-                } else {
-                    wrap.style.width = t.dataset.w || '320px';
-                }
+    img.src = t.dataset.img;
+    
+    const vw = window.innerWidth, vh = window.innerHeight;
 
-                const vw = window.innerWidth, vh = window.innerHeight;
-                let cx = (parseFloat(t.dataset.x || 50) / 100) * vw + (Math.random() - 0.5) * 150;
-                let cy = (parseFloat(t.dataset.y || 45) / 100) * vh + (Math.random() - 0.5) * 150;
-                
-                // Boundaries για να μην βγαίνουν εκτός viewport
-                cx = Math.max(vw * 0.15, Math.min(cx, vw * 0.85));
-                cy = Math.max(Math.max(vh * 0.20, 120), Math.min(cy, vh * 0.80));
+    if (window.innerWidth <= 768) {
+        // MOBILE: Απόλυτο κεντράρισμα για να μην κλωνίζεται ή κόβεται
+        wrap.style.width = '75vw'; // Ελεγχόμενο πλάτος βάσει οθόνης
+        wrap.style.left = (vw / 2) + 'px';
+        wrap.style.top = (vh / 2) + 'px';
+    } else {
+        // DESKTOP: Διατήρηση του custom πλάτους και της τυχαιότητας
+        wrap.style.width = t.dataset.w || '320px';
+        
+        let cx = (parseFloat(t.dataset.x || 50) / 100) * vw + (Math.random() - 0.5) * 150;
+        let cy = (parseFloat(t.dataset.y || 45) / 100) * vh + (Math.random() - 0.5) * 150;
+        
+        // Boundaries για το desktop
+        cx = Math.max(vw * 0.15, Math.min(cx, vw * 0.85));
+        cy = Math.max(Math.max(vh * 0.20, 120), Math.min(cy, vh * 0.80));
 
-                wrap.style.left = cx + 'px';
-                wrap.style.top = cy + 'px';
-                wrap.classList.add('visible');
+        wrap.style.left = cx + 'px';
+        wrap.style.top = cy + 'px';
+    }
+
+    wrap.classList.add('visible');
+}
             }
 
             function hidePopup() {
