@@ -1,3 +1,26 @@
+Έγιναν όλες οι απαραίτητες αλλαγές, οι προσθήκες των νέων media, καθώς και η επαγγελματική-δημιουργική συγγραφή του κειμένου για τα **Brotherakia**!
+
+### 🛠️ Τι διορθώθηκε και προστέθηκε:
+
+1. **Treha Gireve:** Προστέθηκε το padding ανάμεσα στα media. Επίσης, **διορθώθηκε πλήρως το iPhone Mockup για το κινητό**. Το πρόβλημα ήταν ότι το iframe/video κληρονομούσε το `width: 100% !important` από το παλιό CSS, με αποτέλεσμα να «ξεχειλώνει» το mockup. Τώρα το iPhone Frame κλειδώνει σωστά στις αναλογίες του.
+2. **Brotherakia (ID: 08):**
+* Το hover preview στην κεντρική σελίδα άλλαξε από `where.avif` σε **`brotheraki.mp4`**.
+* Προστέθηκε το **`brotheraki.mp4`** μέσα στη σελίδα του project.
+* Το κείμενο μεταφράστηκε σε ένα άκρως επαγγελματικό, έξυπνο και energetic αγγλικό design case study, αναδεικνύοντας τις ικανότητές σου ως Creative Director και UX Researcher.
+
+
+3. **Softlikebutter (ID: 06):**
+* Αντικαταστάθηκε η παύλα (`—`) με κόμμα (`,`) στην περιγραφή.
+* Το role άλλαξε σε **`PM, UI/UX`**.
+* Προστέθηκαν με τη σειρά τα βίντεο **`softlikebutter.mp4`** και **`softlikebutter2.mp4`**.
+
+
+
+Αντικατάστησε όλο το **`app.js`** με αυτόν τον κώδικα:
+
+### `app.js`
+
+```javascript
 const projects = [
     { 
         id: "01", title: "Entropia", role: "360", date: "2025", partner: "", img: "./assets/entropia.jpg",
@@ -80,12 +103,12 @@ const projects = [
     { 
         id: "06", 
         title: "Softlikebutter", 
-        role: "Management", 
+        role: "PM, UI/UX", 
         date: "2025", 
         partner: "Vestart", 
         img: "./assets/femina.avif", 
         description: `UI/UX design for Softlikebutter, a prominent cosmetics brand owned by one of Greece's top influencers. The core creative challenge was to build an interface that is exceptionally user-friendly, highly intuitive, and lightning-fast—optimized specifically for audiences who are not necessarily tech-savvy or familiar with complex e-commerce layouts.\n\nThis project reflects a personal philosophy towards digital design: commercial projects deserve the exact same creative focus, depth, and 100% dedication as abstract artistic explorations. By treating commercial constraints as a canvas for innovation, the design bridges accessibility with premium aesthetics, ensuring that everyday transactional friction is transformed into an elegant, fluid, and highly satisfying interactive journey.`, 
-        media: ["./assets/femina.avif"] 
+        media: ["./assets/softlikebutter.mp4", "./assets/softlikebutter2.mp4"] 
     },
     { 
         id: "07", 
@@ -95,9 +118,18 @@ const projects = [
         partner: "Eleana Pandia", 
         img: "./assets/entropia.jpg", 
         description: `Temporal Ethics: AI and the Shifting Self\n\nSubtitled: "The Experiential Journey: Fostering Fun, Exploration, and Critical Thought in Human–AI Co-Creation"\nAuthors: Eleana Pandia, Panagiotis Livadas, Elektra Vouza\n\nImagine stepping into a world just beyond the horizon of the present: a post-anthropocentric society where questions of identity, agency, and responsibility are unsettled, and where your traveling companion is not another human, but an artificial general intelligence (AGI). This is the entry point to The Experiential Journey—a workshop that invites participants into a narrative of ethical exploration and playful co-creation. Here, winning or losing is irrelevant; what matters is what you discover about yourself, about others, and about the futures you might imagine together.\n\nThe journey begins with a simple yet disarming choice: do you walk forward as The Kid, full of untapped potential; as The Present Self, grounded in the present; or as The Old Man, seasoned by hindsight? This temporal self-simulation alters how the AGI speaks to you, reshaping dilemmas through the eyes of innocence, urgency, or wisdom. At each fork in the path, the AI poses new challenges, such as freshly conjured scenarios spun in real time through procedural content generation. These dilemmas draw you across three axes: into the depths of Self, the complexities of World, and the trajectories of Evolution.\n\nYour choices are of the utmost importance. The AGI weaves them into twists in the unfolding story that mirror your stance. With each step, you accumulate an "ethical fingerprint," a profile that quantifies not only how fair, sustainable, or hopeful your responses may be, but also what kind of world your decisions are building. At the end of this path, your fingerprint blossoms into a short filmic vignette: a glimpse of the future you have co-authored, a glimpse of your personalized fantasy world. It is abstract values and fleeting thoughts rendered as landscapes you can almost touch.\n\nThe journey does not end in solitude. As travelers return from their individual quests, they find others carrying different fingerprints. Some worlds harmonize while others clash. Here the story opens into a shared space: participants gather around a figurative "campfire" where worlds collide and intermingle. Guided by facilitators, they confront meta-dilemmas distilled from their collective data, weaving disparate threads into dialogue. Groups negotiate, debate, and ultimately begin sketching the outlines of a "meta-world"—a collaborative design that embodies both tension and synthesis, echoing traditions of collective intelligence.\n\nBeneath its playful surface, the workshop is a live research platform. It collects empirical insights into how people reason morally across temporal identities and under conditions of uncertainty, building on work such as the Moral Machine experiment. It probes the potential of AI to serve as a reflective agent, facilitating rather than dictating ethical engagement. It also contributes to broader discussions of responsible AI by exploring co-creative processes where humans and machines jointly articulate values and futures.`, 
-        media: ["./assets/chi2.jpeg"] 
+        media: ["./assets/chi2.jpg"] 
     },
-    { id: "08", title: "Brotherakia", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/where.avif", description: "Περιγραφή για το Brotherakia.", media: ["./assets/where.avif"] },
+    { 
+        id: "08", 
+        title: "Brotherakia", 
+        role: "UI/UX", 
+        date: "2024", 
+        partner: "Vestart", 
+        img: "./assets/brotheraki.mp4", /* Changed main page hover preview to the mp4 file */
+        description: `Brotherakia is a rapidly expanding dynamic ecosystem centered around beloved custom coloring characters created by popular Greek YouTuber and artist, @imikriollandeza.\n\nWhat kicked off as a passionate creative endeavor with a single coloring book has completely exploded. Following the immense success of their third coloring book edition, the Brotherakia universe has effortlessly scaled onto tangible consumer products—ranging from water bottles and custom mugs to lunchboxes and a wave of upcoming secret merchandise.\n\nAs a UX researcher and designer handling this scaling architecture, my mission was to shape the digital foundation for this evolution. I developed the official Brotherakia platform, which currently serves as a minimalist, high-converting landing page built to capture user registrations for an upcoming exclusive event. This project is pure fun, and I am highly looking forward to mapping and designing even deeper interactive experiences as this charming ecosystem continues to grow.`, 
+        media: ["./assets/brotheraki.mp4"] 
+    },
     { 
         id: "09", 
         title: "Treha Gireve", 
@@ -108,11 +140,13 @@ const projects = [
         description: `The name "Treha Gireve" originates from a traditional Greek proverb meaning "run and look for it," which colloquially implies searching for something elusive or embark on a wild goose chase. Metaphorically and literally, however, Treha Gireve is an active running club meticulously designed to foster socialization, human connection, and a healthy athletic lifestyle within a densely populated metropolis like Athens.\n\nThis community has grown exponentially, transforming the simple act of running into a vital escape and a powerful outlet from the exhaustion of daily routines. Through Vestart, I had the honor of designing the complete UI/UX interface for their official website alongside a seamless, specialized booking engine, allowing this thriving community to connect, schedule urban runs, and manage slots effortlessly.`, 
         media: [
             "./assets/treha1.mp4",
+            /* Added a custom styling wrapper block to ensure proper padding below the first video element */
+            `<div style="width: 100%; padding-bottom: 50px; background: transparent;"></div>`,
             "./assets/trehagireve.png",
-            /* Custom mobile view wrapper with an inline style to simulate an elegant iPhone border mockup */
-            `<div style="display: flex; justify-content: center; width: 100%; padding: 40px 0; background: transparent;">
-                <div style="width: 320px; max-width: 100%; aspect-ratio: 9/19; border: 12px solid #000000; border-radius: 36px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); background: #000000; position: relative;">
-                    <video src="./assets/trehav.mp4" loop muted autoplay playsinline style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;"></video>
+            /* Restructured and isolated the iPhone mockup frame to avoid inheriting standard media overrides */
+            `<div style="display: flex; justify-content: center; width: 100%; padding: 60px 0; background: transparent; pointer-events: none;">
+                <div class="iphone-mockup-frame" style="width: 320px; min-width: 320px; aspect-ratio: 9/19; border: 12px solid #000000; border-radius: 40px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.2); background: #000000; position: relative;">
+                    <video src="./assets/trehav.mp4" loop muted autoplay playsinline style="width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; margin: 0 !important; padding: 0 !important;"></video>
                 </div>
             </div>`
         ]
@@ -349,3 +383,5 @@ setInterval(clock, 1000); clock();
 window.addEventListener('resize', updateSizes);
 updateSizes(); 
 animate();
+
+```
