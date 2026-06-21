@@ -11,7 +11,7 @@ const projects = [
         media: [
             "./assets/ENTROPIA3.png",
             "./assets/ENTROPIA4.png",
-            "./assets/ENTROPIALOGO.png",
+            "./assets/ilektrovichhh (1) (1).mp4",
             "./assets/ENTROPIALOGO2.png",
             "./assets/ENTROPIA5.png",
             "./assets/ENTROPIA6.png",
@@ -19,8 +19,6 @@ const projects = [
             "./assets/ENTROPIA8.png",
             "./assets/ENTROPIA9.png",
             "./assets/ENTROPIA10.png",
-            "./assets/ilektrovichhh (1) (1).mp4",
-            "./assets/finalentropia.mp4"
         ] 
     },
     { 
@@ -52,7 +50,7 @@ const projects = [
         id: "03", 
         title: "Social Outkast", 
         role: "UI/UX", 
-        date: "2024", 
+        date: "2025", 
         partner: "Vestart", 
         img: "./assets/social.mp4", 
         liveSite: "https://socialoutkast.gr/",
@@ -62,7 +60,7 @@ const projects = [
     { 
         id: "04", 
         title: "Femina", 
-        role: "Art Direction", 
+        role: "360", 
         date: "2024", 
         partner: "", 
         img: "./assets/femina.avif", 
@@ -81,7 +79,7 @@ const projects = [
         id: "05", 
         title: "Game", 
         role: "360", 
-        date: "2024", 
+        date: "2025", 
         partner: "", 
         img: "./assets/game.avif", 
         description: `This project focuses on the development of a fidget toy application. Fidget toys are small, handheld objects designed to provide sensory stimulation through touch, movement, and visual engagement. They are commonly used to promote relaxation, reduce stress, and improve focus, helping individuals stay concentrated while completing tasks.\n\nThe essence of these toys lies in their colors, textures, and shapes, which not only define their appearance but also determine how they are interacted with. The way a person plays with a fidget toy is inherently connected to these sensory characteristics, making the design of each element crucial to the overall experience.\n\nThe core idea of this project is to digitize the fidget toy experience by bringing various types of fidget toys into a single, accessible application. This digital solution aims to capture the calming and focusing benefits of physical fidget toys while leveraging the possibilities of technology to offer a versatile and convenient tool for relaxation and concentration.`, 
@@ -101,7 +99,7 @@ const projects = [
     { 
         id: "06", 
         title: "Softlikebutter", 
-        role: "PM, UI/UX", 
+        role: "Project Management, UI/UX", 
         date: "2025", 
         partner: "Vestart", 
         img: "./assets/femina.avif", 
@@ -111,10 +109,10 @@ const projects = [
     },
     { 
         id: "07", 
-        title: "Temporal Ethics", 
-        role: "Ideation", 
-        date: "2024", 
-        partner: "Eleana Pandia", 
+        title: "Temporal Ethics: AI & The Shifting Self", 
+        role: "Ideation, User Experience Development", 
+        date: "2025", 
+        partner: "Eleana Pandia, Panos Livadas", 
         img: "./assets/entropia.jpg", 
         description: `Temporal Ethics: AI and the Shifting Self\n\nSubtitled: "The Experiential Journey: Fostering Fun, Exploration, and Critical Thought in Human–AI Co-Creation"\nAuthors: Eleana Pandia, Panagiotis Livadas, Elektra Vouza\n\nImagine stepping into a world just beyond the horizon of the present: a post-anthropocentric society where questions of identity, agency, and responsibility are unsettled, and where your traveling companion is not another human, but an artificial general intelligence (AGI). This is the entry point to The Experiential Journey—a workshop that invites participants into a narrative of ethical exploration and playful co-creation. Here, winning or losing is irrelevant; what matters is what you discover about yourself, about others, and about the futures you might imagine together.\n\nThe journey begins with a simple yet disarming choice: do you walk forward as The Kid, full of untapped potential; as The Present Self, grounded in the present; or as The Old Man, seasoned by hindsight? This temporal self-simulation alters how the AGI speaks to you, reshaping dilemmas through the eyes of innocence, urgency, or wisdom. At each fork in the path, the AI poses new challenges, such as freshly conjυred scenarios spun in real time through procedural content generation. These dilemmas draw you across three axes: into the depths of Self, the complexities of World, and the trajectories of Evolution.\n\nYour choices are of the utmost importance. The AGI weaves them into twists in the unfolding story that mirror your stance. With each step, you accumulate an "ethical fingerprint," a profile that quantifies not only how fair, sustainable, or hopeful your responses may be, but also what kind of world your decisions are building. At the end of this path, your fingerprint blossoms into a short filmic vignette: a glimpse of the future you have co-authored, a glimpse of your personalized fantasy world. It is abstract values and fleeting thoughts rendered as landscapes you can almost touch.\n\nThe journey does not end in solitude. As travelers return from their individual quests, they find others carrying different fingerprints. Some worlds harmonize while others clash. Here the story opens into a shared space: participants gather around a figurative "campfire" where worlds collide and intermingle. Guided by facilitators, they confront meta-dilemmas distilled from their collective data, weaving disparate threads into dialogue. Groups negotiate, debate, and ultimately begin sketching the outlines of a "meta-world"—a collaborative design that embodies both tension and synthesis, echoing traditions of collective intelligence.\n\nBeneath its playful surface, the workshop is a live research platform. It collects empirical insights into how people reason morally across temporal identities and under conditions of uncertainty, building on work such as the Moral Machine experiment. It probes the potential of AI to serve as a reflective agent, facilitating rather than dictating ethical engagement. It also contributes to broader discussions of responsible AI by exploring co-creative processes where humans and machines jointly articulate values and futures.`, 
         media: ["./assets/chi2.jpeg"] 
@@ -123,7 +121,7 @@ const projects = [
         id: "08", 
         title: "Brotherakia", 
         role: "UI/UX", 
-        date: "2024", 
+        date: "2025", 
         partner: "Vestart", 
         img: "./assets/brotherakia.mp4", 
         liveSite: "https://www.brotherakia.gr/",
@@ -134,7 +132,7 @@ const projects = [
         id: "09", 
         title: "Treha Gireve", 
         role: "UI/UX", 
-        date: "2024", 
+        date: "2026", 
         partner: "Vestart", 
         img: "./assets/game.avif", 
         liveSite: "https://www.trehayireve.gr/",
@@ -170,7 +168,7 @@ const projects = [
     { 
         id: "11", 
         title: "Brandsden", 
-        role: "PM, UI/UX", 
+        role: "Project Management, UI/UX", 
         date: "2025", 
         partner: "Vestart", 
         img: "./assets/social.mp4", 
@@ -181,7 +179,7 @@ const projects = [
     { 
         id: "12", 
         title: "Stain", 
-        role: "PM, Creative Strategy, UI/UX", 
+        role: "Project Management, Creative Strategy, UI/UX", 
         date: "2024", 
         partner: "Vestart", 
         img: "./assets/femina.avif", 
@@ -192,7 +190,7 @@ const projects = [
     { 
         id: "13", 
         title: "Cube is cubing", 
-        role: "360", 
+        role: "Experimentation", 
         date: "2026", 
         partner: "", 
         img: "./assets/Untitled.mp4", 
@@ -204,7 +202,7 @@ const projects = [
         title: "Are you part of yourself?", 
         role: "360", 
         date: "2025", 
-        partner: "Self", 
+        partner: "", 
         img: "./assets/areyoufinal (1).mp4", 
         description: `Identity in the Digital Age: Reflection or Projection?\n\nIdentity is multi-dimensional and continuously evolving through experiences and interactions. However, in our current era of social media and algorithmic dominance, individual identity faces an unprecedented crisis. Digital platforms have built a world where uniqueness blurs, and our authentic core is often replaced by mass-produced standards and automated trends.\n\n"ARE YOU PART OF YOURSELF?" is a provocative thesis project that invites viewers to reflect on their relationship with technology. It questions whether our essence has been commodified, collected, and replicated by modern networks, reducing individuality into sheer conformity. The project serves as a bold commentary on mass choice, urging a conscious return to our true selves amid the digital noise.\n\nVisual & Conceptual Execution:\nThe video triggers immediate emotional responses through a distorted, "broken" glitch aesthetic and monochromatic filters, symbolizing alienation. Abstract units transition into mass elements to mirror the loss of self. Key terminology from Wikipedia is intentionally integrated as a satirical nod to questionable mainstream data, highlighting how misinformation shapes personal truth. By exposing commercialized validation metrics, the project actively forces the viewer to shift from a passive observer to an active participant.\n\nTarget Audience:\nThis work addresses active social media users and individuals swept into modern echo chambers, bridging the gap for those experiencing an internal division between true existence ("being") and algorithmic performance ("appearing").`,
         media: ["./assets/areyoufinal (1).mp4"] 
