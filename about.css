@@ -37,26 +37,28 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
 .header-center a:hover, .header-center a.active { opacity: 1; font-weight: bold; }
 .footer-links { display: flex; gap: 20px; }
 
-/* ABOUT CONTENT LAYOUT — SINGLE FLOWING COLUMN */
+/* ABOUT CONTENT LAYOUT — CENTERED SINGLE COLUMN */
 .about-container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 180px 40px 160px 40px;
+    padding: 180px 40px 200px 40px;
 }
 .about-text {
     max-width: 760px;
     margin: 0 auto;
-    font-size: 19px;
-    line-height: 1.65;
+    font-size: 16px;
+    line-height: 1.7;
 }
-.about-text p { margin-bottom: 28px; }
+.about-text p { margin-bottom: 32px; }
 .about-text p:last-child { margin-bottom: 0; }
-.about-lead { font-size: 22px; line-height: 1.55; }
+.about-greet { font-size: 19px; line-height: 1.4; margin-bottom: 10px; }
+.about-greet.second { margin-bottom: 40px; }
+.about-lead { font-size: 19px; line-height: 1.55; }
 .about-text em { font-style: italic; }
 
 /* OUTRO INQUIRY */
 .about-outro {
-    margin: 70px auto 0;
+    margin: 80px auto 0;
     padding-top: 40px;
     border-top: 1px solid rgba(0,0,0,0.12);
     max-width: 760px;
@@ -69,7 +71,7 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
     margin-bottom: 20px;
 }
 .question-text {
-    font-size: 24px;
+    font-size: 21px;
     font-weight: bold;
     text-transform: uppercase;
     line-height: 1.2;
@@ -77,20 +79,21 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
     max-width: 650px;
 }
 
-/* HOVER-REVEAL TRIGGERS */
+/* HOVER-REVEAL TRIGGERS — bolder + 2px larger than surrounding text */
 .reveal {
-    font-style: italic;
+    font-weight: 700;
+    font-size: calc(1em + 2px);
     cursor: pointer;
-    border-bottom: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.5);
     transition: border-color 0.2s ease;
 }
 .reveal:hover { border-color: rgba(0,0,0,1); }
 
-/* FLOATING IMAGE THAT POPS OUT ON HOVER */
+/* FLOATING IMAGE THAT POPS OUT ON HOVER (scattered, width set per-popup via JS) */
 .hover-img-wrap {
     position: fixed;
     top: 0; left: 0;
-    width: clamp(260px, 30vw, 420px);
+    width: 320px;
     pointer-events: none;
     z-index: 4000;
     transform: translate(-50%, -50%);
@@ -118,7 +121,7 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
 /* Visible placeholder when an image path is missing (debug aid) */
 .hover-img-fallback {
     display: none;
-    width: clamp(220px, 26vw, 340px);
+    width: clamp(200px, 24vw, 320px);
     aspect-ratio: 4 / 3;
     align-items: center;
     justify-content: center;
@@ -142,14 +145,14 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
 @media (max-width: 768px) {
     header, footer { padding: 0 20px; height: 60px; }
     .header-left, .header-right { display: none; } .header-center { width: 100%; }
-    .about-container { padding: 110px 20px 100px 20px; }
-    .about-text { font-size: 16px; }
-    .about-lead { font-size: 18px; }
-    .question-text { font-size: 18px; }
+    .about-container { padding: 110px 20px 140px 20px; }
+    .about-text { font-size: 13px; }
+    .about-greet, .about-lead { font-size: 15px; }
+    .question-text { font-size: 15px; }
 }
 
 /* No floating image on touch devices (no hover) */
 @media (hover: none) {
     .hover-img-wrap { display: none; }
-    .reveal { border-bottom: none; font-style: italic; }
+    .reveal { border-bottom: none; }
 }
