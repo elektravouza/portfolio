@@ -164,9 +164,7 @@ const projects = [
         partner: "Self", 
         img: "./assets/areyou.mp4", 
         description: `Identity in the Digital Age: Reflection or Projection?\n\nIdentity is multi-dimensional and continuously evolving through experiences and interactions. However, in our current era of social media and algorithmic dominance, individual identity faces an unprecedented crisis. Digital platforms have built a world where uniqueness blurs, and our authentic core is often replaced by mass-produced standards and automated trends.\n\n"ARE YOU PART OF YOURSELF?" is a provocative thesis project that invites viewers to reflect on their relationship with technology. It questions whether our essence has been commodified, collected, and replicated by modern networks, reducing individuality into sheer conformity. The project serves as a bold commentary on mass choice, urging a conscious return to our true selves amid the digital noise.\n\nVisual & Conceptual Execution:\nThe video triggers immediate emotional responses through a distorted, "broken" glitch aesthetic and monochromatic filters, symbolizing alienation. Abstract units transition into mass elements to mirror the loss of self. Key terminology from Wikipedia is intentionally integrated as a satirical nod to questionable mainstream data, highlighting how misinformation shapes personal truth. By exposing commercialized validation metrics, the project actively forces the viewer to shift from a passive observer to an active participant.\n\nTarget Audience:\nThis work addresses active social media users and individuals swept into modern echo chambers, bridging the gap for those experiencing an internal division between true existence ("being") and algorithmic performance ("appearing").`,
-        media: [
-            `<iframe src="https://player.vimeo.com/video/1203030012?autoplay=1&amp;muted=1&amp;loop=1" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>`
-        ] 
+        media: ["./assets/areyoufinal(1).mp4"] /* Αντικαταστάθηκε με το τοπικό MP4 αρχείο σου */
     },
     { id: "16", title: "La Voltaira", role: "Brand Strategy", date: "2026", partner: "Vestart", img: "./assets/la.mp4", description: "Περιγραφή για το La Voltaira.", media: ["./assets/la.mp4"] }
 ];
@@ -277,9 +275,10 @@ function animate() {
 }
 
 let currentProjectIndex = 0;
+let activeProjectVideo = null; // Κρατάει το live reference του βίντεο
 
 function openProject(index) {
-    closeAbout(); // Κλείνει την About αν είναι ανοιχτή
+    closeAbout();
     currentProjectIndex = index;
     const project = projects[index];
     
@@ -299,7 +298,18 @@ function openProject(index) {
     
     const mediaContainer = document.getElementById('p-media');
     mediaContainer.innerHTML = ''; 
+    activeProjectVideo = null; // reset
     
+    // ΕΛΕΓΧΟΣ PADDING: Μόνο για το Softlikebutter (06) και το Treha Gireve (09)
+    if (project.id === "06" || project.id === "09") {
+        mediaContainer.classList.add('has-padding');
+    } else {
+        mediaContainer.classList.remove('has-padding');
+    }
+
+    const muteBtn = document.getElementById('video-mute-btn');
+    muteBtn.style.display = "none"; // Απόκρυψη κουμπιού ήχου default
+
     const mediaList = project.media && project.media.length > 0 ? project.media : [project.img]; 
     
     mediaList.forEach(item => {
@@ -310,7 +320,40 @@ function openProject(index) {
         } 
         else if (item.endsWith('.mp4') || item.endsWith('.mov')) {
             const video = document.createElement('video');
-            video.src = item; video.loop = true; video.muted = true; video.autoplay = true; video.playsInline = true;
+            video.src = item; video.loop = true; video.playsInline = true;
+            
+            // Αν είναι το project 15, ξεκινάει με ήχο (Unmuted)
+            if (project.id === "15") {
+                video.muted = false;
+                video.autoplay = true;
+                activeProjectVideo = video;
+                
+                // Εμφάνιση και ρύθμιση του Mute/Unmute Button
+                muteBtn.style.display = "block";
+                muteBtn.innerText = "🔊 MUTE AUDIO";
+                muteBtn.onclick = () => {
+                    if (video.muted) {
+                        video.muted = false;
+                        muteBtn.innerText = "🔊 MUTE AUDIO";
+                    } else {
+                        video.muted = true;
+                        muteBtn.innerText = "🔇 UNMUTE AUDIO";
+                    }
+                };
+            } else {
+                video.muted = true;
+                video.autoplay = true;
+            }
+            
+            video.load();
+            video.play().catch(() => {
+                // Fallback αν ο browser μπλοκάρει το autoplay με ήχο
+                if (project.id === "15") {
+                    video.muted = true;
+                    muteBtn.innerText = "🔇 UNMUTE AUDIO";
+                    video.play().catch(()=>{});
+                }
+            });
             itemWrapper.appendChild(video);
         } 
         else {
@@ -330,6 +373,9 @@ function openProject(index) {
 }
 
 function closeProject() {
+    if (activeProjectVideo) {
+        activeProjectVideo.pause(); // Κλείνει τον ήχο και το βίντεο αμέσως
+    }
     const pView = document.getElementById('project-view');
     gsap.to(pView, { opacity: 0, duration: 0.4, onComplete: () => {
         pView.style.display = 'none';
@@ -366,13 +412,20 @@ function closeAbout() {
     }});
 }
 
-// ROUTING HASH MANAGEMENT
+// ROUTING MANAGEMENT
 window.onhashchange = () => {
     if (!window.location.hash) {
         closeProject();
         closeAbout();
+    } else if (window.location.hash === '#about') {
+        openAbout();
     }
 };
+
+// Αν ο χρήστης μπει απευθείας με #about στο URL
+if (window.location.hash === '#about') {
+    window.addEventListener('load', openAbout);
+}
 
 function clock() { document.getElementById('clock').innerText = `${new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Athens', hour:'2-digit', minute:'2-digit', hour12:false}).format(new Date())} Athens, Greece`; }
 setInterval(clock, 1000); clock();
