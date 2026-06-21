@@ -1,0 +1,105 @@
+:root {
+    --bg: #dddddd;
+    --text-main: #000000;
+    --font-primary: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --fs-ui: 14px; 
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-primary); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* NAVIGATION (STAYS THE SAME AS MAIN) */
+header, footer { 
+    position: fixed; 
+    width: 100%; 
+    height: 81px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 0 40px; 
+    z-index: 3000; 
+    pointer-events: none;
+    mix-blend-mode: difference; 
+    color: #ffffff !important;   
+}
+header { top: 0; } footer { bottom: 0; font-size: var(--fs-ui); }
+header *, footer * { pointer-events: auto; color: #ffffff !important; text-decoration: none; }
+
+.header-left, .header-right { font-size: var(--fs-ui); width: 33.33%; }
+.header-right { text-align: right; }
+ 
+.header-center { display: flex; gap: 20px; width: 33.33%; justify-content: center; }
+.header-center a { text-transform: uppercase; font-size: var(--fs-ui); opacity: 0.5; transition: opacity 0.2s ease; }
+.header-center a:hover, .header-center a.active { opacity: 1; font-weight: bold; }
+.footer-links { display: flex; gap: 20px; }
+
+/* ABOUT CONTENT LAYOUT */
+.about-container { 
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding: 180px 40px 140px 40px; 
+}
+
+.about-statement { 
+    font-size: 30px; 
+    line-height: 1.2; 
+    letter-spacing: -0.6px; 
+    text-transform: uppercase; 
+    margin-bottom: 90px; 
+    font-weight: bold; 
+}
+.about-statement span { display: inline-block; text-indent: 100px; }
+
+.about-content-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 80px; 
+    margin-bottom: 70px; 
+}
+.about-column h2 { 
+    font-size: var(--fs-ui); 
+    text-transform: uppercase; 
+    margin-bottom: 25px; 
+    opacity: 0.4; 
+    font-weight: normal; 
+    letter-spacing: 0.5px;
+}
+.about-column p { 
+    font-size: 16px; 
+    line-height: 1.45; 
+    margin-bottom: 22px; 
+    opacity: 0.85;
+}
+
+/* OUTRO INQUIRY */
+.about-outro {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+.about-outro h2 {
+    font-size: var(--fs-ui); 
+    text-transform: uppercase; 
+    opacity: 0.4;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+.question-text {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    max-width: 650px;
+}
+
+/* RESPONSIVE COMFORT */
+@media (max-width: 768px) {
+    header, footer { padding: 0 20px; height: 60px; }
+    .header-left, .header-right { display: none; } .header-center { width: 100%; }
+    .about-container { padding: 110px 20px 100px 20px; } 
+    .about-statement { font-size: 20px; margin-bottom: 50px; } 
+    .about-statement span { text-indent: 30px; } 
+    .about-content-grid { grid-template-columns: 1fr; gap: 40px; margin-bottom: 40px; }
+    .question-text { font-size: 18px; }
+}
