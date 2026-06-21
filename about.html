@@ -8,6 +8,10 @@
 </head>
 <body>
 
+    <div id="preloader">
+        <div class="preloader-curtain"></div>
+    </div>
+
     <header>
         <div class="header-left">
             <span>Hi, nice to e-meet you :)</span>
@@ -85,7 +89,6 @@
     </main>
 
     <div class="hover-img-wrap" aria-hidden="true">
-        <img class="hover-img" src="" alt="">
         <span class="hover-img-fallback"></span>
     </div>
 
@@ -99,60 +102,84 @@
         <div>Copywrites 2026</div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
         function clock() {
             document.getElementById('clock').innerText = `${new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Athens', hour:'2-digit', minute:'2-digit', hour12:false}).format(new Date())} Athens, Greece`;
         }
         setInterval(clock, 1000); clock();
 
-        // Hover & Touch-reveal Logic
+        // Preloader Curtain
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            const curtain = document.querySelector('.preloader-curtain');
+            if (preloader && curtain) {
+                const tl = gsap.timeline({ onComplete: () => { preloader.style.display = 'none'; } });
+                tl.to(curtain, { yPercent: -100, duration: 1.2, ease: "power4.inOut", delay: 0.2 });
+            }
+        });
+
+        // REVEAL ENGINE
         (function () {
             const wrap = document.querySelector('.hover-img-wrap');
-            const img = wrap.querySelector('.hover-img');
-            const fallback = wrap.querySelector('.hover-img-fallback');
             const triggers = document.querySelectorAll('.reveal');
             let mobileTimeout = null;
 
-            triggers.forEach(t => {
+            // Δημιουργία και προφόρτωση των εικόνων στο DOM
+            triggers.forEach((t, index) => {
                 const src = t.dataset.img;
-                if (src) { const pre = new Image(); pre.src = src; }
+                if (!src) return;
+
+                const imgContainer = document.createElement('div');
+                imgContainer.className = 'popup-media-holder';
+                imgContainer.style.display = 'none';
+                imgContainer.style.width = '100%';
+                imgContainer.setAttribute('data-trigger-index', index);
+
+                const newImg = document.createElement('img');
+                newImg.src = src;
+                newImg.style.width = '100%';
+                newImg.style.height = 'auto';
+                newImg.style.display = 'block';
+                newImg.className = 'hover-img'; // Κρατάει τα classes του CSS
+                
+                imgContainer.appendChild(newImg);
+                wrap.appendChild(imgContainer);
+                
+                t.imgHolder = imgContainer;
             });
 
-            img.addEventListener('load', () => wrap.classList.remove('img-error'));
-            img.addEventListener('error', () => {
-                fallback.textContent = 'Missing image: ' + img.getAttribute('src');
-                wrap.classList.add('img-error');
-            });
-
-            // Κοινή συνάρτηση εμφάνισης για Desktop (hover) και Mobile (tap)
             function showPopup(t) {
-                if (!t.dataset.img) return;
-    img.src = t.dataset.img;
-    
-    const vw = window.innerWidth, vh = window.innerHeight;
+                if (!t.imgHolder) return;
+                
+                // Κλείσιμο προηγούμενων holders
+                wrap.querySelectorAll('.popup-media-holder').forEach(h => h.style.display = 'none');
+                
+                // Εμφάνιση του τρέχοντος
+                t.imgHolder.style.display = 'block';
 
-    if (window.innerWidth <= 768) {
-        // MOBILE: Απόλυτο κεντράρισμα για να μην κλωνίζεται ή κόβεται
-        wrap.style.width = '75vw'; // Ελεγχόμενο πλάτος βάσει οθόνης
-        wrap.style.left = (vw / 2) + 'px';
-        wrap.style.top = (vh / 2) + 'px';
-    } else {
-        // DESKTOP: Διατήρηση του custom πλάτους και της τυχαιότητας
-        wrap.style.width = t.dataset.w || '320px';
-        
-        let cx = (parseFloat(t.dataset.x || 50) / 100) * vw + (Math.random() - 0.5) * 150;
-        let cy = (parseFloat(t.dataset.y || 45) / 100) * vh + (Math.random() - 0.5) * 150;
-        
-        // Boundaries για το desktop
-        cx = Math.max(vw * 0.15, Math.min(cx, vw * 0.85));
-        cy = Math.max(Math.max(vh * 0.20, 120), Math.min(cy, vh * 0.80));
+                const vw = window.innerWidth, vh = window.innerHeight;
 
-        wrap.style.left = cx + 'px';
-        wrap.style.top = cy + 'px';
-    }
+                if (window.innerWidth <= 768) {
+                    // MOBILE: Απόλυτο κεντράρισμα
+                    wrap.style.width = '75vw'; 
+                    wrap.style.left = (vw / 2) + 'px';
+                    wrap.style.top = (vh / 2) + 'px';
+                } else {
+                    // DESKTOP: Τυχαιότητα και custom πλάτος
+                    wrap.style.width = t.dataset.w || '320px';
+                    
+                    let cx = (parseFloat(t.dataset.x || 50) / 100) * vw + (Math.random() - 0.5) * 150;
+                    let cy = (parseFloat(t.dataset.y || 45) / 100) * vh + (Math.random() - 0.5) * 150;
+                    
+                    cx = Math.max(vw * 0.15, Math.min(cx, vw * 0.85));
+                    cy = Math.max(Math.max(vh * 0.20, 120), Math.min(cy, vh * 0.80));
 
-    wrap.classList.add('visible');
-}
+                    wrap.style.left = cx + 'px';
+                    wrap.style.top = cy + 'px';
+                }
+
+                wrap.classList.add('visible');
             }
 
             function hidePopup() {
@@ -168,23 +195,17 @@
                     if (window.innerWidth > 768) hidePopup();
                 });
 
-                // MOBILE TOUCH EVENTS (Tap)
+                // MOBILE EVENTS (Tap)
                 t.addEventListener('touchstart', (e) => {
                     if (window.innerWidth <= 768) {
-                        e.preventDefault(); // Αποφυγή διπλών triggers
+                        e.preventDefault();
                         clearTimeout(mobileTimeout);
-                        
                         showPopup(t);
-                        
-                        // Εξαφανίζεται αυτόματα μετά από 3 δευτερόλεπτα (3000ms)
-                        mobileTimeout = setTimeout(() => {
-                            hidePopup();
-                        }, 3000);
+                        mobileTimeout = setTimeout(() => { hidePopup(); }, 3000);
                     }
                 }, { passive: false });
             });
 
-            // Κλείσιμο αν ο χρήστης πατήσει οπουδήποτε αλλού στην οθόνη
             window.addEventListener('touchstart', (e) => {
                 if (window.innerWidth <= 768 && !e.target.classList.contains('reveal')) {
                     clearTimeout(mobileTimeout);
@@ -193,7 +214,7 @@
             }, { passive: true });
         })();
 
-        // Auto-scroll script
+        // Auto-scroll
         (function () {
             const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             if (reduce) return;
