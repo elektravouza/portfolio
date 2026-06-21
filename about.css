@@ -13,7 +13,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* NAVIGATION (STAYS THE SAME AS MAIN) */
+/* NAVIGATION */
 header, footer {
     position: fixed;
     width: 100%;
@@ -37,7 +37,7 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
 .header-center a:hover, .header-center a.active { opacity: 1; font-weight: bold; }
 .footer-links { display: flex; gap: 20px; }
 
-/* ABOUT CONTENT LAYOUT — CENTERED SINGLE COLUMN */
+/* ABOUT CONTENT LAYOUT */
 .about-container {
     max-width: 1100px;
     margin: 0 auto;
@@ -79,17 +79,18 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
     max-width: 650px;
 }
 
-/* HOVER-REVEAL TRIGGERS — bolder + 2px larger than surrounding text */
+/* HOVER & TAP REVEAL TRIGGERS */
 .reveal {
     font-weight: 700;
     font-size: calc(1em + 2px);
     cursor: pointer;
     border-bottom: 1px solid rgba(0,0,0,0.5);
     transition: border-color 0.2s ease;
+    -webkit-tap-highlight-color: transparent; /* Αφαιρεί το μπλε φλας στο tap στο κινητό */
 }
 .reveal:hover { border-color: rgba(0,0,0,1); }
 
-/* FLOATING IMAGE THAT POPS OUT ON HOVER (scattered, width set per-popup via JS) */
+/* FLOATING IMAGE POPUP */
 .hover-img-wrap {
     position: fixed;
     top: 0; left: 0;
@@ -118,7 +119,7 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
     50%      { transform: scale(1) translateY(-12px) rotate(1.5deg); }
 }
 
-/* Visible placeholder when an image path is missing (debug aid) */
+/* Fallback placeholder */
 .hover-img-fallback {
     display: none;
     width: clamp(200px, 24vw, 320px);
@@ -151,8 +152,6 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
     .question-text { font-size: 15px; }
 }
 
-/* No floating image on touch devices (no hover) */
-@media (hover: none) {
-    .hover-img-wrap { display: none; }
-    .reveal { border-bottom: none; }
-}
+/* ΑΦΑΙΡΕΘΗΚΕ ΤΟ @media (hover: none) ΠΟΥ ΕΚΡΥΒΕ ΤΑ POPUPS ΣΤΑ ΚΙΝΗΤΑ.
+   Τώρα διατηρούμε τη διακριτική γραμμή κάτω από τις λέξεις-κλειδιά.
+*/
