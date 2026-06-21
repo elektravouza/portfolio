@@ -125,7 +125,7 @@ const projects = [
         partner: "Vestart", 
         img: "./assets/brotherakia.mp4", 
         liveSite: "https://www.brotherakia.gr/",
-        description: `Brotherakia is a rapidly expanding dynamic ecosystem centered around beloved custom coloring characters created by popular Greek YouTuber and artist, @imikriollandeza.\n\nWhat kicked off as a passionate creative endeavor with a single coloring book has completely exploded. Following the immense success of their third coloring book edition, the Brotherakia universe has effortlessly scaled onto tangible consumer products, ranging from water bottles and custom mugs to lunchboxes and a wave of upcoming secret merchandise.\n\nAs a UX researcher and designer handling this scaling architecture, my mission was to shape the digital foundation for this evolution. I developed the official Brotherakia platform, which currently serves as a minimalist, high-converting landing page built to capture user registrations for an upcoming exclusive event. This project is pure fun, and I am highly looking forward to mapping and designing even deeper interactive experiences as this charming ecosystem continues to grow.`, 
+        description: `Brotherakia is a rapidly expanding dynamic ecosystem centered around beloved custom coloring characters created by popular Greek YouTuber and artist, @imikriollandeza.\n\nWhat kicked off as a passionate creative endeavor with a single coloring book displayed complete exponential scaling architecture onto tangible consumer products. My mission was to shape the digital foundation for this evolution. I developed the official Brotherakia platform, which currently serves as a minimalist, high-converting landing page built to capture user registrations. This project is pure fun, and I am highly looking forward to mapping and designing even deeper interactive experiences as this charming ecosystem continues to grow.`, 
         media: ["./assets/brotherakia.mp4"] 
     },
     { 
@@ -136,7 +136,7 @@ const projects = [
         partner: "Vestart", 
         img: "./assets/treha1.mp4", 
         liveSite: "https://www.trehayireve.gr/",
-        description: `The name "Treha Gireve" originates from a traditional Greek proverb meaning "run and look for it," which colloquially implies searching for something elusive or embark on a wild goose chase. Metaphorically and literally, however, Treha Gireve is an active running club meticulously designed to foster socialization, human connection, and a healthy athletic lifestyle within a densely populated metropolis like Athens.\n\nThis community has grown exponentially, transforming the simple act of running into a vital escape and a powerful outlet from the exhaustion of daily routines. Through Vestart, I had the honor of designing the complete UI/UX interface for their official website alongside a seamless, specialized booking engine, allowing this thriving community to connect, schedule urban runs, and manage slots effortlessly.`, 
+        description: `The name "Treha Gireve" originates from a traditional Greek proverb meaning "run and look for it." Metaphorically and literally, however, Treha Gireve is an active running club meticulously designed to foster socialization, human connection, and a healthy athletic lifestyle within a densely populated metropolis like Athens.\n\nThis community has grown exponentially, transforming the simple act of running into a vital escape and a powerful outlet from the exhaustion of daily routines. Through Vestart, I had the honor of designing the complete UI/UX interface for their official website alongside a seamless, specialized booking engine, allowing this thriving community to connect, schedule urban runs, and manage slots effortlessly.`, 
         media: [
             "./assets/treha1.mp4",
             `<div style="width: 100%; padding-bottom: 50px; background: transparent;"></div>`,
@@ -184,7 +184,7 @@ const projects = [
         partner: "Vestart", 
         img: "./assets/stainvideo.mp4", 
         liveSite: "https://staincosmetics.com/",
-        description: `I had the incredible honor of serving as the Project Manager and Lead UI/UX Engineer for the entire birth of Stain, a disruptive beauty brand that introduces the concept of 'accessible luxury' to the Greek market. My role spanned across cross-functional creative verticals: container sourcing, visual communication, packaging assets, product launch positioning, and the tailored creation of the digital flagship store.\n\nManaging this multi-layered framework within strict, demanding timelines was intensely challenging, yet the outcome successfully achieved its strategic market positioning. The entire design cycle transformed a rigorous commercial launch into a beautiful, seamless creative milestone that thrives on aesthetic sophistication.`,
+        description: `I had the incredible honor of serving as the Project Manager and Lead UI/UX Engineer for the entire birth of Stain, a disruptive beauty brand that introduces the concept of 'accessible luxury' to the Greek market. My role spanned across cross-functional creative verticals: container sourcing, visual communication, packaging assets, product launch positioning, and the tailored creation of the digital flagship store.\n\nConcrete commercial constraints became a canvas for innovation. The entire design cycle transformed a rigorous commercial launch into a beautiful, seamless creative milestone that thrives on aesthetic sophistication.`,
         media: ["./assets/stainvideo.mp4"] 
     },
     { 
@@ -439,7 +439,7 @@ function openProject(index) {
         else {
             const img = document.createElement('img');
             img.src = item;
-            img.loading = 'lazy'; // LAZY LOADING ΓΙΑ ΤΑΧΥΤΗΤΑ
+            img.loading = 'lazy'; // Lazy loading για μέγιστο speed
             itemWrapper.appendChild(img);
         }
         mediaContainer.appendChild(itemWrapper);
@@ -514,15 +514,55 @@ window.addEventListener('resize', () => {
     updateSizes();
 });
 
-// PRELOADER CURTAIN ANIMATION (GSAP)
-window.addEventListener('load', () => {
+// REAL PROGRESS PRELOADER ENGINE (THREE.JS TEXTURES)
+(function() {
     const preloader = document.getElementById('preloader');
-    const curtain = document.querySelector('.preloader-curtain');
-    if (preloader && curtain) {
-        const tl = gsap.timeline({ onComplete: () => { preloader.style.display = 'none'; } });
-        tl.to(curtain, { yPercent: -100, duration: 1.2, ease: "power4.inOut", delay: 0.2 });
+    const barFill = document.querySelector('.loader-bar-fill');
+    const percentText = document.querySelector('.loader-percentage');
+    
+    if (!preloader || !barFill || !percentText) return;
+
+    let loadedMedia = 0;
+    const totalMedia = projects.length;
+
+    function mediaLoaded() {
+        loadedMedia++;
+        const progress = Math.round((loadedMedia / totalMedia) * 100);
+        
+        gsap.to(barFill, { width: progress + '%', duration: 0.2, ease: "power1.out" });
+        percentText.innerText = `( ${progress}% )`;
+
+        if (loadedMedia >= totalMedia) {
+            setTimeout(() => {
+                const tl = gsap.timeline({ onComplete: () => { preloader.style.display = 'none'; } });
+                tl.to(preloader, { yPercent: -100, duration: 1.2, ease: "power4.inOut" });
+            }, 400);
+        }
     }
-});
+
+    items.forEach((mesh, i) => {
+        const texture = mesh.material.uniforms.tMap.value;
+        if (texture && texture.image) {
+            if (texture.image instanceof HTMLVideoElement) {
+                if (texture.image.readyState >= 2) {
+                    mediaLoaded();
+                } else {
+                    texture.image.addEventListener('loadeddata', mediaLoaded, { once: true });
+                    texture.image.addEventListener('error', mediaLoaded, { once: true });
+                }
+            } else {
+                if (texture.image.complete) {
+                    mediaLoaded();
+                } else {
+                    texture.image.addEventListener('load', mediaLoaded, { once: true });
+                    texture.image.addEventListener('error', mediaLoaded, { once: true });
+                }
+            }
+        } else {
+            mediaLoaded();
+        }
+    });
+})();
 
 updateSizes(); 
 animate();
