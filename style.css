@@ -13,7 +13,6 @@ body { background-color: var(--bg); color: var(--text-main); font-family: var(--
 canvas { display: block; position: fixed; inset: 0; z-index: 100; pointer-events: none; }
 #hover-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.1); z-index: 80; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
 
-/* HEADER & FOOTER EFFECT */
 header, footer { 
     position: fixed; 
     width: 100%; 
@@ -39,7 +38,6 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; }
 .header-center { display: flex; gap: 20px; width: 33.33%; justify-content: center; }
 .header-center a { text-decoration: none; font-size: var(--fs-ui); text-transform: uppercase; cursor: pointer; }
 
-/* ARCHIVE GRID */
 .project-grid { position: fixed; top: 55%; left: 40px; width: 60%; transform: translateY(-50%); z-index: 90; pointer-events: auto; }
 .grid-header { display: grid; grid-template-columns: 40px 2.5fr 1.5fr 1fr 1.5fr; font-size: var(--fs-grid); margin-bottom: 15px; opacity: 0.5; }
 .project-row { display: grid; grid-template-columns: 40px 2.5fr 1.5fr 1fr 1.5fr; margin-bottom: 6px; cursor: pointer; font-size: var(--fs-grid); transition: opacity 0.3s ease, color 0.3s ease; position: relative; z-index: 90; color: var(--text-main) !important; }
@@ -51,9 +49,8 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; }
 .right-info { position: fixed; top: 20%; right: 40px; width: 380px; z-index: 50; font-size: var(--fs-ui); line-height: 1.4; transition: opacity 0.5s ease; }
 body.is-hovering .right-info { opacity: 0.05; }
 .footer-links { display: flex; gap: 20px; }
-.footer-links a { text-decoration: none; text-transform: capitalize; }
+.footer-links a { text-decoration: none; }
 
-/* PROJECT VIEW LAYER */
 #project-view { position: fixed; inset: 0; background-color: var(--bg); z-index: 2000; display: none; opacity: 0; overflow-y: auto; }
 .project-container { display: flex; min-height: 100vh; padding: 140px 80px 140px 80px; gap: 60px; }
 .project-sidebar { position: -webkit-sticky; position: sticky; top: 140px; width: 35%; height: max-content; display: flex; flex-direction: column; justify-content: flex-start; color: var(--text-main); }
@@ -66,19 +63,18 @@ body.is-hovering .right-info { opacity: 0.05; }
 .nav-side-btn:hover { opacity: 1; }
 #prev-project-btn { left: 20px; } #next-project-btn { right: 20px; }
 
-/* MEDIA CONTENT - DEFAULT: 0PX PADDING (ΤΕΛΕΙΩΣ ΚOΛΛΗΤΑ) */
+/* MEDIA LAYER - 100% WIDTH FOR SCALE UP */
 .project-media-content { width: 100%; display: flex; flex-direction: column; gap: 0px !important; }
 .project-media-content > div { margin: 0 !important; padding: 0 !important; display: block; width: 100%; line-height: 0 !important; }
 
-/* EXCEPTIONS FOR PADDING (SOFTLIKEBUTTER & TREHA ONLY) */
 .project-media-content.has-padding > div {
     padding-bottom: 10px !important;
 }
 
 .project-media-content img, .project-media-content video, .project-media-content iframe {
-    width: 100% !important;
+    width: 100% !important; /* Κάνει scale up όλα τα στοιχεία στο ίδιο width */
     height: auto !important;
-    max-height: 80vh !important;
+    max-height: 85vh !important;
     display: block;
     object-fit: contain !important;
     border: none;
@@ -86,7 +82,7 @@ body.is-hovering .right-info { opacity: 0.05; }
 }
 .project-media-content video, .project-media-content iframe { aspect-ratio: 16/9; }
 
-/* Custom aspect ratios for vimeo */
+/* Custom iframe view */
 .project-media-content iframe[src*="1052616300"] { aspect-ratio: 3/4 !important; }
 .project-media-content iframe[src*="1052624710"] { aspect-ratio: 4/3 !important; }
 .project-media-content iframe[src*="1052626682"] { aspect-ratio: 4/3 !important; }
@@ -97,20 +93,8 @@ body.is-hovering .right-info { opacity: 0.05; }
 .project-media-content iframe[src*="1078110846"] { aspect-ratio: 100/80 !important; }
 .project-media-content iframe[src*="1078441730"] { aspect-ratio: 100/65 !important; }
 
-/* ==========================================================================
-   ABOUT PAGE OVERLAY LAYER (LUOOOIF INFO STYLE)
-   ========================================================================== */
-#about-view { 
-    position: fixed; 
-    inset: 0; 
-    background-color: var(--bg); 
-    z-index: 5000; /* Υψηλότερο z-index για να μην εμποδίζεται από το Three.js */
-    display: none; 
-    opacity: 0; 
-    overflow-y: auto; 
-    color: var(--text-main); 
-    pointer-events: auto; /* Ενεργοποιεί τα clicks */
-}
+/* ABOUT VIEW */
+#about-view { position: fixed; inset: 0; background-color: var(--bg); z-index: 5000; display: none; opacity: 0; overflow-y: auto; color: var(--text-main); pointer-events: auto; }
 .about-container { max-width: 900px; margin: 0 auto; padding: 160px 40px 140px 40px; }
 .about-statement { font-size: 32px; line-height: 1.15; letter-spacing: -0.8px; text-transform: uppercase; margin-bottom: 80px; font-weight: bold; }
 .about-statement span { display: inline-block; text-indent: 120px; }
