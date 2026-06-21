@@ -35,14 +35,14 @@ const projects = [
         role: "UI/UX", 
         date: "2024", 
         partner: "Vestart", 
-        img: "./assets/social.mp4", 
+        img: "./assets/socialout.mp4", 
         description: `UI/UX design for the Social Outkast e-shop, a platform built for a community that thrives on free expression and individuality.\n\nSocial Outkast represents slow fashion, designed and crafted with passion in Greece, made specifically for the streets. The concept embraces the philosophy that being authentic is the only way to go. The digital experience reflects this raw identity: sharp cuts, small-batch productions, and an uncompromised respect for people and art.\n\nCelebrating diversity and inclusion, the e-shop design mirrors a space for those who dress loud, think wild, and refuse to fit in. Welcome to a new era where style has a conscience and difference is the rule.`, 
         media: ["./assets/socialout.mp4"] 
     },
     { 
         id: "04", 
         title: "Femina", 
-        role: "Art Direction", 
+        role: "360", 
         date: "2024", 
         partner: "", 
         img: "./assets/femina.avif", 
