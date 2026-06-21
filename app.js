@@ -1,7 +1,12 @@
 const projects = [
     { 
-        id: "01", title: "Entropia", role: "360", date: "2025", partner: "", img: "./assets/entropia.jpg",
-        description: "Entropia is a transdisciplinary research project that reinterprets mathematical complexity through aesthetic experience and digital interaction, shifting the understanding of computational thinking from strict logical formalism toward experiential and participatory exploration. Grounded in the P versus NP problem as a conceptual starting point, the project constructs an open-ended experimental system in which the user is not positioned as an executor of algorithmic rules, but as an active agent of meaning-making and decision processes. Through interaction, complexity is not approached as a problem to be solved in its traditional sense, but as a condition to be experienced, perceived, and reconfigured through engagement. In this sense, Entropia generates a reflective environment where notions of proof, difficulty, and mathematical truth are continuously questioned and redefined. Ultimately, the project aims to establish a hybrid space in which mathematical reasoning, design practice, and human experience coexist within a unified exploratory framework.",
+        id: "01", 
+        title: "Entropia", 
+        role: "360", 
+        date: "2025", 
+        partner: "", 
+        img: "./assets/entropia.jpg",
+        description: `Entropia is a transdisciplinary research project that reinterprets mathematical complexity through aesthetic experience and digital interaction, shifting the understanding of computational thinking from strict logical formalism toward experiential and participatory exploration. Grounded in the P versus NP problem as a conceptual starting point, the project constructs an open-ended experimental system in which the user is not positioned as an executor of algorithmic rules, but as an active agent of meaning-making and decision processes. Through interaction, complexity is not approached as a problem to be solved in its traditional sense, but as a condition to be experienced, perceived, and reconfigured through engagement. In this sense, Entropia generates a reflective environment where notions of proof, difficulty, and mathematical truth are continuously questioned and redefined. Ultimately, the project aims to establish a hybrid space in which mathematical reasoning, design practice, and human experience coexist within a unified exploratory framework.`,
         media: [
             "./assets/ENTROPIA3.png",
             "./assets/ENTROPIA4.png",
@@ -13,7 +18,9 @@ const projects = [
             "./assets/ENTROPIA8.png",
             "./assets/ENTROPIA9.png",
             "./assets/ENTROPIA10.png",
+            "./assets/ilektrovichhh (1) (1).mp4",
             "./assets/finalentropia.mp4"
+        ] 
     },
     { 
         id: "02", 
@@ -22,7 +29,7 @@ const projects = [
         date: "2024", 
         partner: "", 
         img: "./assets/where.avif",
-        description: `The inspiration for the "WHERE" experiment stems from a remarkable event in China, where one robot managed to influence and persuade others to follow its lead. This unusual reversal, where the mass became the follower instead of the guide, challenges our understanding of influence and conformity.\n\nDrawing from this phenomenon, the "WHERE" experiment reimagines the classic Asch conformity study in the context of 2024/2025. It investigates whether individuals are still significantly affected by the majority or if we have entered an era where people can act independently, free from the sway of the mass. By creating a digital platform that simulates social pressure through moving bots, the experiment explores whether modern users make decisions influenced by the collective or assert their autonomy in an increasingly interconnected world.\n\nThe name of the experiment, WHERE, has both a literal and a metaphorical meaning. The literal meaning lies in its connection to the main and only question posed to the user: “Where should the box/robot go?” Metaphorically, however, it brings to the surface a more allegorical dimension, seeking answers to deeper questions such as:\n“Where are you going?”, “Do you want to be the mass?”, “Do you want to follow the others?”, “Where is your opinion?”, “Where is your voice?”, “Where are you?”`,
+        description: `The inspiration for the "WHERE" experiment stems from a remarkable event in China, where one robot managed to influence and persuade others to follow its lead. This unusual reversal, where the mass became the follower instead of the guide, challenges our understanding of influence and conformity.\n\nDrawing from this phenomenon, the "WHERE" experiment reimagines the classic Asch conformity study in the context of 2024/2025. It investigates whether individuals are still significantly affected by the majority or if we have entered an era where people can act independently, free from the sway of the mass. By creating a digital platform that simulates social pressure through moving bots, the experiment explores whether modern users make decisions influenced by the collective or assert their autonomy in an increasingly interconnected world.\n\nThe name of the experiment, WHERE, has both a literal and a metaphorical meaning. The literal meaning lies in its connection to the main and only question posed to the user: “Where should the box/robot go?” Metaphorically, however, it brings to the surface a more allegorical dimension, seeking answers to deeper questions such as:\n“Where are you going?”, “Do you want to be the mass?”, “Do you want to follow the others?”, “Where is your opinion?”, \"Where is your voice?\", \"Where are you?\"`,
         media: [
             "./assets/where1.webp",
             `<iframe src="https://player.vimeo.com/video/1052616300?h=eb12c5ffc4&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;background=1" frameborder="0" allow="autoplay; picture-in-picture" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
@@ -172,7 +179,7 @@ const projects = [
         role: "360", 
         date: "2025", 
         partner: "Self", 
-        img: "./assets/areyoufinal(1).mp4", 
+        img: "./assets/areyou.mp4", 
         description: `Identity in the Digital Age: Reflection or Projection?\n\nIdentity is multi-dimensional and continuously evolving through experiences and interactions. However, in our current era of social media and algorithmic dominance, individual identity faces an unprecedented crisis. Digital platforms have built a world where uniqueness blurs, and our authentic core is often replaced by mass-produced standards and automated trends.\n\n"ARE YOU PART OF YOURSELF?" is a provocative thesis project that invites viewers to reflect on their relationship with technology. It questions whether our essence has been commodified, collected, and replicated by modern networks, reducing individuality into sheer conformity. The project serves as a bold commentary on mass choice, urging a conscious return to our true selves amid the digital noise.\n\nVisual & Conceptual Execution:\nThe video triggers immediate emotional responses through a distorted, "broken" glitch aesthetic and monochromatic filters, symbolizing alienation. Abstract units transition into mass elements to mirror the loss of self. Key terminology from Wikipedia is intentionally integrated as a satirical nod to questionable mainstream data, highlighting how misinformation shapes personal truth. By exposing commercialized validation metrics, the project actively forces the viewer to shift from a passive observer to an active participant.\n\nTarget Audience:\nThis work addresses active social media users and individuals swept into modern echo chambers, bridging the gap for those experiencing an internal division between true existence ("being") and algorithmic performance ("appearing").`,
         media: ["./assets/areyoufinal(1).mp4"] 
     },
@@ -310,7 +317,6 @@ function openProject(index) {
     mediaContainer.innerHTML = ''; 
     activeProjectVideo = null; 
     
-    // PADDING LOGIC CONTROL (Softlikebutter = 06, Treha Gireve = 09)
     if (project.id === "06" || project.id === "09") {
         mediaContainer.classList.add('has-padding');
     } else {
@@ -331,11 +337,9 @@ function openProject(index) {
         else if (item.endsWith('.mp4') || item.endsWith('.mov')) {
             const video = document.createElement('video');
             video.src = item; video.loop = true; video.playsInline = true;
-            
-            // ⚡ SPEED OPTIMIZATION: Φορτώνει μόνο τα απαραίτητα metadata για να παίξει αμέσως streaming
             video.setAttribute('preload', 'metadata');
             
-            // Localized Audio Logic for Thesis project (ID: 14)
+            // Audio Logic linked directly to project "14" (Are you part of yourself?)
             if (project.id === "14") {
                 video.muted = false;
                 video.autoplay = true;
@@ -406,7 +410,6 @@ document.getElementById('prev-project-btn').onclick = (e) => {
     openProject(prevIndex);
 };
 
-// ABOUT PAGE ROUTING MECHANISM
 function openAbout() {
     closeProject(); 
     const aboutView = document.getElementById('about-view');
