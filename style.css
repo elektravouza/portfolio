@@ -13,9 +13,22 @@ body { background-color: var(--bg); color: var(--text-main); font-family: var(--
 canvas { display: block; position: fixed; inset: 0; z-index: 100; pointer-events: none; }
 #hover-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.1); z-index: 80; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
 
-/* PRELOADER CURTAIN */
-#preloader { position: fixed; inset: 0; z-index: 99999; pointer-events: auto; overflow: hidden; }
-.preloader-curtain { width: 100%; height: 100%; background: #000000; will-change: transform; }
+/* PRELOADER ΜΕ ΜΠΑΡΑ ΚΑΙ ΠΟΣΟΣΤΟ (CENTRED) */
+#preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.loader-wrap { width: 240px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.loader-bar-bg { width: 100%; height: 1px; background: rgba(255, 255, 255, 0.15); position: relative; overflow: hidden; }
+.loader-bar-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: #ffffff; will-change: width; }
+.loader-percentage { color: #ffffff; font-family: var(--font-primary); font-size: 11px; letter-spacing: 1px; font-weight: 500; opacity: 0.8; }
 
 header, footer { 
     position: fixed; 
@@ -76,7 +89,7 @@ body.is-hovering .right-info { opacity: 0.05; }
 .project-media-content img, .project-media-content video { height: auto !important; object-fit: contain !important; }
 .project-media-content iframe { height: auto !important; aspect-ratio: 16 / 9; }
 
-/* Overrides aspect ratios */
+/* Custom aspect ratios for responsive consistency */
 .project-media-content iframe[src*="1052616300"] { aspect-ratio: 3/4 !important; }
 .project-media-content iframe[src*="1052624710"] { aspect-ratio: 4/3 !important; }
 .project-media-content iframe[src*="1052626682"] { aspect-ratio: 4/3 !important; }
@@ -98,7 +111,7 @@ body.is-hovering .right-info { opacity: 0.05; }
 .about-list-item { display: flex; justify-content: space-between; font-size: var(--fs-ui); padding: 12px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
 .about-list-item .item-right { text-align: right; opacity: 0.6; }
 
-/* MOBILE RECONSTRUCTION OVERRIDES */
+/* RESPONSIVE OVERRIDES */
 @media (max-width: 768px) {
     body { overflow-y: auto !important; height: auto !important; }
     canvas { z-index: 5; pointer-events: none; }
@@ -114,12 +127,11 @@ body.is-hovering .right-info { opacity: 0.05; }
     .project-row { display: block !important; height: 50vh; margin-bottom: 0px; border: none !important; }
     .project-row div { display: none !important; } 
 
-    /* Project sidebar & components */
     .project-container { flex-direction: column; padding: 90px 20px 120px 20px; gap: 35px; }
     .project-sidebar { position: relative; top: 0; width: 100%; height: auto; }
     .project-media-wrapper { width: 100% !important; }
     
-    /* ΒΕΛΑΚΙΑ: Μετακινήθηκαν στα 95px πάνω από το footer */
+    /* NAVIGATION BUTTONS MOVED UP FOR THE FOOTER */
     .nav-side-btn { position: fixed; top: auto; bottom: 95px; transform: none; background: var(--bg); border: 1px solid rgba(0,0,0,0.1); padding: 10px 24px; font-size: 18px; opacity: 1; z-index: 3100; color: #000000 !important; }
     #prev-project-btn { left: 20px; } #next-project-btn { right: 20px; }
     
