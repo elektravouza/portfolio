@@ -47,14 +47,17 @@
                     <p id="p-partner-wrapper"><strong>Partner:</strong> <span id="p-partner"></span></p>
                 </div>
                 <div class="project-description" id="p-desc"></div>
-                <!-- Κουμπί για τον ήχο (Εμφανίζεται μόνο στο Are You project) -->
-                <button id="video-mute-btn" style="display:none; margin-top:20px; background:none; border:none; cursor:pointer; font-size:18px; text-align:left; color:inherit;"></button>
             </div>
-            <div class="project-media-content" id="p-media"></div>
+            
+            <!-- Δεξιά πλευρά: Media & Localized Mute Button -->
+            <div class="project-media-wrapper" style="width: 65%; display: flex; flex-direction: column;">
+                <button id="video-mute-btn" style="display:none; align-self: flex-start; margin-bottom: 15px; background: #000; color: #fff; border: none; padding: 6px 14px; cursor: pointer; font-family: var(--font-primary); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: bold;"></button>
+                <div class="project-media-content" id="p-media"></div>
+            </div>
         </div>
     </div>
 
-    <!-- LAYER ABOUT (LUOOOIF STYLE) -->
+    <!-- LAYER ABOUT (LUOOOIF INFO PAGE STYLE) -->
     <div id="about-view">
         <div class="about-container">
             <div class="about-statement">
