@@ -209,7 +209,16 @@ const projects = [
         description: `Identity in the Digital Age: Reflection or Projection?\n\nIdentity is multi-dimensional and continuously evolving through experiences and interactions. However, in our current era of social media and algorithmic dominance, individual identity faces an unprecedented crisis. Digital platforms have built a world where uniqueness blurs, and our authentic core is often replaced by mass-produced standards and automated trends.\n\n"ARE YOU PART OF YOURSELF?" is a provocative thesis project that invites viewers to reflect on their relationship with technology. It questions whether our essence has been commodified, collected, and replicated by modern networks, reducing individuality into sheer conformity. The project serves as a bold commentary on mass choice, urging a conscious return to our true selves amid the digital noise.\n\nVisual & Conceptual Execution:\nThe video triggers immediate emotional responses through a distorted, "broken" glitch aesthetic and monochromatic filters, symbolizing alienation. Abstract units transition into mass elements to mirror the loss of self. Key terminology from Wikipedia is intentionally integrated as a satirical nod to questionable mainstream data, highlighting how misinformation shapes personal truth. By exposing commercialized validation metrics, the project actively forces the viewer to shift from a passive observer to an active participant.\n\nTarget Audience:\nThis work addresses active social media users and individuals swept into modern echo chambers, bridging the gap for those experiencing an internal division between true existence ("being") and algorithmic performance ("appearing").`,
         media: ["./assets/areyoufinal(1).mp4"] 
     },
-    { id: "15", title: "La Voltaira", role: "Brand Strategy", date: "2026", partner: "Vestart", img: "./assets/la.mp4", description: "Περιγραφή για το La Voltaira.", media: ["./assets/la.mp4"] }
+    { 
+        id: "15", 
+        title: "La Voltaira", 
+        role: "Brand Strategy", 
+        date: "2026", 
+        partner: "Vestart", 
+        img: "./assets/la.mp4", 
+        description: `La Voltaira is a newly born haute fashion maison based in Athens. They approached us to orchestrate and pioneer the launch campaign and digital communications framework for their highly anticipated SS26 collection.\n\nI was entirely responsible for conducting the comprehensive market and brand research, synthesizing data to establish a robust, 5-month growth strategy. This creative roadmap included holistic ideation streams alongside direct optimization and tactical consultancy for their existing web infrastructure and social media channels. The overarching objective is to rapidly expand premium brand awareness, accelerate direct-to-consumer digital sales, and cultivate a highly loyal, niche fashion community.`,
+        media: ["./assets/la.mp4"] 
+    }
 ];
 
 const scene = new THREE.Scene();
@@ -337,7 +346,7 @@ function openProject(index) {
         partnerWrapper.style.display = "none";
     }
 
-    // Δυναμικός έλεγχος για το Live Site link
+    // Dynamic Live link checker
     const liveWrapper = document.getElementById('p-live-wrapper');
     const liveBtn = document.getElementById('p-live');
     if (project.liveSite && project.liveSite.trim() !== "") {
@@ -375,7 +384,7 @@ function openProject(index) {
             video.src = item; video.loop = true; video.playsInline = true;
             video.setAttribute('preload', 'metadata');
             
-            // Audio Logic for Thesis project (ID: 14)
+            // Audio Logic linked directly to project "14" (Are you part of yourself?)
             if (project.id === "14") {
                 video.muted = false;
                 video.autoplay = true;
