@@ -143,11 +143,10 @@ const projects = [
             "./assets/skadin5.png"
         ]
     },
-    { id: "11", title: "Lovale", role: "Creative Direction", date: "2024", partner: "Vestart", img: "./assets/entropia.jpg", description: "Περιγραφή για το Lovale.", media: ["./assets/entropia.jpg"] },
-    { id: "12", title: "Brandsden", role: "PM, UI/UX", date: "2025", partner: "Vestart", img: "./assets/social.mp4", description: "Περιγραφή για το Brandsden.", media: ["./assets/social.mp4"] },
-    { id: "13", title: "Stain", role: "PM, Creative Strategy, UI/UX", date: "2024", partner: "Vestart", img: "./assets/femina.avif", description: "Περιγραφή για το Stain.", media: ["./assets/femina.avif"] },
+    { id: "11", title: "Brandsden", role: "PM, UI/UX", date: "2025", partner: "Vestart", img: "./assets/social.mp4", description: "Περιγραφή για το Brandsden.", media: ["./assets/social.mp4"] },
+    { id: "12", title: "Stain", role: "PM, Creative Strategy, UI/UX", date: "2024", partner: "Vestart", img: "./assets/femina.avif", description: "Περιγραφή για το Stain.", media: ["./assets/femina.avif"] },
     { 
-        id: "14", 
+        id: "13", 
         title: "Cube is cubing", 
         role: "360", 
         date: "2026", 
@@ -157,16 +156,16 @@ const projects = [
         media: ["./assets/Untitled.mp4"] 
     },
     { 
-        id: "15", 
+        id: "14", 
         title: "Are you part of yourself?", 
         role: "360", 
         date: "2025", 
         partner: "Self", 
-        img: "./assets/areyou.mp4", 
+        img: "./assets/areyou(1).mp4", 
         description: `Identity in the Digital Age: Reflection or Projection?\n\nIdentity is multi-dimensional and continuously evolving through experiences and interactions. However, in our current era of social media and algorithmic dominance, individual identity faces an unprecedented crisis. Digital platforms have built a world where uniqueness blurs, and our authentic core is often replaced by mass-produced standards and automated trends.\n\n"ARE YOU PART OF YOURSELF?" is a provocative thesis project that invites viewers to reflect on their relationship with technology. It questions whether our essence has been commodified, collected, and replicated by modern networks, reducing individuality into sheer conformity. The project serves as a bold commentary on mass choice, urging a conscious return to our true selves amid the digital noise.\n\nVisual & Conceptual Execution:\nThe video triggers immediate emotional responses through a distorted, "broken" glitch aesthetic and monochromatic filters, symbolizing alienation. Abstract units transition into mass elements to mirror the loss of self. Key terminology from Wikipedia is intentionally integrated as a satirical nod to questionable mainstream data, highlighting how misinformation shapes personal truth. By exposing commercialized validation metrics, the project actively forces the viewer to shift from a passive observer to an active participant.\n\nTarget Audience:\nThis work addresses active social media users and individuals swept into modern echo chambers, bridging the gap for those experiencing an internal division between true existence ("being") and algorithmic performance ("appearing").`,
-        media: ["./assets/areyoufinal(1).mp4"] /* Αντικαταστάθηκε με το τοπικό MP4 αρχείο σου */
+        media: ["./assets/areyoufinal(1).mp4"] 
     },
-    { id: "16", title: "La Voltaira", role: "Brand Strategy", date: "2026", partner: "Vestart", img: "./assets/la.mp4", description: "Περιγραφή για το La Voltaira.", media: ["./assets/la.mp4"] }
+    { id: "15", title: "La Voltaira", role: "Brand Strategy", date: "2026", partner: "Vestart", img: "./assets/la.mp4", description: "Περιγραφή για το La Voltaira.", media: ["./assets/la.mp4"] }
 ];
 
 const scene = new THREE.Scene();
@@ -275,7 +274,7 @@ function animate() {
 }
 
 let currentProjectIndex = 0;
-let activeProjectVideo = null; // Κρατάει το live reference του βίντεο
+let activeProjectVideo = null; 
 
 function openProject(index) {
     closeAbout();
@@ -298,9 +297,9 @@ function openProject(index) {
     
     const mediaContainer = document.getElementById('p-media');
     mediaContainer.innerHTML = ''; 
-    activeProjectVideo = null; // reset
+    activeProjectVideo = null; 
     
-    // ΕΛΕΓΧΟΣ PADDING: Μόνο για το Softlikebutter (06) και το Treha Gireve (09)
+    // PADDING LOGIC CONTROL (Softlikebutter = 06, Treha Gireve = 09)
     if (project.id === "06" || project.id === "09") {
         mediaContainer.classList.add('has-padding');
     } else {
@@ -308,7 +307,7 @@ function openProject(index) {
     }
 
     const muteBtn = document.getElementById('video-mute-btn');
-    muteBtn.style.display = "none"; // Απόκρυψη κουμπιού ήχου default
+    muteBtn.style.display = "none"; 
 
     const mediaList = project.media && project.media.length > 0 ? project.media : [project.img]; 
     
@@ -322,13 +321,15 @@ function openProject(index) {
             const video = document.createElement('video');
             video.src = item; video.loop = true; video.playsInline = true;
             
-            // Αν είναι το project 15, ξεκινάει με ήχο (Unmuted)
-            if (project.id === "15") {
+            // ⚡ SPEED OPTIMIZATION: Φορτώνει μόνο τα απαραίτητα metadata για να παίξει αμέσως streaming
+            video.setAttribute('preload', 'metadata');
+            
+            // Localized Audio Logic for Thesis project (ID: 14)
+            if (project.id === "14") {
                 video.muted = false;
                 video.autoplay = true;
                 activeProjectVideo = video;
                 
-                // Εμφάνιση και ρύθμιση του Mute/Unmute Button
                 muteBtn.style.display = "block";
                 muteBtn.innerText = "🔊 MUTE AUDIO";
                 muteBtn.onclick = () => {
@@ -347,8 +348,7 @@ function openProject(index) {
             
             video.load();
             video.play().catch(() => {
-                // Fallback αν ο browser μπλοκάρει το autoplay με ήχο
-                if (project.id === "15") {
+                if (project.id === "14") {
                     video.muted = true;
                     muteBtn.innerText = "🔇 UNMUTE AUDIO";
                     video.play().catch(()=>{});
@@ -374,7 +374,7 @@ function openProject(index) {
 
 function closeProject() {
     if (activeProjectVideo) {
-        activeProjectVideo.pause(); // Κλείνει τον ήχο και το βίντεο αμέσως
+        activeProjectVideo.pause(); 
     }
     const pView = document.getElementById('project-view');
     gsap.to(pView, { opacity: 0, duration: 0.4, onComplete: () => {
@@ -395,7 +395,7 @@ document.getElementById('prev-project-btn').onclick = (e) => {
     openProject(prevIndex);
 };
 
-// FUNCTIONS ΓΙΑ ΤΗ ΔΙΑΧΕΙΡΙΣΗ ΤΗΣ ΣΕΛΙΔΑΣ ABOUT
+// ABOUT PAGE ROUTING MECHANISM
 function openAbout() {
     closeProject(); 
     const aboutView = document.getElementById('about-view');
@@ -412,7 +412,6 @@ function closeAbout() {
     }});
 }
 
-// ROUTING MANAGEMENT
 window.onhashchange = () => {
     if (!window.location.hash) {
         closeProject();
@@ -422,7 +421,6 @@ window.onhashchange = () => {
     }
 };
 
-// Αν ο χρήστης μπει απευθείας με #about στο URL
 if (window.location.hash === '#about') {
     window.addEventListener('load', openAbout);
 }
