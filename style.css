@@ -66,11 +66,11 @@ body.is-hovering .right-info { opacity: 0.05; }
 .nav-side-btn:hover { opacity: 1; }
 #prev-project-btn { left: 20px; } #next-project-btn { right: 20px; }
 
-/* MEDIA CONTENT - DEFAULT: 0PX PADDING (КОΛΛΗΤΑ) */
-.project-media-content { width: 65%; display: flex; flex-direction: column; gap: 0px !important; }
+/* MEDIA CONTENT - DEFAULT: 0PX PADDING (ΤΕΛΕΙΩΣ ΚOΛΛΗΤΑ) */
+.project-media-content { width: 100%; display: flex; flex-direction: column; gap: 0px !important; }
 .project-media-content > div { margin: 0 !important; padding: 0 !important; display: block; width: 100%; line-height: 0 !important; }
 
-/* CUSTOM EXCEPTIONS FOR PADDING (SOFTLIKEBUTTER & TREHA) */
+/* EXCEPTIONS FOR PADDING (SOFTLIKEBUTTER & TREHA ONLY) */
 .project-media-content.has-padding > div {
     padding-bottom: 10px !important;
 }
@@ -86,7 +86,7 @@ body.is-hovering .right-info { opacity: 0.05; }
 }
 .project-media-content video, .project-media-content iframe { aspect-ratio: 16/9; }
 
-/* Custom ratios */
+/* Custom aspect ratios for vimeo */
 .project-media-content iframe[src*="1052616300"] { aspect-ratio: 3/4 !important; }
 .project-media-content iframe[src*="1052624710"] { aspect-ratio: 4/3 !important; }
 .project-media-content iframe[src*="1052626682"] { aspect-ratio: 4/3 !important; }
@@ -97,8 +97,20 @@ body.is-hovering .right-info { opacity: 0.05; }
 .project-media-content iframe[src*="1078110846"] { aspect-ratio: 100/80 !important; }
 .project-media-content iframe[src*="1078441730"] { aspect-ratio: 100/65 !important; }
 
-/* ABOUT LAYOUT (LUOOOIF INFO PAGE STYLE) */
-#about-view { position: fixed; inset: 0; background-color: var(--bg); z-index: 2100; display: none; opacity: 0; overflow-y: auto; color: var(--text-main); }
+/* ==========================================================================
+   ABOUT PAGE OVERLAY LAYER (LUOOOIF INFO STYLE)
+   ========================================================================== */
+#about-view { 
+    position: fixed; 
+    inset: 0; 
+    background-color: var(--bg); 
+    z-index: 5000; /* Υψηλότερο z-index για να μην εμποδίζεται από το Three.js */
+    display: none; 
+    opacity: 0; 
+    overflow-y: auto; 
+    color: var(--text-main); 
+    pointer-events: auto; /* Ενεργοποιεί τα clicks */
+}
 .about-container { max-width: 900px; margin: 0 auto; padding: 160px 40px 140px 40px; }
 .about-statement { font-size: 32px; line-height: 1.15; letter-spacing: -0.8px; text-transform: uppercase; margin-bottom: 80px; font-weight: bold; }
 .about-statement span { display: inline-block; text-indent: 120px; }
@@ -118,7 +130,7 @@ body.is-hovering .right-info { opacity: 0.05; }
     .project-row div:nth-child(3), .project-row div:nth-child(5) { display: none; }
     .project-container { flex-direction: column; padding: 90px 20px 120px 20px; gap: 35px; }
     .project-sidebar { position: relative; top: 0; width: 100%; height: auto; }
-    .project-media-content { width: 100%; }
+    .project-media-wrapper { width: 100% !important; }
     .nav-side-btn { position: fixed; top: auto; bottom: 20px; transform: none; background: var(--bg); border: 1px solid rgba(0,0,0,0.1); padding: 8px 24px; font-size: 18px; opacity: 1; z-index: 3100; color: #000000 !important; }
     #prev-project-btn { left: 20px; } #next-project-btn { right: 20px; }
     .about-container { padding: 100px 20px 100px 20px; } .about-statement { font-size: 22px; margin-bottom: 50px; } .about-statement span { text-indent: 40px; } .about-content-grid { grid-template-columns: 1fr; gap: 40px; }
