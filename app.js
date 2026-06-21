@@ -5,7 +5,7 @@ const projects = [
         role: "360", 
         date: "2025", 
         partner: "", 
-        img: "./assets/entropia.jpg",
+        img: "./assets/ilektrovichhh (1) (1).mp4",
         liveSite: "https://drive.google.com/file/d/1Ka65w0Yiud1_XJsnI3qwzBns2fVdPQYh/view?usp=drive_link",
         description: `Entropia is a transdisciplinary research project that reinterprets mathematical complexity through aesthetic experience and digital interaction, shifting the understanding of computational thinking from strict logical formalism toward experiential and participatory exploration. Grounded in the P versus NP problem as a conceptual starting point, the project constructs an open-ended experimental system in which the user is not positioned as an executor of algorithmic rules, but as an active agent of meaning-making and decision processes. Through interaction, complexity is not approached as a problem to be solved in its traditional sense, but as a condition to be experienced, perceived, and reconfigured through engagement. In this sense, Entropia generates a reflective environment where notions of proof, difficulty, and mathematical truth are continuously questioned and redefined. Ultimately, the project aims to establish a hybrid space in which mathematical reasoning, design practice, and human experience coexist within a unified exploratory framework.`,
         media: [
@@ -27,7 +27,7 @@ const projects = [
         role: "360", 
         date: "2024", 
         partner: "", 
-        img: "./assets/where.avif",
+        img: "./assets/where1.webp",
         liveSite: "https://elektravouza.wixstudio.com/where",
         description: `The inspiration for the "WHERE" experiment stems from a remarkable event in China, where one robot managed to influence and persuade others to follow its lead. This unusual reversal, where the mass became the follower instead of the guide, challenges our understanding of influence and conformity.\n\nDrawing from this phenomenon, the "WHERE" experiment reimagines the classic Asch conformity study in the context of 2024/2025. It investigates whether individuals are still significantly affected by the majority or if we have entered an era where people can act independently, free from the sway of the mass. By creating a digital platform that simulates social pressure through moving bots, the experiment explores whether modern users make decisions influenced by the collective or assert their autonomy in an increasingly interconnected world.\n\nThe name of the experiment, WHERE, has both a literal and a metaphorical meaning. The literal meaning lies in its connection to the main and only question posed to the user: “Where should the box/robot go?” Metaphorically, however, it brings to the surface a more allegorical dimension, seeking answers to deeper questions such as:\n“Where are you going?”, “Do you want to be the mass?”, “Do you want to follow the others?”, “Where is your opinion?”, \"Where is your voice?\", \"Where are you?\"",`,
         media: [
@@ -52,7 +52,7 @@ const projects = [
         role: "UI/UX", 
         date: "2025", 
         partner: "Vestart", 
-        img: "./assets/social.mp4", 
+        img: "./assets/socialout.mp4", 
         liveSite: "https://socialoutkast.gr/",
         description: `UI/UX design for the Social Outkast e-shop, a platform built for a community that thrives on free expression and individuality.\n\nSocial Outkast represents slow fashion, designed and crafted with passion in Greece, made specifically for the streets. The concept embraces the philosophy that being authentic is the only way to go. The digital experience reflects this raw identity: sharp cuts, small-batch productions, and an uncompromised respect for people and art.\n\nCelebrating diversity and inclusion, the e-shop design mirrors a space for those who dress loud, think wild, and refuse to fit in. Welcome to a new era where style has a conscience and difference is the rule.`, 
         media: ["./assets/socialout.mp4"] 
@@ -63,7 +63,7 @@ const projects = [
         role: "360", 
         date: "2024", 
         partner: "", 
-        img: "./assets/femina.avif", 
+        img: "./assets/femina6.png", 
         description: `FEMINA is an idea which stems from the recognition that women and femininities have historically faced numerous challenges, including sexism, fear, and marginalization. Many feel disempowered and disconnected due to these pervasive issues. FEMINA was created to address these problems by providing a safe, empowering e-community where women can feel supported and celebrated. Our e-magazine offers a fresh perspective on feminism, youth, and women's issues, aiming to uplift and inspire our readers by highlighting their strength and resilience. Through FEMINA, we aspire to create a space where women can thrive as powerful survivors, fostering a sense of belonging and empowerment.`,
         media: [
             "./assets/femina1.png",
@@ -81,7 +81,7 @@ const projects = [
         role: "360", 
         date: "2025", 
         partner: "", 
-        img: "./assets/game.avif", 
+        img: "./assets/toyfinal.png", 
         description: `This project focuses on the development of a fidget toy application. Fidget toys are small, handheld objects designed to provide sensory stimulation through touch, movement, and visual engagement. They are commonly used to promote relaxation, reduce stress, and improve focus, helping individuals stay concentrated while completing tasks.\n\nThe essence of these toys lies in their colors, textures, and shapes, which not only define their appearance but also determine how they are interacted with. The way a person plays with a fidget toy is inherently connected to these sensory characteristics, making the design of each element crucial to the overall experience.\n\nThe core idea of this project is to digitize the fidget toy experience by bringing various types of fidget toys into a single, accessible application. This digital solution aims to capture the calming and focusing benefits of physical fidget toys while leveraging the possibilities of technology to offer a versatile and convenient tool for relaxation and concentration.`, 
         media: [
             "./assets/toy1.png",
@@ -102,7 +102,7 @@ const projects = [
         role: "Project Management, UI/UX", 
         date: "2025", 
         partner: "Vestart", 
-        img: "./assets/femina.avif", 
+        img: "./assets/softlikebutter.mp4", 
         liveSite: "https://softlikebutter.gr/",
         description: `UI/UX design for Softlikebutter, a prominent cosmetics brand owned by one of Greece's top influencers. The core creative challenge was to build an interface that is exceptionally user-friendly, highly intuitive, and lightning-fast, optimized specifically for audiences who are not necessarily tech-savvy or familiar with complex e-commerce layouts.\n\nThis project reflects a personal philosophy towards digital design: commercial projects deserve the exact same creative focus, depth, and 100% dedication as abstract artistic explorations. By treating commercial constraints as a canvas for innovation, the design bridges accessibility with premium aesthetics, ensuring that everyday transactional friction is transformed into an elegant, fluid, and highly satisfying interactive journey.`, 
         media: ["./assets/softlikebutter.mp4", "./assets/softlikebutter2.mp4"] 
@@ -113,7 +113,7 @@ const projects = [
         role: "Ideation, User Experience Development", 
         date: "2025", 
         partner: "Eleana Pandia, Panos Livadas", 
-        img: "./assets/entropia.jpg", 
+        img: "./assets/chi2.jpeg", 
         description: `Temporal Ethics: AI and the Shifting Self\n\nSubtitled: "The Experiential Journey: Fostering Fun, Exploration, and Critical Thought in Human–AI Co-Creation"\nAuthors: Eleana Pandia, Panagiotis Livadas, Elektra Vouza\n\nImagine stepping into a world just beyond the horizon of the present: a post-anthropocentric society where questions of identity, agency, and responsibility are unsettled, and where your traveling companion is not another human, but an artificial general intelligence (AGI). This is the entry point to The Experiential Journey—a workshop that invites participants into a narrative of ethical exploration and playful co-creation. Here, winning or losing is irrelevant; what matters is what you discover about yourself, about others, and about the futures you might imagine together.\n\nThe journey begins with a simple yet disarming choice: do you walk forward as The Kid, full of untapped potential; as The Present Self, grounded in the present; or as The Old Man, seasoned by hindsight? This temporal self-simulation alters how the AGI speaks to you, reshaping dilemmas through the eyes of innocence, urgency, or wisdom. At each fork in the path, the AI poses new challenges, such as freshly conjυred scenarios spun in real time through procedural content generation. These dilemmas draw you across three axes: into the depths of Self, the complexities of World, and the trajectories of Evolution.\n\nYour choices are of the utmost importance. The AGI weaves them into twists in the unfolding story that mirror your stance. With each step, you accumulate an "ethical fingerprint," a profile that quantifies not only how fair, sustainable, or hopeful your responses may be, but also what kind of world your decisions are building. At the end of this path, your fingerprint blossoms into a short filmic vignette: a glimpse of the future you have co-authored, a glimpse of your personalized fantasy world. It is abstract values and fleeting thoughts rendered as landscapes you can almost touch.\n\nThe journey does not end in solitude. As travelers return from their individual quests, they find others carrying different fingerprints. Some worlds harmonize while others clash. Here the story opens into a shared space: participants gather around a figurative "campfire" where worlds collide and intermingle. Guided by facilitators, they confront meta-dilemmas distilled from their collective data, weaving disparate threads into dialogue. Groups negotiate, debate, and ultimately begin sketching the outlines of a "meta-world"—a collaborative design that embodies both tension and synthesis, echoing traditions of collective intelligence.\n\nBeneath its playful surface, the workshop is a live research platform. It collects empirical insights into how people reason morally across temporal identities and under conditions of uncertainty, building on work such as the Moral Machine experiment. It probes the potential of AI to serve as a reflective agent, facilitating rather than dictating ethical engagement. It also contributes to broader discussions of responsible AI by exploring co-creative processes where humans and machines jointly articulate values and futures.`, 
         media: ["./assets/chi2.jpeg"] 
     },
@@ -134,7 +134,7 @@ const projects = [
         role: "UI/UX", 
         date: "2026", 
         partner: "Vestart", 
-        img: "./assets/game.avif", 
+        img: "./assets/treha1.mp4", 
         liveSite: "https://www.trehayireve.gr/",
         description: `The name "Treha Gireve" originates from a traditional Greek proverb meaning "run and look for it," which colloquially implies searching for something elusive or embark on a wild goose chase. Metaphorically and literally, however, Treha Gireve is an active running club meticulously designed to foster socialization, human connection, and a healthy athletic lifestyle within a densely populated metropolis like Athens.\n\nThis community has grown exponentially, transforming the simple act of running into a vital escape and a powerful outlet from the exhaustion of daily routines. Through Vestart, I had the honor of designing the complete UI/UX interface for their official website alongside a seamless, specialized booking engine, allowing this thriving community to connect, schedule urban runs, and manage slots effortlessly.`, 
         media: [
@@ -154,7 +154,7 @@ const projects = [
         role: "360", 
         date: "2024", 
         partner: "", 
-        img: "./assets/where.avif", 
+        img: "./assets/skadin1.png", 
         description: `Skadin is a comprehensive digital transformation project designed for the hospitality sector. It features a custom-built website seamlessly integrated with an advanced, robust booking engine. The core objective of Skadin is to optimize the reservation ecosystem, allowing properties to handle direct bookings efficiently while providing an intuitive, seamless user experience for guests.\n\nFrom secure payment gateways to dynamic room availability management, the platform bridges high-end web design with complex back-end operations. By eliminating friction in the booking process, Skadin redefines how boutique hotels interact with customers, translating architectural elegance into a digital space that drives engagement and streamlines administrative workflows.`, 
         media: [
             `<iframe src="https://player.vimeo.com/video/1078441730?autoplay=1&amp;loop=1&amp;background=1&amp;muted=1&amp;h=ba11aac485" frameborder="0" allow="autoplay; picture-in-picture" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
@@ -171,7 +171,7 @@ const projects = [
         role: "Project Management, UI/UX", 
         date: "2025", 
         partner: "Vestart", 
-        img: "./assets/social.mp4", 
+        img: "./assets/brandsden (1).mp4", 
         liveSite: "https://brandsden.gr/",
         description: `Brandsden is an evolving B2B digital ecosystem tailored specifically for wholesale cosmetics, aesthetics, and beauty brands. I directed the entire UI/UX research and design layout to streamline large-scale transactions between suppliers and beauty professionals.\n\nBuilt with long-term scalability in mind, this comprehensive web hub is structured to transition smoothly into a dedicated mobile application in the near future. For a product designer, managing a complex relational infrastructure like Brandsden provides immense architectural value, turning intricate logistics into clean, high-performance visual navigation.`,
         media: ["./assets/brandsden (1).mp4"] 
@@ -182,7 +182,7 @@ const projects = [
         role: "Project Management, Creative Strategy, UI/UX", 
         date: "2024", 
         partner: "Vestart", 
-        img: "./assets/femina.avif", 
+        img: "./assets/stainvideo.mp4", 
         liveSite: "https://staincosmetics.com/",
         description: `I had the incredible honor of serving as the Project Manager and Lead UI/UX Engineer for the entire birth of Stain, a disruptive beauty brand that introduces the concept of 'accessible luxury' to the Greek market. My role spanned across cross-functional creative verticals: container sourcing, visual communication, packaging assets, product launch positioning, and the tailored creation of the digital flagship store.\n\nManaging this multi-layered framework within strict, demanding timelines was intensely challenging, yet the outcome successfully achieved its strategic market positioning. The entire design cycle transformed a rigorous commercial launch into a beautiful, seamless creative milestone that thrives on aesthetic sophistication.`,
         media: ["./assets/stainvideo.mp4"] 
