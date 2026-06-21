@@ -14,7 +14,12 @@
         <div class="header-left">
             <span class="editable-container" contenteditable="true" spellcheck="false">Hi, nice to e-meet you :)</span>
         </div>
-        <div class="header-center"><a href="#" onclick="closeProject(); return false;">Archive</a><a href="#">About</a><a href="#">Thesis</a></div>
+        <!-- Luoooif about link activation -->
+        <div class="header-center">
+            <a href="#" onclick="closeProject(); closeAbout(); return false;">Archive</a>
+            <a href="#" onclick="openAbout(); return false;">About</a>
+            <a href="#">Thesis</a>
+        </div>
         <div class="header-right" id="clock">00:00 Athens, Greece</div>
     </header>
 
@@ -35,7 +40,6 @@
         <button id="next-project-btn" class="nav-side-btn">→</button>
 
         <div class="project-container">
-            <!-- Αριστερή πλευρά: Πληροφορίες -->
             <div class="project-sidebar">
                 <h1 id="p-title">Project Title</h1>
                 <div class="project-meta">
@@ -43,13 +47,51 @@
                     <p id="p-date-wrapper"><strong>Date:</strong> <span id="p-date"></span></p>
                     <p id="p-partner-wrapper"><strong>Partner:</strong> <span id="p-partner"></span></p>
                 </div>
-                <div class="project-description" id="p-desc">
-                    Description goes here...
-                </div>
+                <div class="project-description" id="p-desc"></div>
+            </div>
+            <div class="project-media-content" id="p-media"></div>
+        </div>
+    </div>
+
+    <!-- LAYER ABOUT (LUOOOIF STYLE) -->
+    <div id="about-view">
+        <div class="about-container">
+            <div class="about-statement">
+                I am Elektra Vouza, a creative director & multidisciplinary designer 
+                <span>focusing on interactive experiences, visual research,</span> 
+                and full-scale digital transformation.
             </div>
             
-            <!-- Δεξιά πλευρά: Λίστα με Εικόνες / Βίντεο -->
-            <div class="project-media-content" id="p-media"></div>
+            <div class="about-content-grid">
+                <div class="about-column">
+                    <h2>Biography</h2>
+                    <p>Balancing commercial strategy with abstract visual art, my practice explores human-technology interaction, identity fragmentation, and modern digital spaces.</p>
+                    <p>Through deep user research and dynamic frontend aesthetics, I design systems that translate complex conceptual narratives into clean, responsive, and memorable user pathways.</p>
+                </div>
+                
+                <div class="about-column">
+                    <h2>Capabilities</h2>
+                    <div class="about-list-item"><div>Creative Direction</div><div class="item-right">Concept to Execution</div></div>
+                    <div class="about-list-item"><div>UI/UX Design</div><div class="item-right">Web & Mobile Ecosystems</div></div>
+                    <div class="about-list-item"><div>Design Research</div><div class="item-right">User Testing & Frameworks</div></div>
+                    <div class="about-list-item"><div>Creative Coding</div><div class="item-right">Interactive Graphics</div></div>
+                </div>
+            </div>
+
+            <div class="about-content-grid">
+                <div class="about-column">
+                    <h2>Selected Clients & Experience</h2>
+                    <div class="about-list-item"><div>Vestart</div><div class="item-right">Lead Designer / Art Director</div></div>
+                    <div class="about-list-item"><div>Softlikebutter Cosmetics</div><div class="item-right">E-commerce UI/UX</div></div>
+                    <div class="about-list-item"><div>Treha Gireve Running Club</div><div class="item-right">Digital Product & Engine</div></div>
+                    <div class="about-list-item"><div>Skadin Hospitality</div><div class="item-right">360 Branding & Platform</div></div>
+                </div>
+                <div class="about-column">
+                    <h2>Exhibitions & Features</h2>
+                    <div class="about-list-item"><div>Are You Part of Yourself?</div><div class="item-right">Thesis Show, 2025</div></div>
+                    <div class="about-list-item"><div>Temporal Ethics Workshop</div><div class="item-right">Human-AI Co-Creation, 2024</div></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -66,7 +108,6 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="data.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
