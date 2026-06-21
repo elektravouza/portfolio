@@ -1,4 +1,3 @@
-
 const projects = [
     { 
         id: "01", title: "Entropia", role: "360", date: "2025", partner: "", img: "./assets/entropia.jpg",
@@ -35,14 +34,14 @@ const projects = [
         role: "UI/UX", 
         date: "2024", 
         partner: "Vestart", 
-        img: "./assets/socialout.mp4", 
+        img: "./assets/social.mp4", 
         description: `UI/UX design for the Social Outkast e-shop, a platform built for a community that thrives on free expression and individuality.\n\nSocial Outkast represents slow fashion, designed and crafted with passion in Greece, made specifically for the streets. The concept embraces the philosophy that being authentic is the only way to go. The digital experience reflects this raw identity: sharp cuts, small-batch productions, and an uncompromised respect for people and art.\n\nCelebrating diversity and inclusion, the e-shop design mirrors a space for those who dress loud, think wild, and refuse to fit in. Welcome to a new era where style has a conscience and difference is the rule.`, 
         media: ["./assets/socialout.mp4"] 
     },
     { 
         id: "04", 
         title: "Femina", 
-        role: "360", 
+        role: "Art Direction", 
         date: "2024", 
         partner: "", 
         img: "./assets/femina.avif", 
@@ -70,7 +69,7 @@ const projects = [
             "./assets/toy2.png",
             "./assets/toy3.png",
             "./assets/toy4.png",
-            `<iframe src="https://player.vimeo.com/video/1072835024?h=b160ee7a15&amp;autoplay=1&amp;loop=1&amp;background=1" frameborder="0" allow="autoplay; picture-in-picture" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
+            `<iframe src="https://player.vimeo.com/video/1072835024?h=b160ee7a15&amp;autoplay=1&amp;loop=1&amp;background=1" frameborder="0" allow="autoplay; picture-in-picture; fullscreen" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
             `<iframe src="https://player.vimeo.com/video/1072836306?h=5485f3a0c9&amp;autoplay=1&amp;loop=1&amp;background=1" frameborder="0" allow="autoplay; picture-in-picture; fullscreen" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
             `<iframe src="https://player.vimeo.com/video/1072836961?h=a78a8d84fb&amp;autoplay=1&amp;loop=1&amp;background=1" frameborder="0" allow="autoplay; picture-in-picture; fullscreen" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
             `<iframe src="https://player.vimeo.com/video/1072837294?h=65088ce83c&amp;autoplay=1&amp;loop=1&amp;background=1" frameborder="0" allow="autoplay; picture-in-picture; fullscreen" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>`,
@@ -99,7 +98,25 @@ const projects = [
         media: ["./assets/chi2.jpg"] 
     },
     { id: "08", title: "Brotherakia", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/where.avif", description: "Περιγραφή για το Brotherakia.", media: ["./assets/where.avif"] },
-    { id: "09", title: "Treha Gireve", role: "UI/UX", date: "2024", partner: "Vestart", img: "./assets/game.avif", description: "Περιγραφή για το Treha Gireve.", media: ["./assets/game.avif"] },
+    { 
+        id: "09", 
+        title: "Treha Gireve", 
+        role: "UI/UX", 
+        date: "2024", 
+        partner: "Vestart", 
+        img: "./assets/game.avif", 
+        description: `The name "Treha Gireve" originates from a traditional Greek proverb meaning "run and look for it," which colloquially implies searching for something elusive or embark on a wild goose chase. Metaphorically and literally, however, Treha Gireve is an active running club meticulously designed to foster socialization, human connection, and a healthy athletic lifestyle within a densely populated metropolis like Athens.\n\nThis community has grown exponentially, transforming the simple act of running into a vital escape and a powerful outlet from the exhaustion of daily routines. Through Vestart, I had the honor of designing the complete UI/UX interface for their official website alongside a seamless, specialized booking engine, allowing this thriving community to connect, schedule urban runs, and manage slots effortlessly.`, 
+        media: [
+            "./assets/treha1.mp4",
+            "./assets/trehagireve.png",
+            /* Custom mobile view wrapper with an inline style to simulate an elegant iPhone border mockup */
+            `<div style="display: flex; justify-content: center; width: 100%; padding: 40px 0; background: transparent;">
+                <div style="width: 320px; max-width: 100%; aspect-ratio: 9/19; border: 12px solid #000000; border-radius: 36px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); background: #000000; position: relative;">
+                    <video src="./assets/trehav.mp4" loop muted autoplay playsinline style="width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0;"></video>
+                </div>
+            </div>`
+        ]
+    },
     { 
         id: "10", 
         title: "Skadin", 
@@ -139,7 +156,6 @@ const projects = [
         img: "./assets/areyou.mp4", 
         description: `Identity in the Digital Age: Reflection or Projection?\n\nIdentity is multi-dimensional and continuously evolving through experiences and interactions. However, in our current era of social media and algorithmic dominance, individual identity faces an unprecedented crisis. Digital platforms have built a world where uniqueness blurs, and our authentic core is often replaced by mass-produced standards and automated trends.\n\n"ARE YOU PART OF YOURSELF?" is a provocative thesis project that invites viewers to reflect on their relationship with technology. It questions whether our essence has been commodified, collected, and replicated by modern networks, reducing individuality into sheer conformity. The project serves as a bold commentary on mass choice, urging a conscious return to our true selves amid the digital noise.\n\nVisual & Conceptual Execution:\nThe video triggers immediate emotional responses through a distorted, "broken" glitch aesthetic and monochromatic filters, symbolizing alienation. Abstract units transition into mass elements to mirror the loss of self. Key terminology from Wikipedia is intentionally integrated as a satirical nod to questionable mainstream data, highlighting how misinformation shapes personal truth. By exposing commercialized validation metrics, the project actively forces the viewer to shift from a passive observer to an active participant.\n\nTarget Audience:\nThis work addresses active social media users and individuals swept into modern echo chambers, bridging the gap for those experiencing an internal division between true existence ("being") and algorithmic performance ("appearing").`,
         media: [
-            /* Εδώ μπήκε ο νέος κώδικας embed που έστειλες, με τα autoplay, muted και loop έτοιμα */
             `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1203030012?autoplay=1&amp;muted=1&amp;loop=1" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>`
         ] 
     },
