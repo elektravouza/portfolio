@@ -13,7 +13,7 @@ body { background-color: var(--bg); color: var(--text-main); font-family: var(--
 canvas { display: block; position: fixed; inset: 0; z-index: 100; pointer-events: none; }
 #hover-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.1); z-index: 80; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
 
-/* HEADER & FOOTER MULTIPLY/INVERT EFFECT */
+/* HEADER & FOOTER */
 header, footer { 
     position: fixed; 
     width: 100%; 
@@ -28,7 +28,6 @@ header, footer {
     color: #ffffff !important;   
 }
 header { top: 0; } footer { bottom: 0; font-size: var(--fs-ui); }
-
 header *, footer * { pointer-events: auto; color: #ffffff !important; }
 
 .header-left, .header-right { font-size: var(--fs-ui); width: 33.33%; }
@@ -38,141 +37,48 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; }
 @keyframes blink { to { visibility: hidden; } }
  
 .header-center { display: flex; gap: 20px; width: 33.33%; justify-content: center; }
-.header-center a { text-decoration: none; font-size: var(--fs-ui); text-transform: uppercase; }
+.header-center a { text-decoration: none; font-size: var(--fs-ui); text-transform: uppercase; cursor: pointer; }
 
 /* ARCHIVE GRID */
 .project-grid { position: fixed; top: 55%; left: 40px; width: 60%; transform: translateY(-50%); z-index: 90; pointer-events: auto; }
 .grid-header { display: grid; grid-template-columns: 40px 2.5fr 1.5fr 1fr 1.5fr; font-size: var(--fs-grid); margin-bottom: 15px; opacity: 0.5; }
-
-.project-row { 
-    display: grid; 
-    grid-template-columns: 40px 2.5fr 1.5fr 1fr 1.5fr; 
-    margin-bottom: 6px; 
-    cursor: pointer; 
-    font-size: var(--fs-grid); 
-    transition: opacity 0.3s ease, color 0.3s ease; 
-    position: relative; 
-    z-index: 90;
-    color: var(--text-main) !important;
-}
+.project-row { display: grid; grid-template-columns: 40px 2.5fr 1.5fr 1fr 1.5fr; margin-bottom: 6px; cursor: pointer; font-size: var(--fs-grid); transition: opacity 0.3s ease, color 0.3s ease; position: relative; z-index: 90; color: var(--text-main) !important; }
 .project-row div { color: var(--text-main) !important; }
- 
 .project-grid:hover .project-row { opacity: 0.15; }
 .project-grid .project-row.active { opacity: 1; font-weight: bold; color: var(--accent-pink) !important; z-index: 999999; }
 .project-grid .project-row.active div { color: var(--accent-pink) !important; }
 
 .right-info { position: fixed; top: 20%; right: 40px; width: 380px; z-index: 50; font-size: var(--fs-ui); line-height: 1.4; transition: opacity 0.5s ease; }
 body.is-hovering .right-info { opacity: 0.05; }
-
 .footer-links { display: flex; gap: 20px; }
 .footer-links a { text-decoration: none; text-transform: capitalize; }
 
-/* PROJECT VIEW */
-#project-view {
-    position: fixed;
-    inset: 0;
-    background-color: var(--bg);
-    z-index: 2000;
-    display: none;
-    opacity: 0;
-    overflow-y: auto;
-}
-
-.project-container {
-    display: flex;
-    min-height: 100vh;
-    padding: 140px 80px 140px 80px; 
-    gap: 60px;
-}
-
-.project-sidebar {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 140px;
-    width: 35%;
-    height: max-content; 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    color: var(--text-main);
-}
-
-#p-title {
-    font-size: 20px; 
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    font-weight: bold;
-    letter-spacing: -0.3px;
-}
-
-.project-meta {
-    font-size: var(--fs-ui);
-    margin-bottom: 25px;
-    line-height: 1.6;
-}
+/* PROJECT VIEW LAYER */
+#project-view { position: fixed; inset: 0; background-color: var(--bg); z-index: 2000; display: none; opacity: 0; overflow-y: auto; }
+.project-container { display: flex; min-height: 100vh; padding: 140px 80px 140px 80px; gap: 60px; }
+.project-sidebar { position: -webkit-sticky; position: sticky; top: 140px; width: 35%; height: max-content; display: flex; flex-direction: column; justify-content: flex-start; color: var(--text-main); }
+#p-title { font-size: 20px; text-transform: uppercase; margin-bottom: 20px; font-weight: bold; letter-spacing: -0.3px; }
+.project-meta { font-size: var(--fs-ui); margin-bottom: 25px; line-height: 1.6; }
 .project-meta p { color: var(--text-main) !important; }
+.project-description { font-size: var(--fs-ui); line-height: 1.3; max-width: 400px; opacity: 0.9; white-space: pre-wrap; color: var(--text-main) !important; }
 
-.project-description {
-    font-size: var(--fs-ui);
-    line-height: 1.3; 
-    max-width: 400px;
-    opacity: 0.9;
-    white-space: pre-wrap;
-    color: var(--text-main) !important;
-}
-
-/* ΜΑΥΡΑ ΒΕΛΗ ΠΛΟΗΓΗΣΗΣ */
-.nav-side-btn {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    font-size: 24px; 
-    cursor: pointer;
-    color: #000000 !important; 
-    z-index: 2500;
-    padding: 20px 10px;
-    opacity: 0.4;
-    transition: opacity 0.2s ease;
-}
+.nav-side-btn { position: fixed; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 24px; cursor: pointer; color: #000000 !important; z-index: 2500; padding: 20px 10px; opacity: 0.4; transition: opacity 0.2s ease; }
 .nav-side-btn:hover { opacity: 1; }
-#prev-project-btn { left: 20px; }
-#next-project-btn { right: 20px; }
+#prev-project-btn { left: 20px; } #next-project-btn { right: 20px; }
 
-/* ΑΠΟΛΥΤΩΣ ΚΟΛΛΗΤΑ MEDIA ΜΕ ΙΔΙΟ ΠΛΑΤΟΣ */
-.project-media-content {
-    width: 65%;
-    display: flex;
-    flex-direction: column;
-    gap: 0px !important; 
-    padding: 0;
-}
-
-.project-media-content > div {
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 0 !important;
-    display: block;
-    width: 100%;
-}
-
-.project-media-content img, 
-.project-media-content video,
-.project-media-content iframe {
+/* MEDIA CONTENT WITH 10PX PADDING & NO CLIPPING */
+.project-media-content { width: 65%; display: flex; flex-direction: column; gap: 0px !important; }
+.project-media-content > div { margin: 0 !important; padding-bottom: 10px !important; display: block; width: 100%; }
+.project-media-content img, .project-media-content video, .project-media-content iframe {
     width: 100% !important;
     height: auto !important;
+    max-height: 80vh !important; /* Περιορίζει το ύψος στα laptop για να μην κόβονται */
     display: block;
-    object-fit: cover; 
+    object-fit: contain !important; /* Δείχνει ολόκληρο το κάδρο χωρίς crop */
     border: none;
     margin: 0 !important;
-    padding: 0 !important;
 }
-
-.project-media-content video,
-.project-media-content iframe {
-    aspect-ratio: 16/9;
-}
+.project-media-content video, .project-media-content iframe { aspect-ratio: 16/9; }
 
 /* Custom aspect ratios για Vimeo */
 .project-media-content iframe[src*="1052616300"] { aspect-ratio: 3/4 !important; }
@@ -185,7 +91,75 @@ body.is-hovering .right-info { opacity: 0.05; }
 .project-media-content iframe[src*="1078110846"] { aspect-ratio: 100/80 !important; }
 .project-media-content iframe[src*="1078441730"] { aspect-ratio: 100/65 !important; }
 
-/* MOBILE */
+/* ==========================================================================
+   ABOUT PAGE OVERLAY LAYER (LUOOOIF STYLE)
+   ========================================================================== */
+#about-view {
+    position: fixed;
+    inset: 0;
+    background-color: var(--bg);
+    z-index: 2100;
+    display: none;
+    opacity: 0;
+    overflow-y: auto;
+    color: var(--text-main);
+}
+
+.about-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 160px 40px 140px 40px;
+}
+
+.about-statement {
+    font-size: 32px;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    text-transform: uppercase;
+    margin-bottom: 80px;
+    font-weight: bold;
+}
+
+.about-statement span {
+    display: inline-block;
+    text-indent: 120px; /* Μιμείται το χαρακτηριστικό έναυσμα του luoooif */
+}
+
+.about-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 60px;
+}
+
+.about-column h2 {
+    font-size: var(--fs-ui);
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    opacity: 0.5;
+    font-weight: normal;
+}
+
+.about-column p {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.about-list-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--fs-ui);
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.about-list-item .item-right {
+    text-align: right;
+    opacity: 0.6;
+}
+
+/* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
     header, footer { padding: 0 20px; height: 60px; }
     .header-left, .header-right { display: none; } 
@@ -198,30 +172,18 @@ body.is-hovering .right-info { opacity: 0.05; }
     .project-row { grid-template-columns: 30px 1fr 1fr; font-size: 13px; margin-bottom: 12px; }
     .project-row div:nth-child(3), .project-row div:nth-child(5) { display: none; }
 
-    .project-container {
-        flex-direction: column; 
-        padding: 90px 20px 120px 20px; 
-        gap: 35px;
-    }
-
+    .project-container { flex-direction: column; padding: 90px 20px 120px 20px; gap: 35px; }
     .project-sidebar { position: relative; top: 0; width: 100%; height: auto; }
     #p-title { font-size: 18px; margin-bottom: 12px; }
     .project-meta { margin-bottom: 15px; }
     .project-media-content { width: 100%; }
 
-    .nav-side-btn {
-        position: fixed;
-        top: auto;
-        bottom: 20px; 
-        transform: none;
-        background: var(--bg);
-        border: 1px solid rgba(0,0,0,0.1);
-        padding: 8px 24px;
-        font-size: 18px;
-        opacity: 1;
-        z-index: 3100; 
-        color: #000000 !important;
-    }
-    #prev-project-btn { left: 20px; }
-    #next-project-btn { right: 20px; }
+    .nav-side-btn { position: fixed; top: auto; bottom: 20px; transform: none; background: var(--bg); border: 1px solid rgba(0,0,0,0.1); padding: 8px 24px; font-size: 18px; opacity: 1; z-index: 3100; color: #000000 !important; }
+    #prev-project-btn { left: 20px; } #next-project-btn { right: 20px; }
+
+    /* About mobile */
+    .about-container { padding: 100px 20px 100px 20px; }
+    .about-statement { font-size: 22px; margin-bottom: 50px; }
+    .about-statement span { text-indent: 40px; }
+    .about-content-grid { grid-template-columns: 1fr; gap: 40px; }
 }
