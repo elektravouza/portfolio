@@ -265,6 +265,12 @@ const items = [];
 const textureLoader = new THREE.TextureLoader();
 const menuContainer = document.getElementById('menu-container');
 
+// Ελέγχουμε αν η συσκευή είναι mobile εξαρχής
+const isMobile = window.innerWidth <= 768;
+let targetY = 0, currentY = 0, smoothedVelocity = 0;
+// Αν είναι mobile, το opacity ξεκινάει στο 1 επειδή δεν υπάρχει hover
+let globalOpacity = { value: isMobile ? 1 : 0 }; 
+
 projects.forEach((p, i) => {
     let texture;
     if (p.img.endsWith('.mp4') || p.img.endsWith('.mov')) {
@@ -278,7 +284,7 @@ projects.forEach((p, i) => {
 
     const mat = new THREE.ShaderMaterial({ 
         vertexShader, fragmentShader, 
-        uniforms: { tMap: { value: texture }, uVelocity: { value: 0.0 }, uOpacity: { value: 0.0 } }, 
+        uniforms: { tMap: { value: texture }, uVelocity: { value: 0.0 }, uOpacity: { value: isMobile ? 1.0 : 0.0 } }, 
         transparent: true 
     });
 
@@ -290,32 +296,56 @@ projects.forEach((p, i) => {
     row.className = 'project-row';
     row.innerHTML = `<div>${p.id}</div><div>${p.title}</div><div>${p.role}</div><div>${p.date}</div><div>${p.partner}</div>`;
     
+    // Desktop hover handlers
     row.onmouseenter = () => { 
-        targetY = i * itemSpacing; 
-        gsap.to(globalOpacity, { value: 1, duration: 0.4 }); 
-        document.getElementById('hover-overlay').style.opacity = "1"; 
-        document.getElementById('body').classList.add('is-hovering'); 
-        document.querySelectorAll('.project-row').forEach((r, idx) => r.classList.toggle('active', idx === i)); 
+        if (window.innerWidth > 768) {
+            targetY = i * itemSpacing; 
+            gsap.to(globalOpacity, { value: 1, duration: 0.4 }); 
+            document.getElementById('hover-overlay').style.opacity = "1"; 
+            document.getElementById('body').classList.add('is-hovering'); 
+            document.querySelectorAll('.project-row').forEach((r, idx) => r.classList.toggle('active', idx === i)); 
+        }
     };
 
     row.onclick = () => { openProject(i); };
     menuContainer.appendChild(row);
 });
 
+// Desktop leave handler
 document.getElementById('grid-trigger').onmouseleave = () => { 
-    gsap.to(globalOpacity, { value: 0, duration: 0.4 }); 
-    document.getElementById('hover-overlay').style.opacity = "0"; 
-    document.getElementById('body').classList.remove('is-hovering'); 
-    document.querySelectorAll('.project-row').forEach(r => r.classList.remove('active')); 
+    if (window.innerWidth > 768) {
+        gsap.to(globalOpacity, { value: 0, duration: 0.4 }); 
+        document.getElementById('hover-overlay').style.opacity = "0"; 
+        document.getElementById('body').classList.remove('is-hovering'); 
+        document.querySelectorAll('.project-row').forEach(r => r.classList.remove('active')); 
+    }
 };
 
-let targetY = 0, currentY = 0, smoothedVelocity = 0, globalOpacity = { value: 0 }; 
+// Listener για το mobile scroll (μετατροπή swipe σε κίνηση WebGL)
+window.addEventListener('scroll', () => {
+    if (window.innerWidth <= 768) {
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (scrollableHeight > 0) {
+            const scrollPercent = window.scrollY / scrollableHeight;
+            const totalHeight = (projects.length - 1) * itemSpacing;
+            targetY = scrollPercent * totalHeight;
+            
+            // Προαιρετικό active class στο row που βρίσκεται πιο κοντά στο κέντρο
+            const activeIndex = Math.round(scrollPercent * (projects.length - 1));
+            document.querySelectorAll('.project-row').forEach((r, idx) => {
+                r.classList.toggle('active', idx === activeIndex);
+            });
+        }
+    }
+});
+
 function animate() {
     requestAnimationFrame(animate);
     const lastY = currentY; 
     currentY += (targetY - currentY) * 0.15;
     const rawVelocity = (currentY - lastY) / pixelToUnit;
     smoothedVelocity += (rawVelocity - smoothedVelocity) * 0.2;
+    
     items.forEach((mesh, i) => { 
         mesh.position.y = (-i * itemSpacing) + currentY; 
         mesh.material.uniforms.uVelocity.value = smoothedVelocity * 8.0; 
@@ -485,6 +515,12 @@ if (window.location.hash === '#about') {
 function clock() { document.getElementById('clock').innerText = `${new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Athens', hour:'2-digit', minute:'2-digit', hour12:false}).format(new Date())} Athens, Greece`; }
 setInterval(clock, 1000); clock();
 
-window.addEventListener('resize', updateSizes);
+// Ενημέρωση των παραμέτρων responsive κατά το resize
+window.addEventListener('resize', () => {
+    const currentMobileState = window.innerWidth <= 768;
+    globalOpacity.value = currentMobileState ? 1 : 0;
+    updateSizes();
+});
+
 updateSizes(); 
 animate();
