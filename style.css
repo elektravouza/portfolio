@@ -13,7 +13,7 @@ body { background-color: var(--bg); color: var(--text-main); font-family: var(--
 canvas { display: block; position: fixed; inset: 0; z-index: 100; pointer-events: none; }
 #hover-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.1); z-index: 80; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
 
-/* HEADER & FOOTER */
+/* HEADER & FOOTER EFFECT */
 header, footer { 
     position: fixed; 
     width: 100%; 
@@ -66,21 +66,27 @@ body.is-hovering .right-info { opacity: 0.05; }
 .nav-side-btn:hover { opacity: 1; }
 #prev-project-btn { left: 20px; } #next-project-btn { right: 20px; }
 
-/* MEDIA CONTENT WITH 10PX PADDING & NO CLIPPING */
+/* MEDIA CONTENT - DEFAULT: 0PX PADDING (КОΛΛΗΤΑ) */
 .project-media-content { width: 65%; display: flex; flex-direction: column; gap: 0px !important; }
-.project-media-content > div { margin: 0 !important; padding-bottom: 10px !important; display: block; width: 100%; }
+.project-media-content > div { margin: 0 !important; padding: 0 !important; display: block; width: 100%; line-height: 0 !important; }
+
+/* CUSTOM EXCEPTIONS FOR PADDING (SOFTLIKEBUTTER & TREHA) */
+.project-media-content.has-padding > div {
+    padding-bottom: 10px !important;
+}
+
 .project-media-content img, .project-media-content video, .project-media-content iframe {
     width: 100% !important;
     height: auto !important;
-    max-height: 80vh !important; /* Περιορίζει το ύψος στα laptop για να μην κόβονται */
+    max-height: 80vh !important;
     display: block;
-    object-fit: contain !important; /* Δείχνει ολόκληρο το κάδρο χωρίς crop */
+    object-fit: contain !important;
     border: none;
     margin: 0 !important;
 }
 .project-media-content video, .project-media-content iframe { aspect-ratio: 16/9; }
 
-/* Custom aspect ratios για Vimeo */
+/* Custom ratios */
 .project-media-content iframe[src*="1052616300"] { aspect-ratio: 3/4 !important; }
 .project-media-content iframe[src*="1052624710"] { aspect-ratio: 4/3 !important; }
 .project-media-content iframe[src*="1052626682"] { aspect-ratio: 4/3 !important; }
@@ -91,99 +97,29 @@ body.is-hovering .right-info { opacity: 0.05; }
 .project-media-content iframe[src*="1078110846"] { aspect-ratio: 100/80 !important; }
 .project-media-content iframe[src*="1078441730"] { aspect-ratio: 100/65 !important; }
 
-/* ==========================================================================
-   ABOUT PAGE OVERLAY LAYER (LUOOOIF STYLE)
-   ========================================================================== */
-#about-view {
-    position: fixed;
-    inset: 0;
-    background-color: var(--bg);
-    z-index: 2100;
-    display: none;
-    opacity: 0;
-    overflow-y: auto;
-    color: var(--text-main);
-}
+/* ABOUT LAYOUT (LUOOOIF INFO PAGE STYLE) */
+#about-view { position: fixed; inset: 0; background-color: var(--bg); z-index: 2100; display: none; opacity: 0; overflow-y: auto; color: var(--text-main); }
+.about-container { max-width: 900px; margin: 0 auto; padding: 160px 40px 140px 40px; }
+.about-statement { font-size: 32px; line-height: 1.15; letter-spacing: -0.8px; text-transform: uppercase; margin-bottom: 80px; font-weight: bold; }
+.about-statement span { display: inline-block; text-indent: 120px; }
+.about-content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 60px; }
+.about-column h2 { font-size: var(--fs-ui); text-transform: uppercase; margin-bottom: 25px; opacity: 0.5; font-weight: normal; }
+.about-column p { font-size: 16px; line-height: 1.4; margin-bottom: 20px; }
+.about-list-item { display: flex; justify-content: space-between; font-size: var(--fs-ui); padding: 12px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+.about-list-item .item-right { text-align: right; opacity: 0.6; }
 
-.about-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 160px 40px 140px 40px;
-}
-
-.about-statement {
-    font-size: 32px;
-    line-height: 1.15;
-    letter-spacing: -0.8px;
-    text-transform: uppercase;
-    margin-bottom: 80px;
-    font-weight: bold;
-}
-
-.about-statement span {
-    display: inline-block;
-    text-indent: 120px; /* Μιμείται το χαρακτηριστικό έναυσμα του luoooif */
-}
-
-.about-content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    margin-bottom: 60px;
-}
-
-.about-column h2 {
-    font-size: var(--fs-ui);
-    text-transform: uppercase;
-    margin-bottom: 25px;
-    opacity: 0.5;
-    font-weight: normal;
-}
-
-.about-column p {
-    font-size: 16px;
-    line-height: 1.4;
-    margin-bottom: 20px;
-}
-
-.about-list-item {
-    display: flex;
-    justify-content: space-between;
-    font-size: var(--fs-ui);
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.about-list-item .item-right {
-    text-align: right;
-    opacity: 0.6;
-}
-
-/* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
     header, footer { padding: 0 20px; height: 60px; }
-    .header-left, .header-right { display: none; } 
-    .header-center { width: 100%; justify-content: center; }
+    .header-left, .header-right { display: none; } .header-center { width: 100%; justify-content: center; }
     .right-info { display: none; } 
-
     .project-grid { width: calc(100% - 40px); left: 20px; top: 50%; }
-    .grid-header { grid-template-columns: 30px 1fr 1fr; } 
-    .grid-header div:nth-child(3), .grid-header div:nth-child(5) { display: none; }
+    .grid-header { grid-template-columns: 30px 1fr 1fr; } .grid-header div:nth-child(3), .grid-header div:nth-child(5) { display: none; }
     .project-row { grid-template-columns: 30px 1fr 1fr; font-size: 13px; margin-bottom: 12px; }
     .project-row div:nth-child(3), .project-row div:nth-child(5) { display: none; }
-
     .project-container { flex-direction: column; padding: 90px 20px 120px 20px; gap: 35px; }
     .project-sidebar { position: relative; top: 0; width: 100%; height: auto; }
-    #p-title { font-size: 18px; margin-bottom: 12px; }
-    .project-meta { margin-bottom: 15px; }
     .project-media-content { width: 100%; }
-
     .nav-side-btn { position: fixed; top: auto; bottom: 20px; transform: none; background: var(--bg); border: 1px solid rgba(0,0,0,0.1); padding: 8px 24px; font-size: 18px; opacity: 1; z-index: 3100; color: #000000 !important; }
     #prev-project-btn { left: 20px; } #next-project-btn { right: 20px; }
-
-    /* About mobile */
-    .about-container { padding: 100px 20px 100px 20px; }
-    .about-statement { font-size: 22px; margin-bottom: 50px; }
-    .about-statement span { text-indent: 40px; }
-    .about-content-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-container { padding: 100px 20px 100px 20px; } .about-statement { font-size: 22px; margin-bottom: 50px; } .about-statement span { text-indent: 40px; } .about-content-grid { grid-template-columns: 1fr; gap: 40px; }
 }
