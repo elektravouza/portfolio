@@ -265,10 +265,8 @@ const items = [];
 const textureLoader = new THREE.TextureLoader();
 const menuContainer = document.getElementById('menu-container');
 
-// Ελέγχουμε αν η συσκευή είναι mobile εξαρχής
 const isMobile = window.innerWidth <= 768;
 let targetY = 0, currentY = 0, smoothedVelocity = 0;
-// Αν είναι mobile, το opacity ξεκινάει στο 1 επειδή δεν υπάρχει hover
 let globalOpacity = { value: isMobile ? 1 : 0 }; 
 
 projects.forEach((p, i) => {
@@ -296,7 +294,6 @@ projects.forEach((p, i) => {
     row.className = 'project-row';
     row.innerHTML = `<div>${p.id}</div><div>${p.title}</div><div>${p.role}</div><div>${p.date}</div><div>${p.partner}</div>`;
     
-    // Desktop hover handlers
     row.onmouseenter = () => { 
         if (window.innerWidth > 768) {
             targetY = i * itemSpacing; 
@@ -311,7 +308,6 @@ projects.forEach((p, i) => {
     menuContainer.appendChild(row);
 });
 
-// Desktop leave handler
 document.getElementById('grid-trigger').onmouseleave = () => { 
     if (window.innerWidth > 768) {
         gsap.to(globalOpacity, { value: 0, duration: 0.4 }); 
@@ -321,7 +317,6 @@ document.getElementById('grid-trigger').onmouseleave = () => {
     }
 };
 
-// Listener για το mobile scroll (μετατροπή swipe σε κίνηση WebGL)
 window.addEventListener('scroll', () => {
     if (window.innerWidth <= 768) {
         const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -330,7 +325,6 @@ window.addEventListener('scroll', () => {
             const totalHeight = (projects.length - 1) * itemSpacing;
             targetY = scrollPercent * totalHeight;
             
-            // Προαιρετικό active class στο row που βρίσκεται πιο κοντά στο κέντρο
             const activeIndex = Math.round(scrollPercent * (projects.length - 1));
             document.querySelectorAll('.project-row').forEach((r, idx) => {
                 r.classList.toggle('active', idx === activeIndex);
@@ -374,7 +368,6 @@ function openProject(index) {
         partnerWrapper.style.display = "none";
     }
 
-    // Dynamic Live link checker
     const liveWrapper = document.getElementById('p-live-wrapper');
     const liveBtn = document.getElementById('p-live');
     if (project.liveSite && project.liveSite.trim() !== "") {
@@ -412,7 +405,6 @@ function openProject(index) {
             video.src = item; video.loop = true; video.playsInline = true;
             video.setAttribute('preload', 'metadata');
             
-            // Audio Logic linked directly to project "14" (Are you part of yourself?)
             if (project.id === "14") {
                 video.muted = false;
                 video.autoplay = true;
@@ -447,6 +439,7 @@ function openProject(index) {
         else {
             const img = document.createElement('img');
             img.src = item;
+            img.loading = 'lazy'; // LAZY LOADING ΓΙΑ ΤΑΧΥΤΗΤΑ
             itemWrapper.appendChild(img);
         }
         mediaContainer.appendChild(itemWrapper);
@@ -515,11 +508,20 @@ if (window.location.hash === '#about') {
 function clock() { document.getElementById('clock').innerText = `${new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Athens', hour:'2-digit', minute:'2-digit', hour12:false}).format(new Date())} Athens, Greece`; }
 setInterval(clock, 1000); clock();
 
-// Ενημέρωση των παραμέτρων responsive κατά το resize
 window.addEventListener('resize', () => {
     const currentMobileState = window.innerWidth <= 768;
     globalOpacity.value = currentMobileState ? 1 : 0;
     updateSizes();
+});
+
+// PRELOADER CURTAIN ANIMATION (GSAP)
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    const curtain = document.querySelector('.preloader-curtain');
+    if (preloader && curtain) {
+        const tl = gsap.timeline({ onComplete: () => { preloader.style.display = 'none'; } });
+        tl.to(curtain, { yPercent: -100, duration: 1.2, ease: "power4.inOut", delay: 0.2 });
+    }
 });
 
 updateSizes(); 
