@@ -10,6 +10,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-primary); overflow: hidden; height: 100vh; -webkit-font-smoothing: antialiased; }
 
+/* Desktop default: Πίσω από το grid, Mobile override παρακάτω */
 canvas { display: block; position: fixed; inset: 0; z-index: 100; pointer-events: none; }
 #hover-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.1); z-index: 80; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
 
@@ -63,35 +64,14 @@ body.is-hovering .right-info { opacity: 0.05; }
 .nav-side-btn:hover { opacity: 1; }
 #prev-project-btn { left: 20px; } #next-project-btn { right: 20px; }
 
-/* MEDIA LAYER - ΑΠΟΛΥΤΟ ΚΛΕΙΔΩΜΑ ΣΤΟΝ ΑΞΟΝΑ X */
+/* MEDIA LAYER */
 .project-media-content { width: 100%; display: flex; flex-direction: column; gap: 0px !important; }
 .project-media-content > div { margin: 0 !important; padding: 0 !important; display: block; width: 100%; line-height: 0 !important; }
+.project-media-content.has-padding > div { padding-bottom: 10px !important; }
 
-.project-media-content.has-padding > div {
-    padding-bottom: 10px !important;
-}
-
-/* Όλα τα media: ΙΔΙΟ (πλήρες) πλάτος, ευθυγραμμισμένα στα άκρα X */
-.project-media-content img, .project-media-content video, .project-media-content iframe {
-    width: 100% !important;
-    display: block;
-    border: none;
-    margin: 0 !important;
-}
-
-/* Εικόνες & native βίντεο: κρατούν το φυσικό aspect ratio τους
-   (το ύψος προκύπτει από το πλάτος, χωρίς στρετσάρισμα ή crop) */
-.project-media-content img, .project-media-content video {
-    height: auto !important;
-    object-fit: contain !important;
-}
-
-/* Τα iframes (Vimeo) δεν έχουν εγγενές aspect ratio -> default 16/9,
-   με per-video overrides παρακάτω */
-.project-media-content iframe {
-    height: auto !important;
-    aspect-ratio: 16 / 9;
-}
+.project-media-content img, .project-media-content video, .project-media-content iframe { width: 100% !important; display: block; border: none; margin: 0 !important; }
+.project-media-content img, .project-media-content video { height: auto !important; object-fit: contain !important; }
+.project-media-content iframe { height: auto !important; aspect-ratio: 16 / 9; }
 
 /* Custom aspect ratios for responsive consistency */
 .project-media-content iframe[src*="1052616300"] { aspect-ratio: 3/4 !important; }
@@ -115,18 +95,48 @@ body.is-hovering .right-info { opacity: 0.05; }
 .about-list-item { display: flex; justify-content: space-between; font-size: var(--fs-ui); padding: 12px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
 .about-list-item .item-right { text-align: right; opacity: 0.6; }
 
+/* RESPONSIVE OVERRIDES */
 @media (max-width: 768px) {
+    /* Επιτρέπουμε το scroll στο body για το mobile feed */
+    body { overflow-y: auto !important; height: auto !important; }
+    
+    /* Φέρνουμε το canvas ΜΠΡΟΣΤΑ από το κρυφό grid για να φαίνονται οι εικόνες */
+    canvas { z-index: 5; pointer-events: none; }
+
     header, footer { padding: 0 20px; height: 60px; }
-    .header-left, .header-right { display: none; } .header-center { width: 100%; justify-content: center; }
+    .header-left, .header-right { display: none; } 
+    .header-center { width: 100%; justify-content: center; }
     .right-info { display: none; } 
-    .project-grid { width: calc(100% - 40px); left: 20px; top: 50%; }
-    .grid-header { grid-template-columns: 30px 1fr 1fr; } .grid-header div:nth-child(3), .grid-header div:nth-child(5) { display: none; }
-    .project-row { grid-template-columns: 30px 1fr 1fr; font-size: 13px; margin-bottom: 12px; }
-    .project-row div:nth-child(3), .project-row div:nth-child(5) { display: none; }
+
+    /* Το grid γίνεται ένα διάφανο, scrollable layer με μεγάλα rows για τα taps */
+    .project-grid { 
+        position: relative; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        transform: none; 
+        padding: 120px 0 100px 0; /* Δίνουμε αέρα πάνω-κάτω για header/footer */
+        z-index: 10; 
+    }
+    .grid-header { display: none !important; } /* Κρύβουμε τα ID, Title, κλπ */
+    
+    /* Κάθε row γίνεται ένα μεγάλο αόρατο block στην οθόνη */
+    .project-row { 
+        display: block !important; 
+        height: 50vh; /* Κάθε 3D plane αντιστοιχεί σε 50% του ύψους της οθόνης */
+        margin-bottom: 0px; 
+        border: none !important;
+    }
+    .project-row div { display: none !important; } /* Εξαφανίζουμε όλα τα κείμενα */
+
+    /* Project View & About Layouts */
     .project-container { flex-direction: column; padding: 90px 20px 120px 20px; gap: 35px; }
     .project-sidebar { position: relative; top: 0; width: 100%; height: auto; }
     .project-media-wrapper { width: 100% !important; }
     .nav-side-btn { position: fixed; top: auto; bottom: 20px; transform: none; background: var(--bg); border: 1px solid rgba(0,0,0,0.1); padding: 8px 24px; font-size: 18px; opacity: 1; z-index: 3100; color: #000000 !important; }
     #prev-project-btn { left: 20px; } #next-project-btn { right: 20px; }
-    .about-container { padding: 100px 20px 100px 20px; } .about-statement { font-size: 22px; margin-bottom: 50px; } .about-statement span { text-indent: 40px; } .about-content-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-container { padding: 100px 20px 100px 20px; } 
+    .about-statement { font-size: 22px; margin-bottom: 50px; } 
+    .about-statement span { text-indent: 40px; } 
+    .about-content-grid { grid-template-columns: 1fr; gap: 40px; }
 }
