@@ -13,7 +13,6 @@
             <span>Hi, nice to e-meet you :)</span>
         </div>
         <div class="header-center">
-            <!-- Σε πηγαίνει πίσω στην κεντρική σελίδα του Archive -->
             <a href="index.html">Archive</a>
             <a href="about.html" class="active">About</a>
         </div>
@@ -22,7 +21,6 @@
 
     <main class="about-container">
 
-        <!-- TEXT — centered single column. data-x / data-y are %% of the viewport (popup centre); data-w sets size. -->
         <section class="about-text">
 
             <p class="about-greet">Hey everyone!</p>
@@ -30,18 +28,18 @@
 
             <p class="about-lead">
                 I am
-                <span class="reveal" data-img="assets/ME (1) 1.png" data-w="clamp(240px, 28vw, 380px)" data-x="68" data-y="28">Ilektra Vouza</span>,
+                <span class="reveal" data-img="assets/ME (1) 1.png" data-w="clamp(160px, 20vw, 260px)" data-x="68" data-y="28">Ilektra Vouza</span>,
                 and I am just 26 years old girl who wants to discover every day something new...
                 You can just
-                <span class="reveal" data-img="assets/itsme_popup.png" data-w="clamp(150px, 17vw, 220px)" data-x="22" data-y="58">call me Ilektra</span>.
+                <span class="reveal" data-img="assets/itsme_popup.png" data-w="clamp(220px, 25vw, 320px)" data-x="22" data-y="58">call me Ilektra</span>.
                 I am a
-                <span class="reveal" data-img="assets/multi_popup.png" data-w="clamp(240px, 28vw, 360px)" data-x="48" data-y="42">multidisciplinary designer</span>,
+                <span class="reveal" data-img="assets/multi_popup.png" data-w="clamp(320px, 38vw, 480px)" data-x="48" data-y="42">multidisciplinary designer</span>,
                 creator, and researcher working across art, science, and technology.
             </p>
 
             <p>
                 I
-                <span class="reveal" data-img="assets/education_popup.png" data-w="clamp(150px, 17vw, 210px)" data-x="80" data-y="70">studied Mathematics and Computational Theory</span>
+                <span class="reveal" data-img="assets/education_popup.png" data-w="clamp(220px, 25vw, 340px)" data-x="80" data-y="70">studied Mathematics and Computational Theory</span>
                 at the University of Patras, and later specialized in Digital Design through postgraduate
                 studies at Vakalo Art &amp; Design College. This combination of logic and design continues
                 to shape how I think, build, and explore.
@@ -49,7 +47,7 @@
 
             <p>
                 I move between
-                <span class="reveal" data-img="assets/skills_popup.png" data-w="clamp(380px, 48vw, 660px)" data-x="82" data-y="46">UI/UX design, generative systems, and interactive installations</span>,
+                <span class="reveal" data-img="assets/skills_popup.png" data-w="clamp(480px, 58vw, 800px)" data-x="82" data-y="46">UI/UX design, generative systems, and interactive installations</span>,
                 alongside experimental digital experiences. I am especially interested in how complex
                 systems can be translated into sensory and participatory forms, where interaction becomes
                 a way of thinking rather than a functional layer of use.
@@ -77,7 +75,6 @@
 
         </section>
 
-        <!-- CORE QUESTION / OUTRO -->
         <section class="about-outro">
             <h2>The Core Inquiry</h2>
             <div class="question-text">
@@ -87,7 +84,6 @@
 
     </main>
 
-    <!-- FLOATING IMAGE THAT POPS OUT ON HOVER -->
     <div class="hover-img-wrap" aria-hidden="true">
         <img class="hover-img" src="" alt="">
         <span class="hover-img-fallback"></span>
@@ -104,18 +100,18 @@
     </footer>
 
     <script>
-        // Ρολόι για τη σελίδα About
         function clock() {
             document.getElementById('clock').innerText = `${new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Athens', hour:'2-digit', minute:'2-digit', hour12:false}).format(new Date())} Athens, Greece`;
         }
         setInterval(clock, 1000); clock();
 
-        // Hover-reveal: εικόνες σκορπισμένες σε όλη τη σελίδα (μέσα κι έξω από το κείμενο)
+        // Hover & Touch-reveal Logic
         (function () {
             const wrap = document.querySelector('.hover-img-wrap');
             const img = wrap.querySelector('.hover-img');
             const fallback = wrap.querySelector('.hover-img-fallback');
             const triggers = document.querySelectorAll('.reveal');
+            let mobileTimeout = null;
 
             triggers.forEach(t => {
                 const src = t.dataset.img;
@@ -128,36 +124,76 @@
                 wrap.classList.add('img-error');
             });
 
-            triggers.forEach(t => {
-                t.addEventListener('mouseenter', () => {
-                    if (!t.dataset.img) return;
-                    img.src = t.dataset.img;
+            // Κοινή συνάρτηση εμφάνισης για Desktop (hover) και Mobile (tap)
+            function showPopup(t) {
+                if (!t.dataset.img) return;
+                img.src = t.dataset.img;
+                
+                // Στο κινητό δίνουμε ένα πιο ασφαλές max πλάτος για να μην βγαίνει εκτός οθόνης
+                if (window.innerWidth <= 768) {
+                    wrap.style.width = '70vw';
+                } else {
                     wrap.style.width = t.dataset.w || '320px';
+                }
 
-                    const vw = window.innerWidth, vh = window.innerHeight;
-                    // Θέση: % του viewport + λίγη τυχαιότητα ώστε να μην πέφτει πάντα στο ίδιο σημείο
-                    let cx = (parseFloat(t.dataset.x || 50) / 100) * vw + (Math.random() - 0.5) * 150;
-                    let cy = (parseFloat(t.dataset.y || 45) / 100) * vh + (Math.random() - 0.5) * 150;
-                    cx = Math.max(vw * 0.13, Math.min(cx, vw * 0.87));
-                    cy = Math.max(Math.max(vh * 0.20, 120), Math.min(cy, vh * 0.84));
+                const vw = window.innerWidth, vh = window.innerHeight;
+                let cx = (parseFloat(t.dataset.x || 50) / 100) * vw + (Math.random() - 0.5) * 150;
+                let cy = (parseFloat(t.dataset.y || 45) / 100) * vh + (Math.random() - 0.5) * 150;
+                
+                // Boundaries για να μην βγαίνουν εκτός viewport
+                cx = Math.max(vw * 0.15, Math.min(cx, vw * 0.85));
+                cy = Math.max(Math.max(vh * 0.20, 120), Math.min(cy, vh * 0.80));
 
-                    wrap.style.left = cx + 'px';
-                    wrap.style.top = cy + 'px';
-                    wrap.classList.add('visible');
+                wrap.style.left = cx + 'px';
+                wrap.style.top = cy + 'px';
+                wrap.classList.add('visible');
+            }
+
+            function hidePopup() {
+                wrap.classList.remove('visible');
+            }
+
+            triggers.forEach(t => {
+                // DESKTOP EVENTS
+                t.addEventListener('mouseenter', () => {
+                    if (window.innerWidth > 768) showPopup(t);
                 });
                 t.addEventListener('mouseleave', () => {
-                    wrap.classList.remove('visible');
+                    if (window.innerWidth > 768) hidePopup();
                 });
+
+                // MOBILE TOUCH EVENTS (Tap)
+                t.addEventListener('touchstart', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault(); // Αποφυγή διπλών triggers
+                        clearTimeout(mobileTimeout);
+                        
+                        showPopup(t);
+                        
+                        // Εξαφανίζεται αυτόματα μετά από 3 δευτερόλεπτα (3000ms)
+                        mobileTimeout = setTimeout(() => {
+                            hidePopup();
+                        }, 3000);
+                    }
+                }, { passive: false });
             });
+
+            // Κλείσιμο αν ο χρήστης πατήσει οπουδήποτε αλλού στην οθόνη
+            window.addEventListener('touchstart', (e) => {
+                if (window.innerWidth <= 768 && !e.target.classList.contains('reveal')) {
+                    clearTimeout(mobileTimeout);
+                    hidePopup();
+                }
+            }, { passive: true });
         })();
 
-        // Αργή αυτόματη κίνηση προς τα πάνω — ο χρήστης παίρνει τον έλεγχο μόλις κάνει scroll
+        // Auto-scroll script
         (function () {
             const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             if (reduce) return;
 
-            const SPEED = 0.35;       // px ανά frame (αργό)
-            const RESUME_MS = 2200;   // πόσο μένει σταματημένο μετά από ενέργεια χρήστη
+            const SPEED = 0.35;
+            const RESUME_MS = 2200;
             let paused = false, timer = null, acc = 0;
 
             function userActed() {
