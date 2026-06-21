@@ -17,7 +17,6 @@
         <div class="header-center">
             <a href="#" onclick="closeProject(); closeAbout(); return false;">Archive</a>
             <a href="#" onclick="openAbout(); return false;">About</a>
-            <a href="#">Thesis</a>
         </div>
         <div class="header-right" id="clock">00:00 Athens, Greece</div>
     </header>
@@ -45,11 +44,12 @@
                     <p id="p-role-wrapper"><strong>Role:</strong> <span id="p-role"></span></p>
                     <p id="p-date-wrapper"><strong>Date:</strong> <span id="p-date"></span></p>
                     <p id="p-partner-wrapper"><strong>Partner:</strong> <span id="p-partner"></span></p>
+                    <!-- Δυναμικός σύνδεσμος για Live Site -->
+                    <p id="p-live-wrapper" style="display:none; margin-top: 8px;"><strong>Live Version:</strong> <a id="p-live" href="#" target="_blank" style="color: var(--accent-pink); text-decoration: none; font-weight: bold;">See live site</a></p>
                 </div>
                 <div class="project-description" id="p-desc"></div>
             </div>
             
-            <!-- Δεξιά πλευρά: Media & Localized Mute Button -->
             <div class="project-media-wrapper" style="width: 65%; display: flex; flex-direction: column;">
                 <button id="video-mute-btn" style="display:none; align-self: flex-start; margin-bottom: 15px; background: #000; color: #fff; border: none; padding: 6px 14px; cursor: pointer; font-family: var(--font-primary); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: bold;"></button>
                 <div class="project-media-content" id="p-media"></div>
@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <!-- LAYER ABOUT (LUOOOIF INFO PAGE STYLE) -->
+    <!-- LAYER ABOUT -->
     <div id="about-view">
         <div class="about-container">
             <div class="about-statement">
@@ -102,9 +102,9 @@
     <footer class="blend-ui">
         <div></div>
         <div class="footer-links">
-            <a href="#">Linkedin</a>
-            <a href="#">Instagram</a>
-            <a href="#">Email</a>
+            <a href="https://www.instagram.com/hlektrav/" target="_blank">Instagram</a>
+            <a href="https://www.linkedin.com/in/ilektra-vouza-094438247/" target="_blank">Linkedin</a>
+            <a href="mailto:elektravouza@gmail.com">Email</a>
         </div>
         <div>Copywrites 2026</div>
     </footer>
