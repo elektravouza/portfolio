@@ -32,6 +32,10 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
 .header-left, .header-right { font-size: var(--fs-ui); width: 33.33%; }
 .header-right { text-align: right; }
 
+/* PRELOADER CURTAIN */
+#preloader { position: fixed; inset: 0; z-index: 99999; pointer-events: auto; overflow: hidden; }
+.preloader-curtain { width: 100%; height: 100%; background: #000000; will-change: transform; }
+
 .header-center { display: flex; gap: 20px; width: 33.33%; justify-content: center; }
 .header-center a { text-transform: uppercase; font-size: var(--fs-ui); opacity: 0.5; transition: opacity 0.2s ease; }
 .header-center a:hover, .header-center a.active { opacity: 1; font-weight: bold; }
@@ -79,18 +83,18 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
     max-width: 650px;
 }
 
-/* HOVER & TAP REVEAL TRIGGERS */
+/* TRIGGERS */
 .reveal {
     font-weight: 700;
     font-size: calc(1em + 2px);
     cursor: pointer;
     border-bottom: 1px solid rgba(0,0,0,0.5);
     transition: border-color 0.2s ease;
-    -webkit-tap-highlight-color: transparent; /* Αφαιρεί το μπλε φλας στο tap στο κινητό */
+    -webkit-tap-highlight-color: transparent;
 }
 .reveal:hover { border-color: rgba(0,0,0,1); }
 
-/* FLOATING IMAGE POPUP */
+/* FLOATING POPUP WRAPPER */
 .hover-img-wrap {
     position: fixed;
     top: 0; left: 0;
@@ -119,7 +123,7 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
     50%      { transform: scale(1) translateY(-12px) rotate(1.5deg); }
 }
 
-/* Fallback placeholder */
+/* Fallback helper */
 .hover-img-fallback {
     display: none;
     width: clamp(200px, 24vw, 320px);
@@ -151,7 +155,3 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
     .about-greet, .about-lead { font-size: 15px; }
     .question-text { font-size: 15px; }
 }
-
-/* ΑΦΑΙΡΕΘΗΚΕ ΤΟ @media (hover: none) ΠΟΥ ΕΚΡΥΒΕ ΤΑ POPUPS ΣΤΑ ΚΙΝΗΤΑ.
-   Τώρα διατηρούμε τη διακριτική γραμμή κάτω από τις λέξεις-κλειδιά.
-*/
