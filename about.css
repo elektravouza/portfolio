@@ -45,6 +45,7 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
 }
 .about-text {
     max-width: 760px;
+    margin: 0 auto;
     font-size: 19px;
     line-height: 1.65;
 }
@@ -55,7 +56,7 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
 
 /* OUTRO INQUIRY */
 .about-outro {
-    margin-top: 70px;
+    margin: 70px auto 0;
     padding-top: 40px;
     border-top: 1px solid rgba(0,0,0,0.12);
     max-width: 760px;
@@ -113,6 +114,29 @@ header *, footer * { pointer-events: auto; color: #ffffff !important; text-decor
     0%, 100% { transform: scale(1) translateY(0) rotate(0deg); }
     50%      { transform: scale(1) translateY(-12px) rotate(1.5deg); }
 }
+
+/* Visible placeholder when an image path is missing (debug aid) */
+.hover-img-fallback {
+    display: none;
+    width: clamp(220px, 26vw, 340px);
+    aspect-ratio: 4 / 3;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 14px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #000;
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px dashed rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.25s ease,
+                transform 0.45s cubic-bezier(0.18, 0.9, 0.22, 1.2);
+}
+.hover-img-wrap.img-error .hover-img { display: none; }
+.hover-img-wrap.img-error .hover-img-fallback { display: flex; }
+.hover-img-wrap.img-error.visible .hover-img-fallback { opacity: 1; transform: scale(1); }
 
 /* RESPONSIVE COMFORT */
 @media (max-width: 768px) {

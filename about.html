@@ -27,17 +27,17 @@
 
             <p class="about-lead">
                 Hey there, welcome to my space. I am
-                <span class="reveal" data-img="images/about/ME (1) 1.png">Ilektra Vouza</span>,
+                <span class="reveal" data-img="assets/ME (1) 1.png">Ilektra Vouza</span>,
                 and I am just a girl — you can just
-                <span class="reveal" data-img="images/about/itsme_popup.png">call me Ilektra</span>.
+                <span class="reveal" data-img="assets/itsme_popup.png">call me Ilektra</span>.
                 I am a
-                <span class="reveal" data-img="images/about/multi_popup.png">multidisciplinary designer</span>,
+                <span class="reveal" data-img="assets/multi_popup.png">multidisciplinary designer</span>,
                 creator, and researcher working across art, science, and technology.
             </p>
 
             <p>
                 I
-                <span class="reveal" data-img="images/about/education_popup.png">studied Mathematics and Computational Theory</span>
+                <span class="reveal" data-img="assets/education_popup.png">studied Mathematics and Computational Theory</span>
                 at the University of Patras, and later specialized in Digital Design through postgraduate
                 studies at Vakalo Art &amp; Design College. This combination of logic and design continues
                 to shape how I think, build, and explore.
@@ -45,7 +45,7 @@
 
             <p>
                 I move between
-                <span class="reveal" data-img="images/about/skills_popup.png">UI/UX design, generative systems, and interactive installations</span>,
+                <span class="reveal" data-img="assets/skills_popup.png">UI/UX design, generative systems, and interactive installations</span>,
                 alongside experimental digital experiences. I am especially interested in how complex
                 systems can be translated into sensory and participatory forms, where interaction becomes
                 a way of thinking rather than a functional layer of use.
@@ -86,6 +86,7 @@
     <!-- FLOATING IMAGE THAT POPS OUT ON HOVER -->
     <div class="hover-img-wrap" aria-hidden="true">
         <img class="hover-img" src="" alt="">
+        <span class="hover-img-fallback"></span>
     </div>
 
     <footer>
@@ -109,7 +110,15 @@
         (function () {
             const wrap = document.querySelector('.hover-img-wrap');
             const img = wrap.querySelector('.hover-img');
+            const fallback = wrap.querySelector('.hover-img-fallback');
             const triggers = document.querySelectorAll('.reveal');
+
+            // Αν η εικόνα φορτώσει -> δείξε εικόνα. Αν αποτύχει -> δείξε placeholder με το path.
+            img.addEventListener('load', () => wrap.classList.remove('img-error'));
+            img.addEventListener('error', () => {
+                fallback.textContent = 'Missing image: ' + img.getAttribute('src');
+                wrap.classList.add('img-error');
+            });
 
             // Preload για να μην υπάρχει flash στο πρώτο hover
             triggers.forEach(t => {
