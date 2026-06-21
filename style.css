@@ -71,23 +71,26 @@ body.is-hovering .right-info { opacity: 0.05; }
     padding-bottom: 10px !important;
 }
 
-/* Αυστηρή στοίχιση οριζόντια ώστε να ξεκινούν και να τελειώνουν στο ίδιο X */
+/* Όλα τα media: ΙΔΙΟ (πλήρες) πλάτος, ευθυγραμμισμένα στα άκρα X */
 .project-media-content img, .project-media-content video, .project-media-content iframe {
     width: 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    max-height: 85vh !important;
     display: block;
-    object-fit: fill !important; /* Αναγκάζει τα στοιχεία να ευθυγραμμιστούν πλήρως στα άκρα Χ */
     border: none;
     margin: 0 !important;
 }
 
-/* Διατήρηση σωστού aspect ratio για βίντεο/iframes χωρίς παραμόρφωση */
-.project-media-content video, .project-media-content iframe { 
-    object-fit: cover !important; 
-    aspect-ratio: 16/9; 
+/* Εικόνες & native βίντεο: κρατούν το φυσικό aspect ratio τους
+   (το ύψος προκύπτει από το πλάτος, χωρίς στρετσάρισμα ή crop) */
+.project-media-content img, .project-media-content video {
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+/* Τα iframes (Vimeo) δεν έχουν εγγενές aspect ratio -> default 16/9,
+   με per-video overrides παρακάτω */
+.project-media-content iframe {
+    height: auto !important;
+    aspect-ratio: 16 / 9;
 }
 
 /* Custom aspect ratios for responsive consistency */
