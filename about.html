@@ -1,98 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ilektra Vouza — About</title>
-    <link rel="stylesheet" href="about.css">
+    <title>Ilektra Vouza — Archive</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="body">
 
     <div id="preloader">
         <div class="preloader-curtain"></div>
     </div>
 
-    <header>
+    <div id="hover-overlay"></div>
+    
+    <header class="blend-ui">
         <div class="header-left">
-            <span>Hi, nice to e-meet you :)</span>
+            <span class="editable-container" contenteditable="true" spellcheck="false">Hi, nice to e-meet you :)</span>
         </div>
         <div class="header-center">
-            <a href="index.html">Archive</a>
-            <a href="about.html" class="active">About</a>
+            <a href="#" onclick="closeProject(); return false;">Archive</a>
+            <a href="about.html">About</a>
         </div>
         <div class="header-right" id="clock">00:00 Athens, Greece</div>
     </header>
 
-    <main class="about-container">
+    <canvas id="canvas"></canvas>
 
-        <section class="about-text">
-
-            <p class="about-greet">Hey everyone!</p>
-            <p class="about-greet second">Welcome to my space.</p>
-
-            <p class="about-lead">
-                I am
-                <span class="reveal" data-img="assets/ME (1) 1.png" data-w="clamp(160px, 20vw, 260px)" data-x="68" data-y="28">Ilektra Vouza</span>,
-                and I am just 26 years old girl who wants to discover every day something new...
-                You can just
-                <span class="reveal" data-img="assets/itsme_popup.png" data-w="clamp(220px, 25vw, 320px)" data-x="22" data-y="58">call me Ilektra</span>.
-                I am a
-                <span class="reveal" data-img="assets/multi_popup.png" data-w="clamp(320px, 38vw, 480px)" data-x="48" data-y="42">multidisciplinary designer</span>,
-                creator, and researcher working across art, science, and technology.
-            </p>
-
-            <p>
-                I
-                <span class="reveal" data-img="assets/education_popup.png" data-w="clamp(220px, 25vw, 340px)" data-x="80" data-y="70">studied Mathematics and Computational Theory</span>
-                at the University of Patras, and later specialized in Digital Design through postgraduate
-                studies at Vakalo Art &amp; Design College. This combination of logic and design continues
-                to shape how I think, build, and explore.
-            </p>
-
-            <p>
-                I move between
-                <span class="reveal" data-img="assets/skills_popup.png" data-w="clamp(480px, 58vw, 800px)" data-x="82" data-y="46">UI/UX design, generative systems, and interactive installations</span>,
-                alongside experimental digital experiences. I am especially interested in how complex
-                systems can be translated into sensory and participatory forms, where interaction becomes
-                a way of thinking rather than a functional layer of use.
-            </p>
-
-            <p>
-                With a background in mathematics and cultural theory, I approach creation as a form of
-                research and a method for engaging with complex systems and contemporary realities. My
-                practice is driven by curiosity and a continuous commitment to interdisciplinary thinking,
-                where critical inquiry and experimentation resist fixed boundaries.
-            </p>
-
-            <p>
-                I bridge industry practice with research-based and experimental work, developing projects
-                that operate both as functional design solutions and conceptual explorations. For me, design
-                is a reflective medium for generating new forms of understanding, drawn to systems that are
-                not fixed but evolving, where design becomes a form of inquiry.
-            </p>
-
-            <p>
-                My work has been exhibited in different contexts, including <em>Hackney Gallery</em> in London,
-                <em>The Holy Art Gallery</em> in Athens, and <em>ADAF Festival</em> in Athens, each experience
-                contributing to how I understand space, audience, and interaction.
-            </p>
-
-        </section>
-
-        <section class="about-outro">
-            <h2>The Core Inquiry</h2>
-            <div class="question-text">
-                "How do we think through systems and how do systems think through us?"
-            </div>
-        </section>
-
-    </main>
-
-    <div class="hover-img-wrap" aria-hidden="true">
-        <span class="hover-img-fallback"></span>
+    <div class="project-grid" id="grid-trigger">
+        <div class="grid-header"><div>ID</div><div>Project Title</div><div>My role</div><div>Date</div><div>Partner</div></div>
+        <div id="menu-container"></div>
     </div>
 
-    <footer>
+    <div class="right-info">
+        <p>Selected projects developed independently or collaboratively. Research, commercial works and digital explorations.</p>
+    </div>
+
+    <div id="project-view">
+        <button id="prev-project-btn" class="nav-side-btn">←</button>
+        <button id="next-project-btn" class="nav-side-btn">→</button>
+
+        <div class="project-container">
+            <div class="project-sidebar">
+                <h1 id="p-title">Project Title</h1>
+                <div class="project-meta">
+                    <p id="p-role-wrapper"><strong>Role:</strong> <span id="p-role"></span></p>
+                    <p id="p-date-wrapper"><strong>Date:</strong> <span id="p-date"></span></p>
+                    <p id="p-partner-wrapper"><strong>Partner:</strong> <span id="p-partner"></span></p>
+                    <p id="p-live-wrapper" style="display:none; margin-top: 8px;"><strong>Live Version:</strong> <a id="p-live" href="#" target="_blank" style="color: var(--accent-pink); text-decoration: none; font-weight: bold;">See live site</a></p>
+                </div>
+                <div class="project-description" id="p-desc"></div>
+            </div>
+            
+            <div class="project-media-wrapper" style="width: 65%; display: flex; flex-direction: column;">
+                <button id="video-mute-btn" style="display:none; align-self: flex-start; margin-bottom: 15px; background: #000; color: #fff; border: none; padding: 6px 14px; cursor: pointer; font-family: var(--font-primary); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: bold;"></button>
+                <div class="project-media-content" id="p-media"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about-view">
+        <div class="about-container">
+            <div class="about-statement">
+                I am Elektra Vouza, a creative director & multidisciplinary designer 
+                <span>focusing on interactive experiences, visual research,</span> 
+                and full-scale digital transformation.
+            </div>
+            
+            <div class="about-content-grid">
+                <div class="about-column">
+                    <h2>Biography</h2>
+                    <p>Balancing commercial strategy with abstract visual art, my practice explores human-technology interaction, identity fragmentation, and modern digital spaces.</p>
+                    <p>Through deep user research and dynamic frontend aesthetics, I design systems that translate complex conceptual narratives into clean, responsive, and memorable user pathways.</p>
+                </div>
+                
+                <div class="about-column">
+                    <h2>Capabilities</h2>
+                    <div class="about-list-item"><div>Creative Direction</div><div class="item-right">Concept to Execution</div></div>
+                    <div class="about-list-item"><div>UI/UX Design</div><div class="item-right">Web & Mobile Ecosystems</div></div>
+                    <div class="about-list-item"><div>Design Research</div><div class="item-right">User Testing & Frameworks</div></div>
+                    <div class="about-list-item"><div>Creative Coding</div><div class="item-right">Interactive Graphics</div></div>
+                </div>
+            </div>
+
+            <div class="about-content-grid">
+                <div class="about-column">
+                    <h2>Selected Clients & Experience</h2>
+                    <div class="about-list-item"><div>Vestart</div><div class="item-right">Lead Designer / Art Director</div></div>
+                    <div class="about-list-item"><div>Softlikebutter Cosmetics</div><div class="item-right">E-commerce UI/UX</div></div>
+                    <div class="about-list-item"><div>Treha Gireve Running Club</div><div class="item-right">Digital Product & Engine</div></div>
+                    <div class="about-list-item"><div>Skadin Hospitality</div><div class="item-right">360 Branding & Platform</div></div>
+                </div>
+                <div class="about-column">
+                    <h2>Exhibitions & Features</h2>
+                    <div class="about-list-item"><div>Are You Part of Yourself?</div><div class="item-right">Thesis Show, 2025</div></div>
+                    <div class="about-list-item"><div>Temporal Ethics Workshop</div><div class="item-right">Human-AI Co-Creation, 2024</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="blend-ui">
         <div></div>
         <div class="footer-links">
             <a href="https://www.instagram.com/hlektrav/" target="_blank">Instagram</a>
@@ -102,147 +110,8 @@
         <div>Copywrites 2026</div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script>
-        function clock() {
-            document.getElementById('clock').innerText = `${new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Athens', hour:'2-digit', minute:'2-digit', hour12:false}).format(new Date())} Athens, Greece`;
-        }
-        setInterval(clock, 1000); clock();
-
-        // Preloader Curtain
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            const curtain = document.querySelector('.preloader-curtain');
-            if (preloader && curtain) {
-                const tl = gsap.timeline({ onComplete: () => { preloader.style.display = 'none'; } });
-                tl.to(curtain, { yPercent: -100, duration: 1.2, ease: "power4.inOut", delay: 0.2 });
-            }
-        });
-
-        // REVEAL ENGINE
-        (function () {
-            const wrap = document.querySelector('.hover-img-wrap');
-            const triggers = document.querySelectorAll('.reveal');
-            let mobileTimeout = null;
-
-            // Δημιουργία και προφόρτωση των εικόνων στο DOM
-            triggers.forEach((t, index) => {
-                const src = t.dataset.img;
-                if (!src) return;
-
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'popup-media-holder';
-                imgContainer.style.display = 'none';
-                imgContainer.style.width = '100%';
-                imgContainer.setAttribute('data-trigger-index', index);
-
-                const newImg = document.createElement('img');
-                newImg.src = src;
-                newImg.style.width = '100%';
-                newImg.style.height = 'auto';
-                newImg.style.display = 'block';
-                newImg.className = 'hover-img'; // Κρατάει τα classes του CSS
-                
-                imgContainer.appendChild(newImg);
-                wrap.appendChild(imgContainer);
-                
-                t.imgHolder = imgContainer;
-            });
-
-            function showPopup(t) {
-                if (!t.imgHolder) return;
-                
-                // Κλείσιμο προηγούμενων holders
-                wrap.querySelectorAll('.popup-media-holder').forEach(h => h.style.display = 'none');
-                
-                // Εμφάνιση του τρέχοντος
-                t.imgHolder.style.display = 'block';
-
-                const vw = window.innerWidth, vh = window.innerHeight;
-
-                if (window.innerWidth <= 768) {
-                    // MOBILE: Απόλυτο κεντράρισμα
-                    wrap.style.width = '75vw'; 
-                    wrap.style.left = (vw / 2) + 'px';
-                    wrap.style.top = (vh / 2) + 'px';
-                } else {
-                    // DESKTOP: Τυχαιότητα και custom πλάτος
-                    wrap.style.width = t.dataset.w || '320px';
-                    
-                    let cx = (parseFloat(t.dataset.x || 50) / 100) * vw + (Math.random() - 0.5) * 150;
-                    let cy = (parseFloat(t.dataset.y || 45) / 100) * vh + (Math.random() - 0.5) * 150;
-                    
-                    cx = Math.max(vw * 0.15, Math.min(cx, vw * 0.85));
-                    cy = Math.max(Math.max(vh * 0.20, 120), Math.min(cy, vh * 0.80));
-
-                    wrap.style.left = cx + 'px';
-                    wrap.style.top = cy + 'px';
-                }
-
-                wrap.classList.add('visible');
-            }
-
-            function hidePopup() {
-                wrap.classList.remove('visible');
-            }
-
-            triggers.forEach(t => {
-                // DESKTOP EVENTS
-                t.addEventListener('mouseenter', () => {
-                    if (window.innerWidth > 768) showPopup(t);
-                });
-                t.addEventListener('mouseleave', () => {
-                    if (window.innerWidth > 768) hidePopup();
-                });
-
-                // MOBILE EVENTS (Tap)
-                t.addEventListener('touchstart', (e) => {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        clearTimeout(mobileTimeout);
-                        showPopup(t);
-                        mobileTimeout = setTimeout(() => { hidePopup(); }, 3000);
-                    }
-                }, { passive: false });
-            });
-
-            window.addEventListener('touchstart', (e) => {
-                if (window.innerWidth <= 768 && !e.target.classList.contains('reveal')) {
-                    clearTimeout(mobileTimeout);
-                    hidePopup();
-                }
-            }, { passive: true });
-        })();
-
-        // Auto-scroll
-        (function () {
-            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (reduce) return;
-
-            const SPEED = 0.35;
-            const RESUME_MS = 2200;
-            let paused = false, timer = null, acc = 0;
-
-            function userActed() {
-                paused = true;
-                clearTimeout(timer);
-                timer = setTimeout(() => { paused = false; }, RESUME_MS);
-            }
-            ['wheel', 'touchstart', 'mousedown', 'keydown'].forEach(ev =>
-                window.addEventListener(ev, userActed, { passive: true }));
-
-            function tick() {
-                if (!paused) {
-                    const max = document.documentElement.scrollHeight - window.innerHeight;
-                    if (window.scrollY < max - 1) {
-                        acc += SPEED;
-                        if (acc >= 1) { window.scrollBy(0, Math.floor(acc)); acc -= Math.floor(acc); }
-                    }
-                }
-                requestAnimationFrame(tick);
-            }
-            requestAnimationFrame(tick);
-        })();
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
