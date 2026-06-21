@@ -1,8 +1,19 @@
 const projects = [
     { 
         id: "01", title: "Entropia", role: "360", date: "2025", partner: "", img: "./assets/entropia.jpg",
-        description: "Περιγραφή για το Entropia.",
-        media: ["./assets/entropia.jpg"] 
+        description: "Entropia is a transdisciplinary research project that reinterprets mathematical complexity through aesthetic experience and digital interaction, shifting the understanding of computational thinking from strict logical formalism toward experiential and participatory exploration. Grounded in the P versus NP problem as a conceptual starting point, the project constructs an open-ended experimental system in which the user is not positioned as an executor of algorithmic rules, but as an active agent of meaning-making and decision processes. Through interaction, complexity is not approached as a problem to be solved in its traditional sense, but as a condition to be experienced, perceived, and reconfigured through engagement. In this sense, Entropia generates a reflective environment where notions of proof, difficulty, and mathematical truth are continuously questioned and redefined. Ultimately, the project aims to establish a hybrid space in which mathematical reasoning, design practice, and human experience coexist within a unified exploratory framework.",
+        media: [
+            "./assets/ENTROPIA3.png",
+            "./assets/ENTROPIA4.png",
+            "./assets/ENTROPIALOGO.png",
+            "./assets/ENTROPIALOGO2.png",
+            "./assets/ENTROPIA5.png",
+            "./assets/ENTROPIA6.png",
+            "./assets/ENTROPIA7.png",
+            "./assets/ENTROPIA8.png",
+            "./assets/ENTROPIA9.png",
+            "./assets/ENTROPIA10.png",
+            "./assets/finalentropia.mp4"
     },
     { 
         id: "02", 
@@ -161,7 +172,7 @@ const projects = [
         role: "360", 
         date: "2025", 
         partner: "Self", 
-        img: "./assets/areyou(1).mp4", 
+        img: "./assets/areyoufinal(1).mp4", 
         description: `Identity in the Digital Age: Reflection or Projection?\n\nIdentity is multi-dimensional and continuously evolving through experiences and interactions. However, in our current era of social media and algorithmic dominance, individual identity faces an unprecedented crisis. Digital platforms have built a world where uniqueness blurs, and our authentic core is often replaced by mass-produced standards and automated trends.\n\n"ARE YOU PART OF YOURSELF?" is a provocative thesis project that invites viewers to reflect on their relationship with technology. It questions whether our essence has been commodified, collected, and replicated by modern networks, reducing individuality into sheer conformity. The project serves as a bold commentary on mass choice, urging a conscious return to our true selves amid the digital noise.\n\nVisual & Conceptual Execution:\nThe video triggers immediate emotional responses through a distorted, "broken" glitch aesthetic and monochromatic filters, symbolizing alienation. Abstract units transition into mass elements to mirror the loss of self. Key terminology from Wikipedia is intentionally integrated as a satirical nod to questionable mainstream data, highlighting how misinformation shapes personal truth. By exposing commercialized validation metrics, the project actively forces the viewer to shift from a passive observer to an active participant.\n\nTarget Audience:\nThis work addresses active social media users and individuals swept into modern echo chambers, bridging the gap for those experiencing an internal division between true existence ("being") and algorithmic performance ("appearing").`,
         media: ["./assets/areyoufinal(1).mp4"] 
     },
