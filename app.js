@@ -125,7 +125,7 @@ const projects = [
         partner: "Vestart", 
         img: "./assets/brotherakia.mp4", 
         liveSite: "https://www.brotherakia.gr/",
-        description: `Brotherakia is a rapidly expanding dynamic ecosystem centered around beloved custom coloring characters created by popular Greek YouTuber and artist, @imikriollandeza.\n\nWhat kicked off as a passionate creative endeavor with a single coloring book has completely exploded. Following the immense success of their third coloring book edition, the Brotherakia universe has effortlessly scaled onto tangible consumer products, ranging from water bottles and custom mugs to lunchboxes and a wave of upcoming secret merchandise.\n\nAs a UX researcher and designer handling this scaling architecture, my mission was to shape the digital foundation for this evolution. I developed the official Brotherakia platform, which currently serves as a minimalist, high-converting landing page built to capture user registrations for an upcoming exclusive event. This project is pure fun, and I am highly looking forward to mapping and designing even deeper interactive experiences as this charming ecosystem continues to grow.`, 
+        description: `Brotherakia is a rapidly expanding dynamic ecosystem centered around beloved custom coloring characters created by popular Greek YouTuber and artist, @imikriollandeza.\n\nWhat kicked off as a passionate creative endeavor with a single coloring book displayed complete exponential scaling architecture onto tangible consumer products. My mission was to shape the digital foundation for this evolution. I developed the official Brotherakia platform, which currently serves as a minimalist, high-converting landing page built to capture user registrations. This project is pure fun, and I am highly looking forward to mapping and designing even deeper interactive experiences as this charming ecosystem continues to grow.`, 
         media: ["./assets/brotherakia.mp4"] 
     },
     { 
@@ -136,7 +136,7 @@ const projects = [
         partner: "Vestart", 
         img: "./assets/treha1.mp4", 
         liveSite: "https://www.trehayireve.gr/",
-        description: `The name "Treha Gireve" originates from a traditional Greek proverb meaning "run and look for it," which colloquially implies searching for something elusive or embark on a wild goose chase. Metaphorically and literally, however, Treha Gireve is an active running club meticulously designed to foster socialization, human connection, and a healthy athletic lifestyle within a densely populated metropolis like Athens.\n\nThis community has grown exponentially, transforming the simple act of running into a vital escape and a powerful outlet from the exhaustion of daily routines. Through Vestart, I had the honor of designing the complete UI/UX interface for their official website alongside a seamless, specialized booking engine, allowing this thriving community to connect, schedule urban runs, and manage slots effortlessly.`, 
+        description: `The name "Treha Gireve" originates from a traditional Greek proverb meaning "run and look for it." Metaphorically and literally, however, Treha Gireve is an active running club meticulously designed to foster socialization, human connection, and a healthy athletic lifestyle within a densely populated metropolis like Athens.\n\nThis community has grown exponentially, transforming the simple act of running into a vital escape and a powerful outlet from the exhaustion of daily routines. Through Vestart, I had the honor of designing the complete UI/UX interface for their official website alongside a seamless, specialized booking engine, allowing this thriving community to connect, schedule urban runs, and manage slots effortlessly.`, 
         media: [
             "./assets/treha1.mp4",
             `<div style="width: 100%; padding-bottom: 50px; background: transparent;"></div>`,
@@ -184,7 +184,7 @@ const projects = [
         partner: "Vestart", 
         img: "./assets/stainvideo.mp4", 
         liveSite: "https://staincosmetics.com/",
-        description: `I had the incredible honor of serving as the Project Manager and Lead UI/UX Engineer for the entire birth of Stain, a disruptive beauty brand that introduces the concept of 'accessible luxury' to the Greek market. My role spanned across cross-functional creative verticals: container sourcing, visual communication, packaging assets, product launch positioning, and the tailored creation of the digital flagship store.\n\nManaging this multi-layered framework within strict, demanding timelines was intensely challenging, yet the outcome successfully achieved its strategic market positioning. The entire design cycle transformed a rigorous commercial launch into a beautiful, seamless creative milestone that thrives on aesthetic sophistication.`,
+        description: `I had the incredible honor of serving as the Project Manager and Lead UI/UX Engineer for the entire birth of Stain, a disruptive beauty brand that introduces the concept of 'accessible luxury' to the Greek market. My role spanned across cross-functional creative verticals: container sourcing, visual communication, packaging assets, product launch positioning, and the tailored creation of the digital flagship store.\n\nConcrete commercial constraints became a canvas for innovation. The entire design cycle transformed a rigorous commercial launch into a beautiful, seamless creative milestone that thrives on aesthetic sophistication.`,
         media: ["./assets/stainvideo.mp4"] 
     },
     { 
@@ -265,10 +265,8 @@ const items = [];
 const textureLoader = new THREE.TextureLoader();
 const menuContainer = document.getElementById('menu-container');
 
-// Ελέγχουμε αν η συσκευή είναι mobile εξαρχής
 const isMobile = window.innerWidth <= 768;
 let targetY = 0, currentY = 0, smoothedVelocity = 0;
-// Αν είναι mobile, το opacity ξεκινάει στο 1 επειδή δεν υπάρχει hover
 let globalOpacity = { value: isMobile ? 1 : 0 }; 
 
 projects.forEach((p, i) => {
@@ -296,7 +294,6 @@ projects.forEach((p, i) => {
     row.className = 'project-row';
     row.innerHTML = `<div>${p.id}</div><div>${p.title}</div><div>${p.role}</div><div>${p.date}</div><div>${p.partner}</div>`;
     
-    // Desktop hover handlers
     row.onmouseenter = () => { 
         if (window.innerWidth > 768) {
             targetY = i * itemSpacing; 
@@ -311,7 +308,6 @@ projects.forEach((p, i) => {
     menuContainer.appendChild(row);
 });
 
-// Desktop leave handler
 document.getElementById('grid-trigger').onmouseleave = () => { 
     if (window.innerWidth > 768) {
         gsap.to(globalOpacity, { value: 0, duration: 0.4 }); 
@@ -321,7 +317,6 @@ document.getElementById('grid-trigger').onmouseleave = () => {
     }
 };
 
-// Listener για το mobile scroll (μετατροπή swipe σε κίνηση WebGL)
 window.addEventListener('scroll', () => {
     if (window.innerWidth <= 768) {
         const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -330,7 +325,6 @@ window.addEventListener('scroll', () => {
             const totalHeight = (projects.length - 1) * itemSpacing;
             targetY = scrollPercent * totalHeight;
             
-            // Προαιρετικό active class στο row που βρίσκεται πιο κοντά στο κέντρο
             const activeIndex = Math.round(scrollPercent * (projects.length - 1));
             document.querySelectorAll('.project-row').forEach((r, idx) => {
                 r.classList.toggle('active', idx === activeIndex);
@@ -374,7 +368,6 @@ function openProject(index) {
         partnerWrapper.style.display = "none";
     }
 
-    // Dynamic Live link checker
     const liveWrapper = document.getElementById('p-live-wrapper');
     const liveBtn = document.getElementById('p-live');
     if (project.liveSite && project.liveSite.trim() !== "") {
@@ -409,10 +402,14 @@ function openProject(index) {
         } 
         else if (item.endsWith('.mp4') || item.endsWith('.mov')) {
             const video = document.createElement('video');
-            video.src = item; video.loop = true; video.playsInline = true;
-            video.setAttribute('preload', 'metadata');
+            video.src = item; 
+            video.loop = true; 
+            video.muted = true;
             
-            // Audio Logic linked directly to project "14" (Are you part of yourself?)
+            // ΚΡΙΣΙΜΑ MOBILE ATTRIBUTES ΓΙΑ ΑΚΑΡΙΑΙΑ ΦΟΡΤΩΣΗ
+            video.playsInline = true;
+            video.preload = "auto";
+            
             if (project.id === "14") {
                 video.muted = false;
                 video.autoplay = true;
@@ -447,6 +444,7 @@ function openProject(index) {
         else {
             const img = document.createElement('img');
             img.src = item;
+            img.loading = 'lazy'; 
             itemWrapper.appendChild(img);
         }
         mediaContainer.appendChild(itemWrapper);
@@ -515,12 +513,61 @@ if (window.location.hash === '#about') {
 function clock() { document.getElementById('clock').innerText = `${new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Athens', hour:'2-digit', minute:'2-digit', hour12:false}).format(new Date())} Athens, Greece`; }
 setInterval(clock, 1000); clock();
 
-// Ενημέρωση των παραμέτρων responsive κατά το resize
 window.addEventListener('resize', () => {
     const currentMobileState = window.innerWidth <= 768;
     globalOpacity.value = currentMobileState ? 1 : 0;
     updateSizes();
 });
+
+// REAL PROGRESS PRELOADER ENGINE (THREE.JS TEXTURES)
+(function() {
+    const preloader = document.getElementById('preloader');
+    const barFill = document.querySelector('.loader-bar-fill');
+    const percentText = document.querySelector('.loader-percentage');
+    
+    if (!preloader || !barFill || !percentText) return;
+
+    let loadedMedia = 0;
+    const totalMedia = projects.length;
+
+    function mediaLoaded() {
+        loadedMedia++;
+        const progress = Math.round((loadedMedia / totalMedia) * 100);
+        
+        gsap.to(barFill, { width: progress + '%', duration: 0.2, ease: "power1.out" });
+        percentText.innerText = `( ${progress}% )`;
+
+        if (loadedMedia >= totalMedia) {
+            setTimeout(() => {
+                const tl = gsap.timeline({ onComplete: () => { preloader.style.display = 'none'; } });
+                tl.to(preloader, { yPercent: -100, duration: 1.2, ease: "power4.inOut" });
+            }, 400);
+        }
+    }
+
+    items.forEach((mesh, i) => {
+        const texture = mesh.material.uniforms.tMap.value;
+        if (texture && texture.image) {
+            if (texture.image instanceof HTMLVideoElement) {
+                if (texture.image.readyState >= 2) {
+                    mediaLoaded();
+                } else {
+                    texture.image.addEventListener('loadeddata', mediaLoaded, { once: true });
+                    texture.image.addEventListener('error', mediaLoaded, { once: true });
+                }
+            } else {
+                if (texture.image.complete) {
+                    mediaLoaded();
+                } else {
+                    texture.image.addEventListener('load', mediaLoaded, { once: true });
+                    texture.image.addEventListener('error', mediaLoaded, { once: true });
+                }
+            }
+        } else {
+            mediaLoaded();
+        }
+    });
+})();
 
 updateSizes(); 
 animate();
